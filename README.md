@@ -167,5 +167,3 @@ A monthly flag count per offer, broken down by module — **HSA** and **CVR**. T
 - **Monitoring:** Automated daily runs with tier-based alerting
 
 ---
-
-*IA System Monitoring — System Brief | Confidential — For Internal Use Only | April 2026*
