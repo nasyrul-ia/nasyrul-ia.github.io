@@ -1311,24 +1311,6 @@
         </ul>
       </div>
 
-      <div style="background:#F8FAFC; border:1px solid var(--border); border-radius:8px; padding:14px 16px;">
-        <div style="font-size:11px; font-weight:700; color:var(--navy); text-transform:uppercase; letter-spacing:0.5px; margin-bottom:8px;">S6 — Click-to-Conversion Time (CTIT)</div>
-        <p style="font-size:12px; color:var(--gray); margin:0 0 6px;">Legitimate user journeys have a natural time gap between click and conversion. Abnormal CTIT indicates automation. Minimum 30 conversions in the window before CTIT distribution check activates.</p>
-        <ul style="font-size:12px; color:var(--gray); margin:0; padding-left:16px; line-height:1.7;">
-          <li>CTIT &lt; 10 seconds for &gt; 20% of conversions → <strong>+20 pts</strong></li>
-          <li>CTIT distribution abnormally uniform (std dev &lt; 5s across ≥ 50 clicks) → <strong>+25 pts</strong></li>
-        </ul>
-      </div>
-
-      <div style="background:#F8FAFC; border:1px solid var(--border); border-radius:8px; padding:14px 16px; grid-column: 1 / -1;">
-        <div style="font-size:11px; font-weight:700; color:var(--navy); text-transform:uppercase; letter-spacing:0.5px; margin-bottom:8px;">S7 — Geographic & Device Mismatch</div>
-        <p style="font-size:12px; color:var(--gray); margin:0 0 6px;">Clicks attributed from one geography or device type but conversions completing from another — a common indicator of spoofed or proxied traffic.</p>
-        <ul style="font-size:12px; color:var(--gray); margin:0; padding-left:16px; line-height:1.7;">
-          <li>Click country ≠ conversion country for &gt; 60% of sessions → <strong>+20 pts</strong></li>
-          <li>Mobile user-agent with desktop browser fingerprint → <strong>+15 pts</strong></li>
-        </ul>
-      </div>
-
     </div>
 
     <h3>Fraud Scoring Engine</h3>
@@ -1356,10 +1338,6 @@
           <tr><td>S5 — Single user-agent</td><td>One UA string &gt; 40% of 24h publisher clicks</td><td style="text-align:center;"><strong>+15</strong></td></tr>
           <tr><td>S5 — Data-centre / VPN IP</td><td>IP resolves to data-centre or known VPN provider</td><td style="text-align:center;"><strong>+25</strong></td></tr>
           <tr><td>S5 — Invalid referrer</td><td>Referrer header missing or malformed</td><td style="text-align:center;"><strong>+10</strong></td></tr>
-          <tr><td>S6 — CTIT too fast</td><td>CTIT &lt; 10s for &gt; 20% of conversions</td><td style="text-align:center;"><strong>+20</strong></td></tr>
-          <tr><td>S6 — Uniform CTIT distribution</td><td>Std dev &lt; 5s across ≥ 50 click-to-conversion pairs</td><td style="text-align:center;"><strong>+25</strong></td></tr>
-          <tr><td>S7 — Geo mismatch</td><td>Click country ≠ conversion country for &gt; 60% of sessions</td><td style="text-align:center;"><strong>+20</strong></td></tr>
-          <tr><td>S7 — Device mismatch</td><td>Mobile UA with desktop browser fingerprint</td><td style="text-align:center;"><strong>+15</strong></td></tr>
         </tbody>
       </table>
     </div>
@@ -1428,7 +1406,7 @@
       </div>
       <div style="background:#FFF7ED; border-left:3px solid #BA7517; border-radius:4px; padding:12px 14px;">
         <div style="font-size:11px; font-weight:700; color:#7a3a00; margin-bottom:6px;">Minimum Volume Gates</div>
-        <p style="font-size:12px; color:var(--gray); margin:0; line-height:1.6;">S2 (CVR) requires ≥ 200 clicks in window. S6 (CTIT distribution) requires ≥ 50 conversion pairs. S7 (geo mismatch) requires ≥ 30 sessions. Signals that don't meet their minimum gate contribute 0 points until the gate is reached.</p>
+        <p style="font-size:12px; color:var(--gray); margin:0; line-height:1.6;">S2 (CVR) requires ≥ 200 clicks in window. Signals that don't meet their minimum gate contribute 0 points until the gate is reached.</p>
       </div>
     </div>
 
