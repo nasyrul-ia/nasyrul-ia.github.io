@@ -1,0 +1,1563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mini Tools — Project Brief v1.0</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@800&display=swap" rel="stylesheet">
+<style>
+/* ========== DESIGN TOKENS — IA Brand V3.4 ========== */
+:root {
+  /* Midnight palette */
+  --midnight: #0F1C2E;
+  --midnight-mid: #1A2E47;
+  --midnight-soft: #243856;
+  --midnight-light: #3D5A80;
+
+  /* Ember palette — Publisher accent */
+  --ember: #F05826;
+  --ember-dark: #C43E18;
+  --ember-light: #FF7A45;
+
+  /* Warm neutrals */
+  --warm-50: #FAFAF8;
+  --warm-100: #F4F4F0;
+  --warm-200: #E8E8E2;
+  --warm-300: #D2D2CC;
+  --warm-400: #706F6B;
+  --warm-600: #4B4B46;
+  --warm-800: #1F1F1A;
+  --warm-900: #111110;
+
+  /* Status */
+  --success: #10B981;
+  --warning: #F59E0B;
+  --error: #EF4444;
+  --info: #3B82F6;
+
+  /* Gradients */
+  --grad-ember: linear-gradient(135deg, #F05826, #C43E18);
+  --grad-midnight: linear-gradient(135deg, #0F1C2E, #1A3251);
+  --grad-midnight-light: linear-gradient(135deg, #3D5A80, #1A2E47);
+
+  /* Shadows — Midnight-tinted, NEVER grey/black */
+  --shadow-sm: 0 1px 3px rgba(15,28,46,.06);
+  --shadow-md: 0 4px 12px rgba(15,28,46,.08);
+  --shadow-lg: 0 10px 30px rgba(15,28,46,.10);
+  --shadow-ember: 0 4px 14px rgba(240,88,38,.25);
+
+  /* Spacing — 4px base grid */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+
+  /* Border radius */
+  --r-sm: 8px;
+  --r-md: 12px;
+  --r-lg: 16px;
+  --r-full: 9999px;
+
+  /* Typography */
+  --font-display: 'Plus Jakarta Sans', sans-serif;
+  --font-body: 'Inter', sans-serif;
+}
+
+/* ========== RESET & BASE ========== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 32px;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--warm-800);
+  background: var(--warm-50);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ========== LAYOUT ========== */
+.page-wrapper {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* ========== SIDEBAR NAV ========== */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 240px;
+  height: 100vh;
+  background: var(--midnight);
+  padding: var(--space-8) var(--space-4) var(--space-4);
+  overflow-y: auto;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-brand {
+  padding: var(--space-2) var(--space-3) var(--space-6);
+  border-bottom: 1px solid rgba(255,255,255,.08);
+  margin-bottom: var(--space-6);
+}
+
+.sidebar-brand-wordmark {
+  font-family: var(--font-display);
+  font-size: 16px;
+  color: #fff;
+  letter-spacing: -0.02em;
+}
+
+.sidebar-brand-sub {
+  font-family: var(--font-body);
+  font-size: 11px;
+  color: rgba(255,255,255,.45);
+  margin-top: var(--space-1);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.sidebar-nav {
+  flex: 1;
+}
+
+.sidebar-nav a {
+  display: block;
+  padding: var(--space-2) var(--space-3);
+  color: rgba(255,255,255,.55);
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 500;
+  border-radius: var(--r-sm);
+  transition: all 0.2s ease;
+  line-height: 1.4;
+  margin-bottom: 2px;
+}
+
+.sidebar-nav a:hover {
+  color: #fff;
+  background: rgba(255,255,255,.06);
+}
+
+.sidebar-nav a.active {
+  color: #fff;
+  background: rgba(240,88,38,.15);
+}
+
+.sidebar-nav a.active::before {
+  content: '';
+  display: inline-block;
+  width: 3px;
+  height: 14px;
+  background: var(--ember);
+  border-radius: 2px;
+  margin-right: var(--space-2);
+  vertical-align: middle;
+}
+
+.sidebar-nav .nav-section {
+  font-size: 11px;
+  font-weight: 600;
+  color: rgba(255,255,255,.3);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: var(--space-4) var(--space-3) var(--space-1);
+}
+
+.sidebar-nav .nav-sub {
+  padding-left: var(--space-6);
+  font-size: 11px;
+}
+
+.sidebar-footer {
+  padding: var(--space-4) var(--space-3);
+  border-top: 1px solid rgba(255,255,255,.08);
+  margin-top: var(--space-4);
+}
+
+.sidebar-footer-text {
+  font-size: 11px;
+  color: rgba(255,255,255,.3);
+  line-height: 1.5;
+}
+
+/* ========== MAIN CONTENT ========== */
+.main-content {
+  margin-left: 240px;
+  flex: 1;
+  min-width: 0;
+}
+
+/* ========== HERO SECTION ========== */
+.hero {
+  background: var(--grad-midnight);
+  padding: var(--space-12) var(--space-8) var(--space-10);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -20%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(240,88,38,.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: -30%;
+  left: -10%;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(61,90,128,.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.hero-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-badge {
+  display: inline-block;
+  background: rgba(240,88,38,.15);
+  color: var(--ember-light);
+  font-size: 11px;
+  font-weight: 600;
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--r-full);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: var(--space-6);
+  border: 1px solid rgba(240,88,38,.25);
+}
+
+.hero-title {
+  font-family: var(--font-display);
+  font-size: 48px;
+  font-weight: 800;
+  color: #fff;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  margin-bottom: var(--space-3);
+}
+
+.hero-subtitle {
+  font-family: var(--font-body);
+  font-size: 18px;
+  font-weight: 400;
+  color: rgba(255,255,255,.65);
+  margin-bottom: var(--space-8);
+  max-width: 560px;
+  line-height: 1.5;
+}
+
+.hero-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-6);
+  padding-top: var(--space-6);
+  border-top: 1px solid rgba(255,255,255,.08);
+}
+
+.hero-meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.hero-meta-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: rgba(255,255,255,.35);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.hero-meta-value {
+  font-size: 14px;
+  font-weight: 600;
+  color: rgba(255,255,255,.85);
+}
+
+/* ========== CONTENT BODY ========== */
+.content-body {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: var(--space-10) var(--space-8) var(--space-12);
+}
+
+/* ========== SECTION HEADERS ========== */
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  margin: var(--space-12) 0 var(--space-6);
+  position: relative;
+}
+
+.section-header:first-child {
+  margin-top: 0;
+}
+
+.section-number {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  background: var(--midnight);
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--r-md);
+  letter-spacing: -0.02em;
+}
+
+.section-number.ember-accent {
+  background: var(--grad-ember);
+}
+
+.section-title-group {
+  flex: 1;
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--midnight);
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.section-subtitle {
+  font-size: 14px;
+  color: var(--warm-400);
+  margin-top: var(--space-1);
+  font-style: italic;
+}
+
+/* ========== MODULE OVERVIEW BAR ========== */
+.module-overview {
+  background: #fff;
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-md);
+  padding: var(--space-6);
+  margin-bottom: var(--space-8);
+}
+
+.module-overview-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--midnight);
+  margin-bottom: var(--space-4);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.module-overview-title::before {
+  content: '';
+  display: inline-block;
+  width: 4px;
+  height: 16px;
+  background: var(--ember);
+  border-radius: 2px;
+}
+
+.module-overview-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-4);
+}
+
+.module-card {
+  background: var(--warm-50);
+  border: 1px solid var(--warm-200);
+  border-radius: var(--r-md);
+  padding: var(--space-4) var(--space-5);
+  transition: box-shadow 0.2s ease;
+}
+
+.module-card:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.module-card-letter {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--midnight);
+  letter-spacing: -0.02em;
+}
+
+.module-card-letter.ember { color: var(--ember); }
+
+.module-card-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--warm-800);
+  margin-top: var(--space-1);
+}
+
+.module-card-desc {
+  font-size: 12px;
+  color: var(--warm-400);
+  line-height: 1.5;
+  margin-top: var(--space-2);
+}
+
+/* ========== FEATURE CARDS ========== */
+.feature-card {
+  background: #fff;
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-md);
+  margin-bottom: var(--space-6);
+  overflow: hidden;
+  transition: box-shadow 0.25s ease;
+}
+
+.feature-card:hover {
+  box-shadow: var(--shadow-lg);
+}
+
+.feature-card-header {
+  padding: var(--space-5) var(--space-6);
+  border-bottom: 1px solid var(--warm-200);
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.feature-card-id {
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--ember);
+  letter-spacing: -0.01em;
+  flex-shrink: 0;
+}
+
+.feature-card-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--midnight);
+  line-height: 1.3;
+}
+
+.feature-card-body {
+  padding: var(--space-5) var(--space-6) var(--space-6);
+}
+
+.feature-card-body p {
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--warm-600);
+  margin-bottom: var(--space-4);
+}
+
+.feature-card-body p:last-child {
+  margin-bottom: 0;
+}
+
+.feature-card-body ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.feature-card-body ul li {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--warm-600);
+  padding: var(--space-1) 0 var(--space-1) var(--space-5);
+  position: relative;
+}
+
+.feature-card-body ul li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 11px;
+  width: 6px;
+  height: 6px;
+  background: var(--ember);
+  border-radius: 50%;
+}
+
+/* ========== CALLOUT BOXES ========== */
+.callout {
+  border-radius: var(--r-md);
+  padding: var(--space-4) var(--space-5);
+  margin: var(--space-4) 0;
+  display: flex;
+  gap: var(--space-3);
+  align-items: flex-start;
+}
+
+.callout-ember {
+  background: rgba(240,88,38,.06);
+  border: 1px solid rgba(240,88,38,.2);
+  border-left: 4px solid var(--ember);
+}
+
+.callout-info {
+  background: rgba(59,130,246,.06);
+  border: 1px solid rgba(59,130,246,.2);
+  border-left: 4px solid var(--info);
+}
+
+.callout-icon {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1px;
+}
+
+.callout-content {
+  flex: 1;
+}
+
+.callout-content strong {
+  display: block;
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: var(--space-1);
+}
+
+.callout-ember .callout-content strong { color: var(--ember-dark); }
+.callout-info .callout-content strong { color: var(--info); }
+
+.callout-content p {
+  font-size: 13px;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.callout-ember .callout-content p { color: var(--warm-600); }
+.callout-info .callout-content p { color: var(--warm-600); }
+
+/* ========== TABLES ========== */
+.table-wrapper {
+  overflow-x: auto;
+  margin: var(--space-4) 0;
+}
+
+.table-wrapper table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.table-wrapper table thead th {
+  background: var(--midnight);
+  color: #fff;
+  font-weight: 600;
+  font-size: 12px;
+  text-align: left;
+  padding: var(--space-3) var(--space-4);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
+.table-wrapper table thead th:first-child {
+  border-radius: var(--r-sm) 0 0 0;
+}
+
+.table-wrapper table thead th:last-child {
+  border-radius: 0 var(--r-sm) 0 0;
+}
+
+.table-wrapper table tbody td {
+  padding: var(--space-3) var(--space-4);
+  border-bottom: 1px solid var(--warm-200);
+  color: var(--warm-600);
+  line-height: 1.5;
+}
+
+.table-wrapper table tbody tr:nth-child(even) {
+  background: var(--warm-50);
+}
+
+.table-wrapper table tbody tr:hover {
+  background: var(--warm-100);
+}
+
+.table-wrapper table tbody tr:last-child td:first-child {
+  border-radius: 0 0 0 var(--r-sm);
+}
+
+.table-wrapper table tbody tr:last-child td:last-child {
+  border-radius: 0 0 var(--r-sm) 0;
+}
+
+/* ========== LIFECYCLE FLOW ========== */
+.lifecycle-flow {
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+  margin: var(--space-6) 0;
+  overflow-x: auto;
+  padding-bottom: var(--space-2);
+}
+
+.lifecycle-stage {
+  flex: 1;
+  min-width: 150px;
+  background: #fff;
+  border: 1px solid var(--warm-200);
+  border-radius: var(--r-md);
+  padding: var(--space-4);
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+.lifecycle-stage:hover {
+  box-shadow: var(--shadow-md);
+  border-color: var(--ember);
+}
+
+.lifecycle-stage-number {
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--ember);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: var(--space-1);
+}
+
+.lifecycle-stage-name {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--midnight);
+  margin-bottom: var(--space-2);
+}
+
+.lifecycle-stage-desc {
+  font-size: 12px;
+  color: var(--warm-400);
+  line-height: 1.5;
+}
+
+.lifecycle-arrow {
+  display: flex;
+  align-items: center;
+  padding: 0 var(--space-2);
+  flex-shrink: 0;
+  color: var(--warm-300);
+}
+
+.lifecycle-arrow svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* ========== PHASE COMPARISON ========== */
+.phase-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-6);
+  margin: var(--space-6) 0;
+}
+
+.phase-card {
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+}
+
+.phase-card-header {
+  padding: var(--space-4) var(--space-5);
+  color: #fff;
+}
+
+.phase-card-header h4 {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.phase-card-header p {
+  font-size: 12px;
+  opacity: .7;
+  margin-top: var(--space-1);
+}
+
+.phase-1 .phase-card-header {
+  background: var(--grad-ember);
+}
+
+.phase-2 .phase-card-header {
+  background: var(--grad-midnight-light);
+}
+
+.phase-card-body {
+  background: #fff;
+  padding: var(--space-5);
+}
+
+.phase-card-body ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.phase-card-body ul li {
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--warm-600);
+  padding: var(--space-2) 0 var(--space-2) var(--space-5);
+  position: relative;
+}
+
+.phase-1 .phase-card-body ul li::before {
+  content: '';
+  position: absolute;
+  left: 2px;
+  top: 11px;
+  width: 8px;
+  height: 8px;
+  background: var(--ember);
+  border-radius: 50%;
+}
+
+.phase-2 .phase-card-body ul li::before {
+  content: '';
+  position: absolute;
+  left: 2px;
+  top: 11px;
+  width: 8px;
+  height: 8px;
+  background: var(--midnight-soft);
+  border-radius: 50%;
+}
+
+/* ========== OVERVIEW INTRO ========== */
+.overview-intro {
+  background: #fff;
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-md);
+  padding: var(--space-6);
+  margin-bottom: var(--space-8);
+}
+
+.overview-intro p {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--warm-600);
+  margin-bottom: var(--space-4);
+}
+
+.overview-intro p:last-child {
+  margin-bottom: 0;
+}
+
+.overview-intro .highlight {
+  color: var(--midnight);
+  font-weight: 600;
+}
+
+/* ========== DIVIDER ========== */
+.section-divider {
+  height: 1px;
+  background: var(--warm-200);
+  margin: var(--space-10) 0;
+}
+
+/* ========== FOOTER ========== */
+.page-footer {
+  background: var(--midnight);
+  padding: var(--space-10) var(--space-8);
+  margin-top: var(--space-12);
+}
+
+.footer-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-brand {
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: -0.02em;
+}
+
+.footer-info {
+  text-align: right;
+}
+
+.footer-info p {
+  font-size: 12px;
+  color: rgba(255,255,255,.4);
+  line-height: 1.6;
+}
+
+.footer-divider {
+  height: 1px;
+  background: rgba(255,255,255,.08);
+  margin: var(--space-6) 0;
+}
+
+.footer-bottom {
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-bottom p {
+  font-size: 11px;
+  color: rgba(255,255,255,.3);
+}
+
+.footer-badge {
+  display: inline-block;
+  background: rgba(240,88,38,.12);
+  color: var(--ember-light);
+  font-size: 11px;
+  font-weight: 600;
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--r-full);
+  border: 1px solid rgba(240,88,38,.2);
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 1024px) {
+  .sidebar {
+    display: none;
+  }
+  .main-content {
+    margin-left: 0;
+  }
+  .module-overview-grid {
+    grid-template-columns: 1fr;
+  }
+  .phase-grid {
+    grid-template-columns: 1fr;
+  }
+  .lifecycle-flow {
+    flex-direction: column;
+  }
+  .lifecycle-arrow {
+    transform: rotate(90deg);
+    padding: var(--space-2) 0;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero {
+    padding: var(--space-10) var(--space-4) var(--space-8);
+  }
+  .hero-title {
+    font-size: 32px;
+  }
+  .hero-subtitle {
+    font-size: 16px;
+  }
+  .content-body {
+    padding: var(--space-6) var(--space-4);
+  }
+  .section-title {
+    font-size: 22px;
+  }
+  .hero-meta {
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+}
+
+/* ========== SCROLL SPY ANIMATIONS ========== */
+.feature-card,
+.module-overview,
+.overview-intro,
+.lifecycle-stage,
+.phase-card {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.feature-card.visible,
+.module-overview.visible,
+.overview-intro.visible,
+.lifecycle-stage.visible,
+.phase-card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger lifecycle stages */
+.lifecycle-stage:nth-child(1) { transition-delay: 0s; }
+.lifecycle-stage:nth-child(3) { transition-delay: 0.1s; }
+.lifecycle-stage:nth-child(5) { transition-delay: 0.2s; }
+.lifecycle-stage:nth-child(7) { transition-delay: 0.3s; }
+.lifecycle-stage:nth-child(9) { transition-delay: 0.4s; }
+
+/* ========== PRINT ========== */
+@media print {
+  .sidebar { display: none; }
+  .main-content { margin-left: 0; }
+  .feature-card, .module-overview, .overview-intro, .lifecycle-stage, .phase-card {
+    opacity: 1 !important;
+    transform: none !important;
+    box-shadow: none !important;
+    border: 1px solid #ddd;
+  }
+  .hero {
+    background: var(--midnight) !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="page-wrapper">
+
+  <!-- ===== SIDEBAR NAV ===== -->
+  <nav class="sidebar" id="sidebar">
+    <div class="sidebar-brand">
+      <div class="sidebar-brand-wordmark">Mini Tools</div>
+      <div class="sidebar-brand-sub">Project Brief v1.0</div>
+    </div>
+    <div class="sidebar-nav">
+      <a href="#overview" class="nav-section-link" data-section="overview">Overview</a>
+      <div class="nav-section">Module A</div>
+      <a href="#module-a" class="nav-section-link nav-sub" data-section="module-a">Data Reporting</a>
+      <a href="#a1" class="nav-sub" data-section="a1">A1 &mdash; Fraud Analysis</a>
+      <a href="#a2" class="nav-sub" data-section="a2">A2 &mdash; Case Tickets</a>
+      <a href="#a3" class="nav-sub" data-section="a3">A3 &mdash; Offer Approval</a>
+      <div class="nav-section">Module B</div>
+      <a href="#module-b" class="nav-section-link nav-sub" data-section="module-b">Case Ticketing</a>
+      <a href="#b1" class="nav-sub" data-section="b1">B1 &mdash; Ticket Generation</a>
+      <a href="#b2" class="nav-sub" data-section="b2">B2 &mdash; Auto Categorisation</a>
+      <a href="#b3" class="nav-sub" data-section="b3">B3 &mdash; Smart Classification</a>
+      <a href="#b4" class="nav-sub" data-section="b4">B4 &mdash; Automated Actions</a>
+      <a href="#b5" class="nav-sub" data-section="b5">B5 &mdash; Lifecycle Tracking</a>
+      <div class="nav-section">Module C</div>
+      <a href="#module-c" class="nav-section-link nav-sub" data-section="module-c">Domain Blacklist</a>
+      <a href="#c1" class="nav-sub" data-section="c1">C1 &mdash; Blocking Overview</a>
+      <a href="#c2" class="nav-sub" data-section="c2">C2 &mdash; Smart Assist</a>
+      <a href="#c3" class="nav-sub" data-section="c3">C3 &mdash; Smart Detect</a>
+      <a href="#c4" class="nav-sub" data-section="c4">C4 &mdash; Click Impact</a>
+      <div class="nav-section">Delivery</div>
+      <a href="#delivery" class="nav-section-link nav-sub" data-section="delivery">Phases</a>
+    </div>
+    <div class="sidebar-footer">
+      <div class="sidebar-footer-text">Involve Asia<br>Internal Use Only</div>
+    </div>
+  </nav>
+
+  <!-- ===== MAIN CONTENT ===== -->
+  <main class="main-content">
+
+    <!-- ===== HERO ===== -->
+    <section class="hero" id="overview">
+      <div class="hero-inner">
+        <div class="hero-badge">Internal Use Only</div>
+        <h1 class="hero-title">Mini Tools</h1>
+        <p class="hero-subtitle">Fraud Detection Reporting, Analysis &amp; Case Ticketing for Involve Asia&rsquo;s Compliance team.</p>
+        <div class="hero-meta">
+          <div class="hero-meta-item">
+            <span class="hero-meta-label">Prepared By</span>
+            <span class="hero-meta-value">Compliance &amp; Fraud Prevention &mdash; Ops Lead</span>
+          </div>
+          <div class="hero-meta-item">
+            <span class="hero-meta-label">Submitted To</span>
+            <span class="hero-meta-value">Product Team &amp; Engineering Team</span>
+          </div>
+          <div class="hero-meta-item">
+            <span class="hero-meta-label">Date</span>
+            <span class="hero-meta-value">May 2026</span>
+          </div>
+          <div class="hero-meta-item">
+            <span class="hero-meta-label">Version</span>
+            <span class="hero-meta-value">1.0</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CONTENT BODY ===== -->
+    <div class="content-body">
+
+      <!-- ===== OVERVIEW ===== -->
+      <div class="overview-intro" id="overview-section">
+        <p>Mini Tools is an internal web application for Involve Asia&rsquo;s Compliance and Fraud Prevention team. It supports <span class="highlight">fraud detection reporting, analysis, and case management</span> across the affiliate network.</p>
+        <p>The system reads data from <span class="highlight">Mahadir</span> &mdash; Involve Asia&rsquo;s internal data platform &mdash; and presents it in actionable views. Mini Tools does not process or store raw transaction data. All data is sourced read-only from Mahadir.</p>
+      </div>
+
+      <!-- Module overview cards -->
+      <div class="module-overview">
+        <div class="module-overview-title">Module Overview</div>
+        <div class="module-overview-grid">
+          <div class="module-card">
+            <div class="module-card-letter ember">A</div>
+            <div class="module-card-name">Data Reporting</div>
+            <div class="module-card-desc">Fraud detection dashboards, category-level analysis, and case ticket analytics for the compliance team and commercial stakeholders.</div>
+          </div>
+          <div class="module-card">
+            <div class="module-card-letter ember">B</div>
+            <div class="module-card-name">Case Ticketing</div>
+            <div class="module-card-desc">End-to-end lifecycle management of all fraud violation cases &mdash; from ticket creation through investigation, enforcement, and closure.</div>
+          </div>
+          <div class="module-card">
+            <div class="module-card-letter ember">C</div>
+            <div class="module-card-name">Domain Blacklist</div>
+            <div class="module-card-desc">Domain blocking management, weekly list generation for Kaishen, and click impact reporting.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============================================================ -->
+      <!-- MODULE A: DATA REPORTING                                      -->
+      <!-- ============================================================ -->
+      <div class="section-divider"></div>
+
+      <div class="section-header" id="module-a">
+        <div class="section-number ember-accent">A</div>
+        <div class="section-title-group">
+          <h2 class="section-title">Data Reporting</h2>
+          <p class="section-subtitle">Fraud detection analysis and case ticket reporting</p>
+        </div>
+      </div>
+
+      <div class="overview-intro">
+        <p>The Data Reporting module provides the compliance team and commercial stakeholders with a unified view of fraud detection activity across the network. All data is read from Mahadir.</p>
+      </div>
+
+      <!-- A1 -->
+      <div class="feature-card" id="a1">
+        <div class="feature-card-header">
+          <span class="feature-card-id">A1</span>
+          <h3 class="feature-card-title">Overall &amp; Category-Level Fraud Detection Analysis</h3>
+        </div>
+        <div class="feature-card-body">
+          <p>The dashboard provides a summary of fraud activity across all detection categories, with flexible time filters:</p>
+          <ul>
+            <li>Overall fraud detection metrics &mdash; total cases detected, publishers flagged, revenue at risk</li>
+            <li>Filter by time period: day, week, month, or custom date range</li>
+            <li>Category-level breakdown &mdash; one view per fraud type showing case count, publishers affected, and offers impacted</li>
+            <li>Detection source filter &mdash; view cases by S1 (advertiser-reported) or S2 (internally detected)</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- A2 -->
+      <div class="feature-card" id="a2">
+        <div class="feature-card-header">
+          <span class="feature-card-id">A2</span>
+          <h3 class="feature-card-title">Case Ticket Analysis</h3>
+        </div>
+        <div class="feature-card-body">
+          <p>A dedicated reporting view for case management performance:</p>
+          <ul>
+            <li>Number of cases generated &mdash; by period, fraud category, and detection source</li>
+            <li>Number of publishers involved &mdash; with breakdown by category and frequency</li>
+            <li>Average time from detection to ticket creation</li>
+            <li>Average time from ticket creation to case closure</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- A3 -->
+      <div class="feature-card" id="a3">
+        <div class="feature-card-header">
+          <span class="feature-card-id">A3</span>
+          <h3 class="feature-card-title">Offer Approval Support</h3>
+        </div>
+        <div class="feature-card-body">
+          <p>A publisher fraud history lookup to support offer approval decisions. When Ashok is reviewing whether to approve a publisher for an offer, he can search by Publisher ID or name and immediately see:</p>
+          <ul>
+            <li>Total fraud cases flagged (all time and by period)</li>
+            <li>Breakdown by fraud category</li>
+            <li>Case outcomes &mdash; closed, enforced, or pending</li>
+            <li>Dates of each flagged case</li>
+          </ul>
+          <div class="callout callout-info">
+            <div class="callout-icon">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 1a7 7 0 110 14A7 7 0 018 1zm0 1.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM8.75 9.5v1.25h-1.5V9.5h1.5zm0-4.25v3.25h-1.5V5.25h1.5z" fill="#3B82F6"/></svg>
+            </div>
+            <div class="callout-content">
+              <strong>Direct Link Access</strong>
+              <p>This view must be accessible via a direct link so it can be referenced from the offer approval workflow without navigating through the full system.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============================================================ -->
+      <!-- MODULE B: CASE TICKETING                                      -->
+      <!-- ============================================================ -->
+      <div class="section-divider"></div>
+
+      <div class="section-header" id="module-b">
+        <div class="section-number ember-accent">B</div>
+        <div class="section-title-group">
+          <h2 class="section-title">Case Ticketing</h2>
+          <p class="section-subtitle">Full lifecycle management of all fraud violation cases</p>
+        </div>
+      </div>
+
+      <div class="overview-intro">
+        <p>The Case Ticketing module manages all fraud cases from the moment they are detected to the moment they are closed. Both S1 (advertiser-reported) and S2 (internally detected) cases are handled through this system.</p>
+      </div>
+
+      <!-- B1 -->
+      <div class="feature-card" id="b1">
+        <div class="feature-card-header">
+          <span class="feature-card-id">B1</span>
+          <h3 class="feature-card-title">Ticket Generation</h3>
+        </div>
+        <div class="feature-card-body">
+          <p>All detected fraud cases &mdash; whether reported by an advertiser (S1) or flagged by Mahadir&rsquo;s internal detection (S2) &mdash; will generate a case ticket in the system. In Phase 1, tickets are created manually by the compliance team. In Phase 2, all actions &mdash; Block Promotion, Reject Conversions, Block Withdrawals, and Case Creation to Account Manager &mdash; will be executed automatically within app.involve without any manual task from the operations or finance team.</p>
+          <div class="callout callout-ember">
+            <div class="callout-icon">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 1a7 7 0 110 14A7 7 0 018 1zm0 5.5v3.75m0 1.75h.007" stroke="#F05826" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div class="callout-content">
+              <strong>S1 Case Rule</strong>
+              <p>If a case originates from S1 (advertiser-reported), the ticket enforcement category is automatically set to <strong>Protection-Focused</strong>, regardless of the advertiser&rsquo;s profile setting. This means traffic is suspended immediately, all payouts are blocked, conversions are rejected, and a permanent publisher ban is applied.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- B2 -->
+      <div class="feature-card" id="b2">
+        <div class="feature-card-header">
+          <span class="feature-card-id">B2</span>
+          <h3 class="feature-card-title">Automatic Categorisation</h3>
+        </div>
+        <div class="feature-card-body">
+          <p>When a ticket is created, the system automatically categorises it based on the offer and the violation type:</p>
+          <ul>
+            <li>Offer ID and offer profile (Growth-Focused / Balanced / Protection-Focused) are pulled automatically from Mahadir</li>
+            <li>Violation type is mapped to one of the six fraud categories</li>
+            <li>The advertiser profile determines which enforcement controls apply to that case</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- B3 -->
+      <div class="feature-card" id="b3">
+        <div class="feature-card-header">
+          <span class="feature-card-id">B3</span>
+          <h3 class="feature-card-title">Smart Classification</h3>
+        </div>
+        <div class="feature-card-body">
+          <p>The system analyses each case and suggests the fraud category and risk level based on two factors:</p>
+          <ul>
+            <li>Type of violation &mdash; matched against detection rule criteria</li>
+            <li>Revenue impact &mdash; pending conversion value at the time of flagging</li>
+          </ul>
+          <p>The compliance officer can accept the suggestion or override it. Smart classification uses rule-based logic in Phase 1 and can be upgraded to a machine-learning model in Phase 2.</p>
+        </div>
+      </div>
+
+      <!-- B4 -->
+      <div class="feature-card" id="b4">
+        <div class="feature-card-header">
+          <span class="feature-card-id">B4</span>
+          <h3 class="feature-card-title">Automated Actions</h3>
+        </div>
+        <div class="feature-card-body">
+          <p>When a case moves to enforcement, the system triggers the required downstream actions based on the advertiser profile. Each action connects to the relevant system automatically:</p>
+          <div class="table-wrapper">
+            <table>
+              <thead>
+                <tr>
+                  <th>Action</th>
+                  <th>What Happens</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Block Promotion</strong></td>
+                  <td>Publisher&rsquo;s traffic on the flagged offer is suspended via the Platform API. Applied immediately for Protection-Focused, after proof failure for Balanced.</td>
+                </tr>
+                <tr>
+                  <td><strong>Reject Conversions</strong></td>
+                  <td>A ticket is submitted to the Validation team (via Odoo or email) to reject all flagged conversions for the specified period.</td>
+                </tr>
+                <tr>
+                  <td><strong>Block Withdrawals</strong></td>
+                  <td>A ticket is submitted to the Finance team (via Zoho) to block the publisher&rsquo;s withdrawal &mdash; express, early, and/or standard payouts depending on the profile.</td>
+                </tr>
+                <tr>
+                  <td><strong>Case Creation to AM</strong></td>
+                  <td>An automated notification is sent to the publisher&rsquo;s Account Manager and Publisher Manager with case details, ticket link, and the proof submission deadline.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="callout callout-ember">
+            <div class="callout-icon">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 1a7 7 0 110 14A7 7 0 018 1zm0 5.5v3.75m0 1.75h.007" stroke="#F05826" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div class="callout-content">
+              <strong>Growth-Focused Profile</strong>
+              <p>For Growth-Focused advertiser profiles: no traffic block, no withdrawal block, and no conversion rejection. The only action is to notify the commercial team and Account Manager.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- B5 — Lifecycle -->
+      <div class="feature-card" id="b5">
+        <div class="feature-card-header">
+          <span class="feature-card-id">B5</span>
+          <h3 class="feature-card-title">Full Lifecycle Tracking</h3>
+        </div>
+        <div class="feature-card-body">
+          <p>Every ticket is tracked from creation to closure with a complete audit trail:</p>
+          <div class="lifecycle-flow">
+            <div class="lifecycle-stage">
+              <div class="lifecycle-stage-number">Stage 1</div>
+              <div class="lifecycle-stage-name">Open</div>
+              <div class="lifecycle-stage-desc">Ticket created. Offer, publisher, fraud category, advertiser profile, and revenue at risk captured.</div>
+            </div>
+            <div class="lifecycle-arrow">
+              <svg viewBox="0 0 20 20" fill="currentColor"><path d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H4a1 1 0 110-2h10.586l-2.293-2.293a1 1 0 010-1.414z"/></svg>
+            </div>
+            <div class="lifecycle-stage">
+              <div class="lifecycle-stage-number">Stage 2</div>
+              <div class="lifecycle-stage-name">Under Review</div>
+              <div class="lifecycle-stage-desc">Publisher Manager notified. 5-day proof submission window started. SLA countdown active.</div>
+            </div>
+            <div class="lifecycle-arrow">
+              <svg viewBox="0 0 20 20" fill="currentColor"><path d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H4a1 1 0 110-2h10.586l-2.293-2.293a1 1 0 010-1.414z"/></svg>
+            </div>
+            <div class="lifecycle-stage">
+              <div class="lifecycle-stage-number">Stage 3</div>
+              <div class="lifecycle-stage-name">Proof Submitted</div>
+              <div class="lifecycle-stage-desc">Publisher uploads proof. Compliance team assigned for review.</div>
+            </div>
+            <div class="lifecycle-arrow">
+              <svg viewBox="0 0 20 20" fill="currentColor"><path d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H4a1 1 0 110-2h10.586l-2.293-2.293a1 1 0 010-1.414z"/></svg>
+            </div>
+            <div class="lifecycle-stage">
+              <div class="lifecycle-stage-number">Stage 4</div>
+              <div class="lifecycle-stage-name">Proof Accepted / Rejected</div>
+              <div class="lifecycle-stage-desc">Outcome recorded. Controls lifted (accepted) or enforcement applied (rejected).</div>
+            </div>
+            <div class="lifecycle-arrow">
+              <svg viewBox="0 0 20 20" fill="currentColor"><path d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H4a1 1 0 110-2h10.586l-2.293-2.293a1 1 0 010-1.414z"/></svg>
+            </div>
+            <div class="lifecycle-stage">
+              <div class="lifecycle-stage-number">Stage 5</div>
+              <div class="lifecycle-stage-name">Closed</div>
+              <div class="lifecycle-stage-desc">All actions confirmed. Audit log finalised. All parties notified. Dashboard updated.</div>
+            </div>
+          </div>
+          <div class="callout callout-ember">
+            <div class="callout-icon">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 1a7 7 0 110 14A7 7 0 018 1zm0 5.5v3.75m0 1.75h.007" stroke="#F05826" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div class="callout-content">
+              <strong>SLA: 5 Working Days</strong>
+              <p>The SLA deadline is set at 5 working days from ticket creation. The system shows a live countdown on each ticket, sends a warning alert at 3 days remaining, and escalates automatically if the deadline is breached.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============================================================ -->
+      <!-- MODULE C: DOMAIN BLACKLIST                                     -->
+      <!-- ============================================================ -->
+      <div class="section-divider"></div>
+
+      <div class="section-header" id="module-c">
+        <div class="section-number ember-accent">C</div>
+        <div class="section-title-group">
+          <h2 class="section-title">Domain Blacklist</h2>
+          <p class="section-subtitle">Domain blocking management, smart list generation, and impact reporting</p>
+        </div>
+      </div>
+
+      <div class="overview-intro">
+        <p>The Domain Blacklist module manages Involve Asia&rsquo;s domain blocking operations. It replaces the current manual email-based workflow and provides full visibility into which domains are blocked, how the list is managed, and what impact blocking has on publisher and offer traffic.</p>
+      </div>
+
+      <!-- C1 -->
+      <div class="feature-card" id="c1">
+        <div class="feature-card-header">
+          <span class="feature-card-id">C1</span>
+          <h3 class="feature-card-title">Domain Blocking Overview</h3>
+        </div>
+        <div class="feature-card-body">
+          <p>A central view of the current domain blocklist:</p>
+          <ul>
+            <li>Total number of domains currently blocked on the platform</li>
+            <li>Domain list table showing: domain name, date added, source (Advertiser / Internal (Mahadir)), and status (Active / Removed)</li>
+            <li>Filter by category, date range, status, and source</li>
+            <li>Search by domain name</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- C2 -->
+      <div class="feature-card" id="c2">
+        <div class="feature-card-header">
+          <span class="feature-card-id">C2</span>
+          <h3 class="feature-card-title">Smart Assist &mdash; Weekly Domain List for Kaishen</h3>
+        </div>
+        <div class="feature-card-body">
+          <p>The system assists the compliance team in preparing and delivering the weekly domain blocklist to Kaishen (Tech team contact for platform-level domain blocking):</p>
+          <ul>
+            <li>Automatically pulls new domain candidates from Mahadir &mdash; domains flagged but not yet on the blocklist</li>
+            <li>Compliance officer reviews the domain list and can add or remove domains before submission</li>
+            <li>One-click submission sends the finalised domain list to Kaishen through the system &mdash; no manual email required</li>
+            <li>Submission history is recorded: date submitted, number of domains, who approved, and Kaishen acknowledgement status</li>
+          </ul>
+          <div class="callout callout-info">
+            <div class="callout-icon">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 1a7 7 0 110 14A7 7 0 018 1zm0 1.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM8.75 9.5v1.25h-1.5V9.5h1.5zm0-4.25v3.25h-1.5V5.25h1.5z" fill="#3B82F6"/></svg>
+            </div>
+            <div class="callout-content">
+              <strong>Phase 2 Automation</strong>
+              <p>In Phase 2, this process is fully automated &mdash; the system generates and sends the list to Kaishen every Monday morning without manual intervention.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- C3 -->
+      <div class="feature-card" id="c3">
+        <div class="feature-card-header">
+          <span class="feature-card-id">C3</span>
+          <h3 class="feature-card-title">Smart Detect &mdash; Trip.com Domain List Comparison</h3>
+        </div>
+        <div class="feature-card-body">
+          <p>The system distinguishes between two types of domains on the blocklist. <strong>Advertiser-protected domains</strong> (Trip.com&rsquo;s list) are permanently locked &mdash; they cannot be removed under any circumstance without explicit advertiser approval. <strong>Internal domains</strong> (sourced from Mahadir) are managed dynamically and can be rotated weekly.</p>
+          <p><strong>Weekly Rotation Process:</strong></p>
+          <ul>
+            <li><strong>Remove:</strong> Identify the bottom-performing internal domains &mdash; those with the lowest blocked click volume over the past week &mdash; and flag them for removal</li>
+            <li><strong>Add:</strong> Pull the top 100 new domain candidates from Mahadir based on highest blocked click activity. Before flagging for addition, the system cross-checks against the Trip.com advertiser-protected list and excludes any domain that already appears there. Only domains that are not a subset of the advertiser list are eligible to be added.</li>
+            <li><strong>Submit to Kaishen:</strong> The system prepares a weekly change request (domains to remove + domains to add). Kaishen executes the changes on the platform.</li>
+          </ul>
+          <div class="callout callout-ember">
+            <div class="callout-icon">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 1a7 7 0 110 14A7 7 0 018 1zm0 5.5v3.75m0 1.75h.007" stroke="#F05826" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div class="callout-content">
+              <strong>Trip.com Domains Are Protected</strong>
+              <p>Trip.com domains are excluded from removal &mdash; they are always retained regardless of click volume.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- C4 -->
+      <div class="feature-card" id="c4">
+        <div class="feature-card-header">
+          <span class="feature-card-id">C4</span>
+          <h3 class="feature-card-title">Click Impact Reporting</h3>
+        </div>
+        <div class="feature-card-body">
+          <p>The module provides reporting on how domain blocking is affecting traffic across publishers and offers:</p>
+          <div class="table-wrapper">
+            <table>
+              <thead>
+                <tr>
+                  <th>Report</th>
+                  <th>What It Shows</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Publisher Click Report</strong></td>
+                  <td>Publisher ID, Publisher Name, Total Clicks, Blocked Clicks, Block Rate % &mdash; filterable by date range and sortable by block rate.</td>
+                </tr>
+                <tr>
+                  <td><strong>Offer Click Report</strong></td>
+                  <td>Offer ID, Offer Name, Total Clicks, Blocked Clicks, Block Rate % &mdash; filterable by date range and sortable by blocked volume.</td>
+                </tr>
+                <tr>
+                  <td><strong>Top 5 Publishers</strong></td>
+                  <td>The five publishers with the highest blocked click volume &mdash; displayed as a ranked card with a mini bar chart.</td>
+                </tr>
+                <tr>
+                  <td><strong>Top 5 Offers</strong></td>
+                  <td>The five offers with the highest blocked click volume &mdash; displayed as a ranked card with a mini bar chart.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============================================================ -->
+      <!-- DELIVERY APPROACH                                             -->
+      <!-- ============================================================ -->
+      <div class="section-divider"></div>
+
+      <div class="section-header" id="delivery">
+        <div class="section-number">&#9654;</div>
+        <div class="section-title-group">
+          <h2 class="section-title">Delivery Approach</h2>
+          <p class="section-subtitle">Mini Tools is planned in two phases</p>
+        </div>
+      </div>
+
+      <div class="phase-grid">
+        <div class="phase-card phase-1">
+          <div class="phase-card-header">
+            <h4>Phase 1</h4>
+            <p>Manual Assisted &mdash; MVP</p>
+          </div>
+          <div class="phase-card-body">
+            <ul>
+              <li>System auto-creates tickets on detection</li>
+              <li>Auto-sends notifications to Account Managers and Publisher Managers</li>
+              <li>Auto-applies enforcement controls on SLA breach</li>
+              <li>Auto-submits weekly domain list to Kaishen</li>
+              <li>Manual review and classification by compliance officers</li>
+              <li>Smart Assist for domain list preparation</li>
+            </ul>
+          </div>
+        </div>
+        <div class="phase-card phase-2">
+          <div class="phase-card-header">
+            <h4>Phase 2</h4>
+            <p>Automated Enforcement</p>
+          </div>
+          <div class="phase-card-body">
+            <ul>
+              <li>System auto updates in app.involve &mdash; verifying publishers</li>
+              <li>Auto reject affected conversions</li>
+              <li>Auto block withdrawals</li>
+              <li>Auto remove and add domain blocking list</li>
+              <li>ML-powered smart classification replaces rule-based logic</li>
+              <li>Fully automated Kaishen weekly domain submission</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /.content-body -->
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="page-footer">
+      <div class="footer-inner">
+        <div class="footer-brand">Involve Asia</div>
+        <div class="footer-info">
+          <p>Mini Tools &mdash; Project Brief v1.0</p>
+          <p>Compliance &amp; Fraud Prevention</p>
+        </div>
+      </div>
+      <div class="footer-divider"></div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Involve Asia. All rights reserved.</p>
+        <span class="footer-badge">Internal Use Only</span>
+      </div>
+    </footer>
+
+  </main><!-- /.main-content -->
+
+</div><!-- /.page-wrapper -->
+
+<script>
+/* ===== Scroll Spy ===== */
+(function() {
+  const sections = [
+    { id: 'overview', label: 'Overview' },
+    { id: 'module-a', label: 'Module A' },
+    { id: 'a1', label: 'A1' },
+    { id: 'a2', label: 'A2' },
+    { id: 'a3', label: 'A3' },
+    { id: 'module-b', label: 'Module B' },
+    { id: 'b1', label: 'B1' },
+    { id: 'b2', label: 'B2' },
+    { id: 'b3', label: 'B3' },
+    { id: 'b4', label: 'B4' },
+    { id: 'b5', label: 'B5' },
+    { id: 'module-c', label: 'Module C' },
+    { id: 'c1', label: 'C1' },
+    { id: 'c2', label: 'C2' },
+    { id: 'c3', label: 'C3' },
+    { id: 'c4', label: 'C4' },
+    { id: 'delivery', label: 'Delivery' }
+  ];
+
+  const navLinks = document.querySelectorAll('.sidebar-nav a[data-section]');
+
+  function updateActiveNav() {
+    let current = sections[0].id;
+    for (const section of sections) {
+      const el = document.getElementById(section.id);
+      if (el) {
+        const rect = el.getBoundingClientRect();
+        if (rect.top <= 120) {
+          current = section.id;
+        }
+      }
+    }
+    navLinks.forEach(link => {
+      if (link.getAttribute('data-section') === current) {
+        link.classList.add('active');
+      } else {
+        link.classList.remove('active');
+      }
+    });
+  }
+
+  window.addEventListener('scroll', updateActiveNav, { passive: true });
+  updateActiveNav();
+})();
+
+/* ===== Scroll-triggered fade-in ===== */
+(function() {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.feature-card, .module-overview, .overview-intro, .lifecycle-stage, .phase-card').forEach(el => {
+    observer.observe(el);
+  });
+})();
+</script>
+
+</body>
+</html>
