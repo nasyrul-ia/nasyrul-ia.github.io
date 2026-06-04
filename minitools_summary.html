@@ -1,0 +1,1011 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mini Tools — Project Summary</title>
+<style>
+  :root {
+    --navy: #1F3864;
+    --blue: #378ADD;
+    --orange: #BA7517;
+    --green: #3B6D11;
+    --red: #B91C1C;
+    --purple: #5B21B6;
+    --teal: #0D9488;
+    --bg: #F5F7FA;
+    --card: #FFFFFF;
+    --text: #1E293B;
+    --muted: #64748B;
+    --border: #E2E8F0;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+  }
+
+  /* ── HEADER ── */
+  .hero {
+    background: linear-gradient(135deg, var(--navy) 0%, #2d4f8e 60%, #1a3a70 100%);
+    color: #fff;
+    padding: 48px 40px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 260px; height: 260px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.05);
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -80px; left: 30%;
+    width: 340px; height: 340px;
+    border-radius: 50%;
+    background: rgba(55,138,221,0.15);
+  }
+  .hero-inner { max-width: 1100px; margin: 0 auto; position: relative; z-index: 1; }
+  .hero-badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.3);
+    color: #CBD5E1;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: 20px;
+    margin-bottom: 16px;
+  }
+  .hero h1 {
+    font-size: 40px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    line-height: 1.15;
+    margin-bottom: 10px;
+  }
+  .hero h1 span { color: var(--blue); }
+  .hero-sub {
+    font-size: 16px;
+    color: #B5D4F4;
+    max-width: 520px;
+    line-height: 1.6;
+    margin-bottom: 28px;
+  }
+  .hero-pills { display: flex; gap: 10px; flex-wrap: wrap; }
+  .hero-pill {
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.2);
+    color: #E2E8F0;
+    font-size: 12px;
+    padding: 5px 14px;
+    border-radius: 20px;
+    display: flex; align-items: center; gap: 6px;
+  }
+  .hero-pill svg { opacity: 0.8; }
+
+  /* ── BODY ── */
+  .body { max-width: 1100px; margin: 0 auto; padding: 40px 40px 60px; }
+
+  /* ── SECTION LABEL ── */
+  .section-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 20px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* ── INTRO STRIP ── */
+  .intro-strip {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--blue);
+    border-radius: 10px;
+    padding: 20px 24px;
+    margin-bottom: 36px;
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--text);
+  }
+  .intro-strip strong { color: var(--navy); }
+
+  /* ── MODULE CARDS ── */
+  .modules { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 40px; }
+
+  .module-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    transition: transform 0.15s, box-shadow 0.15s;
+  }
+  .module-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.10);
+  }
+
+  .module-header {
+    padding: 22px 22px 16px;
+    display: flex; align-items: flex-start; gap: 14px;
+  }
+  .module-icon {
+    width: 46px; height: 46px;
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px;
+    flex-shrink: 0;
+  }
+  .mod-a .module-icon { background: #EBF4FF; }
+  .mod-b .module-icon { background: #EAF3DE; }
+  .mod-c .module-icon { background: #FFF7E6; }
+
+  .module-letter {
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    opacity: 0.6;
+    margin-bottom: 2px;
+  }
+  .mod-a .module-letter { color: var(--blue); }
+  .mod-b .module-letter { color: var(--green); }
+  .mod-c .module-letter { color: var(--orange); }
+
+  .module-name {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--navy);
+    line-height: 1.2;
+  }
+  .module-tagline {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 3px;
+    line-height: 1.4;
+  }
+
+  .module-accent {
+    height: 3px;
+    margin: 0 22px 0;
+    border-radius: 2px;
+  }
+  .mod-a .module-accent { background: var(--blue); }
+  .mod-b .module-accent { background: var(--green); }
+  .mod-c .module-accent { background: var(--orange); }
+
+  .module-features { padding: 18px 22px 22px; }
+
+  .feature-item {
+    display: flex; align-items: flex-start; gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px;
+    line-height: 1.5;
+  }
+  .feature-item:last-child { border-bottom: none; padding-bottom: 0; }
+
+  .feature-code {
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 7px;
+    border-radius: 5px;
+    flex-shrink: 0;
+    margin-top: 2px;
+    letter-spacing: 0.5px;
+  }
+  .mod-a .feature-code { background: #EBF4FF; color: var(--blue); }
+  .mod-b .feature-code { background: #EAF3DE; color: var(--green); }
+  .mod-c .feature-code { background: #FFF7E6; color: var(--orange); }
+
+  .feature-text strong { color: var(--navy); font-size: 13px; display: block; margin-bottom: 1px; }
+  .feature-text span { color: var(--muted); font-size: 12px; }
+
+  /* ── DATA FLOW ── */
+  .data-flow {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 28px 28px;
+    margin-bottom: 40px;
+  }
+  .flow-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 20px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .flow-steps {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    overflow-x: auto;
+  }
+  .flow-step {
+    flex: 1;
+    min-width: 110px;
+    text-align: center;
+    position: relative;
+  }
+  .flow-step-box {
+    background: var(--bg);
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
+    padding: 12px 8px;
+    margin: 0 6px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--navy);
+    line-height: 1.4;
+  }
+  .flow-step-box .sub { font-size: 10px; font-weight: 400; color: var(--muted); margin-top: 3px; }
+  .flow-arrow {
+    color: var(--muted);
+    font-size: 18px;
+    flex-shrink: 0;
+    padding: 0 2px;
+  }
+  .flow-step-box.highlight {
+    background: #EBF4FF;
+    border-color: var(--blue);
+    color: var(--navy);
+  }
+
+  /* ── PHASE COMPARISON ── */
+  .phases { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 40px; }
+
+  .phase-card {
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  }
+  .phase-header {
+    padding: 16px 22px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .phase-1 .phase-header { background: #EBF4FF; }
+  .phase-2 .phase-header { background: #EAF3DE; }
+
+  .phase-dot {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px; font-weight: 800;
+    flex-shrink: 0;
+  }
+  .phase-1 .phase-dot { background: var(--blue); color: #fff; }
+  .phase-2 .phase-dot { background: var(--green); color: #fff; }
+
+  .phase-title { font-size: 15px; font-weight: 700; }
+  .phase-1 .phase-title { color: #0C447C; }
+  .phase-2 .phase-title { color: var(--green); }
+  .phase-subtitle { font-size: 11px; color: var(--muted); }
+
+  .phase-body { background: var(--card); padding: 18px 22px; }
+
+  .phase-row {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    padding: 9px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 12.5px;
+    gap: 12px;
+  }
+  .phase-row:last-child { border-bottom: none; }
+  .phase-step-name { color: var(--muted); font-weight: 600; flex-shrink: 0; min-width: 90px; }
+  .phase-desc { color: var(--text); line-height: 1.4; text-align: right; }
+
+  /* ── FRAUD CATEGORIES ── */
+  .cats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 40px; }
+  .cat-chip {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 13px 16px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .cat-num {
+    font-size: 11px;
+    font-weight: 800;
+    width: 30px; height: 30px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    letter-spacing: 0.3px;
+  }
+  .cat-active .cat-num { background: #EBF4FF; color: var(--blue); }
+  .cat-wip .cat-num { background: #FFF7E6; color: var(--orange); }
+  .cat-name { font-size: 12.5px; font-weight: 600; color: var(--navy); }
+  .cat-badge {
+    font-size: 9px; font-weight: 700; text-transform: uppercase;
+    padding: 2px 7px; border-radius: 10px; margin-left: auto; flex-shrink: 0; letter-spacing: 0.5px;
+  }
+  .cat-active .cat-badge { background: #D1FAE5; color: #065F46; }
+  .cat-wip .cat-badge { background: #FEF3C7; color: #92400E; }
+
+  /* ── SLA BOX ── */
+  .sla-row {
+    display: flex; gap: 16px; margin-bottom: 40px;
+  }
+  .sla-card {
+    flex: 1;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+  }
+  .sla-number {
+    font-size: 36px; font-weight: 800; color: var(--navy); line-height: 1;
+    margin-bottom: 4px;
+  }
+  .sla-unit { font-size: 12px; color: var(--muted); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+  .sla-label { font-size: 12px; color: var(--text); margin-top: 6px; }
+
+  .sla-card.accent-blue { border-top: 3px solid var(--blue); }
+  .sla-card.accent-green { border-top: 3px solid var(--green); }
+  .sla-card.accent-orange { border-top: 3px solid var(--orange); }
+  .sla-card.accent-red { border-top: 3px solid var(--red); }
+
+  /* ── KANBAN ── */
+  .kanban-board { display: flex; gap: 12px; margin-bottom: 12px; overflow-x: auto; }
+  .kanban-col {
+    flex: 1; min-width: 150px;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+  .kanban-col-header {
+    padding: 10px 14px;
+    font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .kanban-col-body { background: var(--bg); padding: 10px; min-height: 80px; }
+  .kc-new .kanban-col-header { background: #F1F5F9; color: #475569; }
+  .kc-review .kanban-col-header { background: #EBF4FF; color: #1D4ED8; }
+  .kc-enforce .kanban-col-header { background: #FEF3C7; color: #92400E; }
+  .kc-closed .kanban-col-header { background: #D1FAE5; color: #065F46; }
+  .kc-archive .kanban-col-header { background: #F1F5F9; color: #94A3B8; }
+
+  .k-count {
+    font-size: 10px; font-weight: 800;
+    width: 20px; height: 20px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(0,0,0,0.08);
+  }
+
+  .mock-card {
+    background: var(--card);
+    border-radius: 7px;
+    padding: 8px 10px;
+    font-size: 11px;
+    margin-bottom: 6px;
+    border-left: 3px solid;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+    line-height: 1.4;
+  }
+  .mock-card:last-child { margin-bottom: 0; }
+  .mock-card.mc-red { border-left-color: #EF4444; }
+  .mock-card.mc-orange { border-left-color: #F59E0B; }
+  .mock-card.mc-yellow { border-left-color: #EAB308; }
+  .mock-card.mc-green { border-left-color: #10B981; }
+  .mock-card.mc-grey { border-left-color: #CBD5E1; }
+  .mock-card .mc-tag {
+    font-size: 9px; font-weight: 700; text-transform: uppercase;
+    padding: 1px 6px; border-radius: 8px; margin-bottom: 4px; display: inline-block;
+  }
+  .mc-red .mc-tag { background: #FEE2E2; color: #991B1B; }
+  .mc-orange .mc-tag { background: #FEF3C7; color: #92400E; }
+  .mc-yellow .mc-tag { background: #FEF9C3; color: #854D0E; }
+  .mc-green .mc-tag { background: #D1FAE5; color: #065F46; }
+  .mc-grey .mc-tag { background: #F1F5F9; color: #64748B; }
+  .mock-card .mc-title { font-weight: 600; color: var(--navy); font-size: 11px; }
+  .mock-card .mc-sub { color: var(--muted); font-size: 10px; margin-top: 2px; }
+
+  .swim-label {
+    font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;
+    color: var(--muted); padding: 4px 2px 6px; display: flex; align-items: center; gap: 6px;
+  }
+  .swim-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+  .swim-divider { border-top: 2px dashed var(--border); margin: 8px 0; }
+
+  /* ── CHECKLIST ── */
+  .checklist-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 16px; }
+  .checklist-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .checklist-header {
+    padding: 12px 16px;
+    background: var(--navy);
+    color: #fff;
+    font-size: 12px; font-weight: 700;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .checklist-body { padding: 4px 0; }
+  .check-row {
+    display: flex; align-items: center; gap: 10px;
+    padding: 9px 16px;
+    border-bottom: 1px solid var(--border);
+    font-size: 12px;
+  }
+  .check-row:last-child { border-bottom: none; }
+  .check-box {
+    width: 16px; height: 16px; border-radius: 4px;
+    border: 1.5px solid var(--border); flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .check-box.done { background: var(--green); border-color: var(--green); color: #fff; font-size: 9px; }
+  .check-box.pending { background: #fff; }
+  .check-name { flex: 1; color: var(--text); font-weight: 500; }
+  .check-owner {
+    font-size: 9px; font-weight: 700; text-transform: uppercase;
+    padding: 2px 7px; border-radius: 10px;
+  }
+  .own-ops { background: #DBEAFE; color: #1D4ED8; }
+  .own-fin { background: #FEF3C7; color: #92400E; }
+  .own-val { background: #EDE9FE; color: #5B21B6; }
+
+  /* ── PROFILE ROUTING ── */
+  .profile-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; margin-bottom: 12px; }
+  .profile-card {
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+  .profile-card-header {
+    padding: 10px 14px;
+    font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;
+  }
+  .pc-growth .profile-card-header { background: #EDE9FE; color: #5B21B6; }
+  .pc-balanced .profile-card-header { background: #DBEAFE; color: #1D4ED8; }
+  .pc-pf .profile-card-header { background: #FEE2E2; color: #991B1B; }
+  .profile-card-body { background: var(--card); padding: 10px 14px; }
+  .profile-step {
+    font-size: 11.5px; color: var(--text); line-height: 1.5;
+    padding: 5px 0; border-bottom: 1px solid var(--border);
+    display: flex; gap: 8px; align-items: flex-start;
+  }
+  .profile-step:last-child { border-bottom: none; padding-bottom: 0; }
+  .profile-step .ps-dot { font-size: 10px; margin-top: 3px; flex-shrink: 0; }
+
+  /* ── FOOTER ── */
+  .footer {
+    text-align: center;
+    color: var(--muted);
+    font-size: 11.5px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+  }
+</style>
+</head>
+<body>
+
+<!-- ── HERO ── -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-badge">Involve Asia · Internal Tool</div>
+    <h1>Mini <span>Tools</span></h1>
+    <p class="hero-sub">Fraud Detection Reporting, Analysis &amp; Case Ticketing — an internal web app for the Compliance &amp; Fraud Prevention team.</p>
+    <div class="hero-pills">
+      <div class="hero-pill">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        Phase 1 — Now
+      </div>
+      <div class="hero-pill">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        Reads from Mahadir (read-only)
+      </div>
+      <div class="hero-pill">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        3 Modules · 6 Fraud Categories
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="body">
+
+  <!-- INTRO -->
+  <div class="intro-strip">
+    Mini Tools reads data from <strong>Mahadir</strong> — Involve Asia's internal data platform — and presents it in actionable views. It does <strong>not</strong> store raw transaction data. All data flows are <strong>read-only from Mahadir</strong>, keeping the source of truth clean and centralised.
+  </div>
+
+  <!-- MODULES -->
+  <div class="section-label">The 3 Modules</div>
+  <div class="modules">
+
+    <!-- MODULE A -->
+    <div class="module-card mod-a">
+      <div class="module-header">
+        <div class="module-icon">📊</div>
+        <div>
+          <div class="module-letter">Module A</div>
+          <div class="module-name">Data Reporting</div>
+          <div class="module-tagline">Fraud analysis &amp; case ticket reporting</div>
+        </div>
+      </div>
+      <div class="module-accent"></div>
+      <div class="module-features">
+        <div class="feature-item">
+          <span class="feature-code">A1</span>
+          <div class="feature-text">
+            <strong>Overall &amp; Category Analysis</strong>
+            <span>Total cases, publishers flagged, revenue at risk — filterable by day, week, month, or custom range. Category-level breakdown per fraud type.</span>
+          </div>
+        </div>
+        <div class="feature-item">
+          <span class="feature-code">A2</span>
+          <div class="feature-text">
+            <strong>Case Ticket Analytics</strong>
+            <span>Cases by period &amp; category, publisher frequency, avg. time from detection to creation, and detection-to-closure SLA tracking.</span>
+          </div>
+        </div>
+        <div class="feature-item">
+          <span class="feature-code">A3</span>
+          <div class="feature-text">
+            <strong>Offer Approval Support</strong>
+            <span>Publisher fraud history lookup for offer approvals — search by Publisher ID, see all-time cases, categories, outcomes, and dates. Shareable via direct link.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODULE B -->
+    <div class="module-card mod-b">
+      <div class="module-header">
+        <div class="module-icon">🎫</div>
+        <div>
+          <div class="module-letter">Module B</div>
+          <div class="module-name">Case Ticketing</div>
+          <div class="module-tagline">Full lifecycle management of all fraud cases</div>
+        </div>
+      </div>
+      <div class="module-accent"></div>
+      <div class="module-features">
+        <div class="feature-item">
+          <span class="feature-code">B1</span>
+          <div class="feature-text">
+            <strong>Ticket Generation</strong>
+            <span>S1, S2, and S2+ cases auto-generate tickets. Phase 1: card sent for manual action. Phase 2: auto-applied by enforcement profile.</span>
+          </div>
+        </div>
+        <div class="feature-item">
+          <span class="feature-code">B2</span>
+          <div class="feature-text">
+            <strong>Auto Categorisation</strong>
+            <span>Offer profile (Growth / Balanced / Protection-Focused) pulled from Mahadir. Violation type auto-mapped to fraud category.</span>
+          </div>
+        </div>
+        <div class="feature-item">
+          <span class="feature-code">B3</span>
+          <div class="feature-text">
+            <strong>Smart Classification</strong>
+            <span>Suggests fraud category and risk level based on violation type and revenue impact. Officer can accept or override.</span>
+          </div>
+        </div>
+        <div class="feature-item">
+          <span class="feature-code">B4</span>
+          <div class="feature-text">
+            <strong>Automated Actions</strong>
+            <span>Block promotion, reject conversions, block withdrawals, notify AM. Severity depends on offer profile.</span>
+          </div>
+        </div>
+        <div class="feature-item">
+          <span class="feature-code">B5</span>
+          <div class="feature-text">
+            <strong>Full Lifecycle Tracking</strong>
+            <span>Open → Under Review → Proof Submitted → Proof Accepted/Rejected → Closed. Full audit trail at each stage.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODULE C -->
+    <div class="module-card mod-c">
+      <div class="module-header">
+        <div class="module-icon">🚫</div>
+        <div>
+          <div class="module-letter">Module C</div>
+          <div class="module-name">Domain Blacklist</div>
+          <div class="module-tagline">Blocking management &amp; click impact reporting</div>
+        </div>
+      </div>
+      <div class="module-accent"></div>
+      <div class="module-features">
+        <div class="feature-item">
+          <span class="feature-code">C1</span>
+          <div class="feature-text">
+            <strong>Blocking Overview</strong>
+            <span>Central view of current blocklist — domain name, date added, source (Advertiser-Protected / Internal), and active status. Filterable and searchable.</span>
+          </div>
+        </div>
+        <div class="feature-item">
+          <span class="feature-code">C2</span>
+          <div class="feature-text">
+            <strong>Smart Assist — Weekly List for Kaishen</strong>
+            <span>Auto-pulls new domain candidates from Mahadir. Officer reviews, edits, then submits in one click. No manual email needed.</span>
+          </div>
+        </div>
+        <div class="feature-item">
+          <span class="feature-code">C3</span>
+          <div class="feature-text">
+            <strong>Smart Detect — Trip.com Comparison</strong>
+            <span>Weekly rotation: remove bottom-performing internal domains, add top 100 new candidates from Mahadir — after cross-checking against Trip.com's locked list.</span>
+          </div>
+        </div>
+        <div class="feature-item">
+          <span class="feature-code">C4</span>
+          <div class="feature-text">
+            <strong>Click Impact Reporting</strong>
+            <span>Publisher &amp; offer click reports — total, blocked, block rate %. Top 5/10 publishers and offers by blocked volume with mini bar chart.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /modules -->
+
+  <!-- CASE FLOW -->
+  <div class="section-label">Case Ticketing Board — Module B</div>
+
+  <!-- KANBAN COLUMNS -->
+  <div class="data-flow" style="margin-bottom:16px;">
+    <div class="flow-title">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#378ADD" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+      Kanban Board — All tickets move through the same 5 columns
+    </div>
+
+    <div class="kanban-board">
+      <!-- NEW -->
+      <div class="kanban-col kc-new">
+        <div class="kanban-col-header">New <span class="k-count">2</span></div>
+        <div class="kanban-col-body">
+          <div class="mock-card mc-grey">
+            <div class="mc-tag">S2</div>
+            <div class="mc-title">Publisher #3821</div>
+            <div class="mc-sub">Cookie Stuffing · Just created</div>
+          </div>
+          <div class="mock-card mc-grey">
+            <div class="mc-tag">S1</div>
+            <div class="mc-title">Publisher #1047</div>
+            <div class="mc-sub">Porn &amp; Gambling · Advertiser report</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- UNDER REVIEW -->
+      <div class="kanban-col kc-review">
+        <div class="kanban-col-header">Under Review <span class="k-count">3</span></div>
+        <div class="kanban-col-body">
+          <div class="mock-card mc-orange">
+            <div class="mc-tag">⏳ 2 days left</div>
+            <div class="mc-title">Publisher #5502</div>
+            <div class="mc-sub">Pop-Under · Proof pending</div>
+          </div>
+          <div class="mock-card mc-red">
+            <div class="mc-tag">🔴 SLA breached</div>
+            <div class="mc-title">Publisher #9913</div>
+            <div class="mc-sub">Click Spam · No response</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ENFORCEMENT -->
+      <div class="kanban-col kc-enforce">
+        <div class="kanban-col-header">Enforcement <span class="k-count">6</span></div>
+        <div class="kanban-col-body">
+          <div class="swim-label">Needs Action</div>
+          <div class="mock-card mc-red">
+            <div class="mc-tag">🔴 Checklist Pending</div>
+            <div class="mc-title">Publisher #7741</div>
+            <div class="mc-sub">Protection-Focused · 2/5 tasks done</div>
+          </div>
+          <div class="mock-card mc-red">
+            <div class="mc-tag">🔴 Checklist Pending</div>
+            <div class="mc-title">Publisher #2209</div>
+            <div class="mc-sub">Balanced · 0/4 tasks done</div>
+          </div>
+          <div class="mock-card mc-yellow">
+            <div class="mc-tag">🟡 Unblock Required</div>
+            <div class="mc-title">Publisher #3371</div>
+            <div class="mc-sub">Balanced · 30-day period ended</div>
+          </div>
+          <div class="swim-divider"></div>
+          <div class="swim-label">Waiting — Cooling Period</div>
+          <div class="mock-card mc-orange">
+            <div class="mc-tag">🟠 Monitoring · 18 days left</div>
+            <div class="mc-title">Publisher #4480</div>
+            <div class="mc-sub">Balanced · 30-day block active</div>
+          </div>
+          <div class="mock-card mc-orange">
+            <div class="mc-tag">🟠 Monitoring · 4 days left</div>
+            <div class="mc-title">Publisher #5910</div>
+            <div class="mc-sub">Balanced · 30-day block active</div>
+          </div>
+          <div class="mock-card mc-green" style="margin-top:6px;">
+            <div class="mc-tag">🟢 Ready to Close</div>
+            <div class="mc-title">Publisher #6632</div>
+            <div class="mc-sub">Protection-Focused · All tasks done</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CLOSED -->
+      <div class="kanban-col kc-closed">
+        <div class="kanban-col-header">Closed <span class="k-count">12</span></div>
+        <div class="kanban-col-body">
+          <div class="mock-card mc-green">
+            <div class="mc-tag">✅ No Violation</div>
+            <div class="mc-title">Publisher #3310</div>
+            <div class="mc-sub">Proof accepted</div>
+          </div>
+          <div class="mock-card mc-green">
+            <div class="mc-tag">✅ Enforced</div>
+            <div class="mc-title">Publisher #8821</div>
+            <div class="mc-sub">Permanent ban applied</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ARCHIVED -->
+      <div class="kanban-col kc-archive">
+        <div class="kanban-col-header">Archived <span class="k-count">47</span></div>
+        <div class="kanban-col-body">
+          <div class="mock-card mc-grey">
+            <div class="mc-tag">Archived</div>
+            <div class="mc-title">Historical records</div>
+            <div class="mc-sub">Read-only · All closed tickets</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- COLOUR LEGEND -->
+    <div style="display:flex; gap:16px; flex-wrap:wrap; padding-top:14px; border-top:1px solid var(--border); margin-top:4px;">
+      <div style="font-size:11px; font-weight:700; color:var(--muted); text-transform:uppercase; letter-spacing:1px; align-self:center;">Card colour:</div>
+      <div style="display:flex; align-items:center; gap:6px; font-size:12px;"><span style="width:12px;height:12px;border-radius:3px;background:#EF4444;display:inline-block;"></span> Checklist Pending — action needed</div>
+      <div style="display:flex; align-items:center; gap:6px; font-size:12px;"><span style="width:12px;height:12px;border-radius:3px;background:#EAB308;display:inline-block;"></span> Unblock Required — cooling period ended</div>
+      <div style="display:flex; align-items:center; gap:6px; font-size:12px;"><span style="width:12px;height:12px;border-radius:3px;background:#F59E0B;display:inline-block;"></span> Monitoring Active — timer running, no action yet</div>
+      <div style="display:flex; align-items:center; gap:6px; font-size:12px;"><span style="width:12px;height:12px;border-radius:3px;background:#10B981;display:inline-block;"></span> Ready to Close / No Violation</div>
+      <div style="display:flex; align-items:center; gap:6px; font-size:12px;"><span style="width:12px;height:12px;border-radius:3px;background:#CBD5E1;display:inline-block;"></span> New / Archived</div>
+    </div>
+  </div>
+
+  <!-- ENFORCEMENT DETAIL -->
+  <div class="section-label">Enforcement — Inside the Ticket</div>
+
+  <!-- CHECKLIST -->
+  <div style="margin-bottom:20px;">
+    <div style="font-size:13px; color:var(--muted); margin-bottom:14px; line-height:1.6;">Every enforcement ticket has a <strong style="color:var(--navy)">task checklist</strong> assigned to the responsible team. The ticket cannot move to Closed until all applicable tasks are ticked. Each tick records who did it and when.</div>
+    <div class="checklist-grid">
+      <div class="checklist-card">
+        <div class="checklist-header">📋 Enforcement Checklist — Publisher #7741</div>
+        <div class="checklist-body">
+          <div class="check-row">
+            <div class="check-box done">✓</div>
+            <span class="check-name">Block Promotion (Platform API)</span>
+            <span class="check-owner own-ops">Ops</span>
+          </div>
+          <div class="check-row">
+            <div class="check-box done">✓</div>
+            <span class="check-name">Notify Account Manager</span>
+            <span class="check-owner own-ops">Ops</span>
+          </div>
+          <div class="check-row">
+            <div class="check-box pending"></div>
+            <span class="check-name">Block Withdrawal (Zoho)</span>
+            <span class="check-owner own-fin">Finance</span>
+          </div>
+          <div class="check-row">
+            <div class="check-box pending"></div>
+            <span class="check-name">Reject Conversions (Odoo)</span>
+            <span class="check-owner own-val">Validation</span>
+          </div>
+          <div class="check-row">
+            <div class="check-box pending"></div>
+            <span class="check-name">Apply Publisher Ban</span>
+            <span class="check-owner own-ops">Ops</span>
+          </div>
+        </div>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:14px;">
+        <div class="checklist-card">
+          <div class="checklist-header" style="background:#854D0E;">🟡 Unblock Checklist — Publisher #3371 (Day 30 reached)</div>
+          <div class="checklist-body">
+            <div class="check-row">
+              <div class="check-box pending"></div>
+              <span class="check-name">Unblock Promotion (Platform API)</span>
+              <span class="check-owner own-ops">Ops</span>
+            </div>
+            <div class="check-row">
+              <div class="check-box pending"></div>
+              <span class="check-name">Unblock Withdrawal (Zoho)</span>
+              <span class="check-owner own-fin">Finance</span>
+            </div>
+          </div>
+        </div>
+        <div style="background:var(--card); border:1px solid var(--border); border-radius:12px; padding:18px 20px;">
+          <div style="font-size:12px; font-weight:700; color:var(--navy); margin-bottom:12px;">Rules</div>
+          <div style="font-size:12.5px; color:var(--text); line-height:1.8;">
+            ✦ Each task can only be ticked by the assigned team<br>
+            ✦ When all tasks are ticked, card tag auto-changes to <strong>🟢 Ready to Close</strong> — user then moves it to Closed<br>
+            ✦ Tasks not applicable to the profile are auto-greyed — not manually skipped<br>
+            ✦ Every tick records name and timestamp — full audit trail<br>
+            ✦ When 30-day timer expires, system <strong>auto-moves card</strong> from Waiting → Needs Action as Unblock Required and notifies Ops
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROFILE ROUTING -->
+  <div style="font-size:13px; color:var(--muted); margin-bottom:14px; line-height:1.6;">Enforcement behaviour differs by <strong style="color:var(--navy)">Offer Profile</strong>. The checklist items and monitoring period are determined automatically when the ticket enters Enforcement.</div>
+  <div class="profile-grid" style="margin-bottom:40px;">
+    <div class="profile-card pc-growth">
+      <div class="profile-card-header">Growth-Focused</div>
+      <div class="profile-card-body">
+        <div class="profile-step"><span class="ps-dot">📢</span> Notify AM &amp; commercial team only</div>
+        <div class="profile-step"><span class="ps-dot">🚫</span> No traffic block</div>
+        <div class="profile-step"><span class="ps-dot">🚫</span> No withdrawal block</div>
+        <div class="profile-step"><span class="ps-dot">🚫</span> No conversion rejection</div>
+        <div class="profile-step"><span class="ps-dot">➡️</span> Checklist done → <strong>Ready to Close</strong></div>
+      </div>
+    </div>
+    <div class="profile-card pc-balanced">
+      <div class="profile-card-header">Balanced</div>
+      <div class="profile-card-body">
+        <div class="profile-step"><span class="ps-dot">🚦</span> Block traffic after proof failure</div>
+        <div class="profile-step"><span class="ps-dot">💳</span> Block express &amp; early withdrawal</div>
+        <div class="profile-step"><span class="ps-dot">❌</span> Reject conversions after timeout</div>
+        <div class="profile-step"><span class="ps-dot">⏱️</span> Checklist done → <strong>Monitoring Active</strong> (30-day countdown)</div>
+        <div class="profile-step"><span class="ps-dot">🔔</span> Day 30: system auto-moves card → <strong>Unblock Required</strong></div>
+        <div class="profile-step"><span class="ps-dot">🔓</span> Ops unblocks traffic &amp; withdrawal → <strong>Ready to Close</strong></div>
+      </div>
+    </div>
+    <div class="profile-card pc-pf">
+      <div class="profile-card-header">Protection-Focused</div>
+      <div class="profile-card-body">
+        <div class="profile-step"><span class="ps-dot">🚫</span> Suspend traffic immediately</div>
+        <div class="profile-step"><span class="ps-dot">💳</span> Block all withdrawal types</div>
+        <div class="profile-step"><span class="ps-dot">❌</span> Reject conversions immediately</div>
+        <div class="profile-step"><span class="ps-dot">🔨</span> Permanent publisher ban</div>
+        <div class="profile-step"><span class="ps-dot">➡️</span> Checklist done → <strong>Ready to Close</strong></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FRAUD CATEGORIES -->
+  <div class="section-label">Fraud Categories Handled</div>
+  <div class="cats">
+    <div class="cat-chip cat-active">
+      <div class="cat-num">01</div>
+      <div class="cat-name">Porn &amp; Gambling</div>
+      <div class="cat-badge">Live</div>
+    </div>
+    <div class="cat-chip cat-active">
+      <div class="cat-num">02</div>
+      <div class="cat-name">Cookie Stuffing</div>
+      <div class="cat-badge">Live</div>
+    </div>
+    <div class="cat-chip cat-active">
+      <div class="cat-num">03</div>
+      <div class="cat-name">Pop-Under / Pop-Up</div>
+      <div class="cat-badge">Live</div>
+    </div>
+    <div class="cat-chip cat-active">
+      <div class="cat-num">07</div>
+      <div class="cat-name">Click Spam (Click Flooding)</div>
+      <div class="cat-badge">Live</div>
+    </div>
+    <div class="cat-chip cat-wip">
+      <div class="cat-num">04</div>
+      <div class="cat-name">Illegal Direct Link</div>
+      <div class="cat-badge">WIP</div>
+    </div>
+    <div class="cat-chip cat-wip">
+      <div class="cat-num">05</div>
+      <div class="cat-name">Brand Bidding</div>
+      <div class="cat-badge">WIP</div>
+    </div>
+  </div>
+
+  <!-- KEY NUMBERS -->
+  <div class="section-label">Key Numbers</div>
+  <div class="sla-row">
+    <div class="sla-card accent-blue">
+      <div class="sla-number">3</div>
+      <div class="sla-unit">Modules</div>
+      <div class="sla-label">Data Reporting · Case Ticketing · Domain Blacklist</div>
+    </div>
+    <div class="sla-card accent-green">
+      <div class="sla-number">5</div>
+      <div class="sla-unit">Working Days</div>
+      <div class="sla-label">Proof submission window per case (SLA deadline)</div>
+    </div>
+    <div class="sla-card accent-orange">
+      <div class="sla-number">3</div>
+      <div class="sla-unit">Days Warning</div>
+      <div class="sla-label">Alert sent at 3 days remaining before SLA breach</div>
+    </div>
+    <div class="sla-card accent-red">
+      <div class="sla-number">100</div>
+      <div class="sla-unit">Top Domains</div>
+      <div class="sla-label">New domain candidates pulled weekly from Mahadir for review</div>
+    </div>
+  </div>
+
+  <!-- PHASE COMPARISON -->
+  <div class="section-label">Rollout Phases</div>
+  <div class="phases">
+
+    <div class="phase-card phase-1">
+      <div class="phase-header">
+        <div class="phase-dot">1</div>
+        <div>
+          <div class="phase-title">Phase 1 — Manual Assisted</div>
+          <div class="phase-subtitle">Current implementation · Human-in-the-loop</div>
+        </div>
+      </div>
+      <div class="phase-body">
+        <div class="phase-row"><span class="phase-step-name">Ticket Creation</span><span class="phase-desc">Mini Tools creates ticket on detection</span></div>
+        <div class="phase-row"><span class="phase-step-name">Tagging</span><span class="phase-desc">Card sent to stakeholder for manual execution</span></div>
+        <div class="phase-row"><span class="phase-step-name">Profiling</span><span class="phase-desc">Offer profile pulled from Mahadir</span></div>
+        <div class="phase-row"><span class="phase-step-name">Investigation</span><span class="phase-desc">5-day proof window; compliance reviews manually</span></div>
+        <div class="phase-row"><span class="phase-step-name">Controls</span><span class="phase-desc">Card sent to Ops / Finance / Validation for action</span></div>
+        <div class="phase-row"><span class="phase-step-name">Monitoring</span><span class="phase-desc">Ops monitors ticket status manually</span></div>
+        <div class="phase-row"><span class="phase-step-name">Closure</span><span class="phase-desc">Ops closes ticket after confirming all actions</span></div>
+      </div>
+    </div>
+
+    <div class="phase-card phase-2">
+      <div class="phase-header">
+        <div class="phase-dot">2</div>
+        <div>
+          <div class="phase-title">Phase 2 — Automated Enforcement</div>
+          <div class="phase-subtitle">Future state · Stakeholder notified only</div>
+        </div>
+      </div>
+      <div class="phase-body">
+        <div class="phase-row"><span class="phase-step-name">Ticket Creation</span><span class="phase-desc">Same — auto-created on detection</span></div>
+        <div class="phase-row"><span class="phase-step-name">Tagging</span><span class="phase-desc">Auto-applied by profile · stakeholder notified only</span></div>
+        <div class="phase-row"><span class="phase-step-name">Profiling</span><span class="phase-desc">Same — auto-pulled from Mahadir</span></div>
+        <div class="phase-row"><span class="phase-step-name">Investigation</span><span class="phase-desc">5-day window; auto-escalation on timeout</span></div>
+        <div class="phase-row"><span class="phase-step-name">Controls</span><span class="phase-desc">Auto-applied in app.involve · no manual task</span></div>
+        <div class="phase-row"><span class="phase-step-name">Monitoring</span><span class="phase-desc">System monitors &amp; auto-escalates on SLA breach</span></div>
+        <div class="phase-row"><span class="phase-step-name">Closure</span><span class="phase-desc">System auto-closes when all actions confirmed</span></div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    Mini Tools · Involve Asia Violation Management Project &nbsp;·&nbsp; Internal Use Only &nbsp;·&nbsp; v2.0
+  </div>
+
+</div><!-- /body -->
+
+</body>
+</html>
