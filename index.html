@@ -91,10 +91,10 @@
     /* ─── Card Grid ─── */
     .card-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       gap: 20px;
       width: 100%;
-      max-width: 720px;
+      max-width: 1080px;
     }
 
     /* ─── Card ─── */
@@ -251,7 +251,7 @@
   </main>
 
   <!-- Footer -->
-  <footer>IA System Documentation &nbsp;·&nbsp; 2 Modules</footer>
+  <footer>IA System Documentation &nbsp;·&nbsp; 3 Modules</footer>
 
 <script>
   const modules = [
@@ -325,11 +325,46 @@
           <line x1="-50" y1="-40" x2="-42" y2="-40" stroke="rgba(255,255,255,0.3)" stroke-width="1.5" stroke-linecap="round"/>
         </g>
       `
+    },
+    {
+      num: '03',
+      title: 'Mini Tools Summary',
+      desc: 'Smart Detect tools and validation dashboards',
+      fill: '#8b5cf6',
+      blob: '#5b21b6',
+      href: 'minitools_summary.html',
+      art: `
+        <!-- Wrench + bolt illustration -->
+        <g transform="translate(70,70)">
+          <!-- soft glow -->
+          <ellipse cx="0" cy="0" rx="42" ry="38" fill="rgba(255,255,255,0.07)"/>
+          <!-- wrench body -->
+          <rect x="-6" y="-40" width="12" height="52" rx="4" fill="rgba(255,255,255,0.22)" transform="rotate(-25)"/>
+          <rect x="-10" y="-46" width="20" height="16" rx="5" fill="rgba(255,255,255,0.28)" transform="rotate(-25)"/>
+          <!-- gear -->
+          <circle cx="18" cy="20" r="22" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="4"/>
+          <circle cx="18" cy="20" r="12" fill="rgba(255,255,255,0.2)"/>
+          <circle cx="18" cy="20" r="5" fill="rgba(255,255,255,0.9)"/>
+          <!-- gear teeth -->
+          <rect x="14" y="-6" width="8" height="12" rx="2" fill="rgba(255,255,255,0.3)"/>
+          <rect x="14" y="40" width="8" height="12" rx="2" fill="rgba(255,255,255,0.3)"/>
+          <rect x="-8" y="16" width="12" height="8" rx="2" fill="rgba(255,255,255,0.3)"/>
+          <rect x="36" y="16" width="12" height="8" rx="2" fill="rgba(255,255,255,0.3)"/>
+          <!-- floating dots -->
+          <circle cx="-48" cy="-20" r="4" fill="rgba(255,255,255,0.18)"/>
+          <circle cx="-54" cy="-6" r="3" fill="rgba(255,255,255,0.12)"/>
+          <circle cx="46" cy="-36" r="5" fill="rgba(255,255,255,0.15)"/>
+          <circle cx="52" cy="-22" r="3" fill="rgba(255,255,255,0.12)"/>
+          <!-- sparkle -->
+          <line x1="-40" y1="-44" x2="-40" y2="-36" stroke="rgba(255,255,255,0.3)" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="-44" y1="-40" x2="-36" y2="-40" stroke="rgba(255,255,255,0.3)" stroke-width="1.5" stroke-linecap="round"/>
+        </g>
+      `
     }
   ];
 
   document.getElementById('cardGrid').innerHTML = modules.map(m => `
-    <a class="card" href="${m.href}" style="background: ${m.fill};">
+    <a class="card" href="${m.href}" target="_blank" rel="noopener" style="background: ${m.fill};">
       <div class="card-shine"></div>
       <div class="card-blob" style="background: ${m.blob};"></div>
       <div class="card-art">
