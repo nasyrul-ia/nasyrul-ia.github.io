@@ -4,109 +4,134 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Involve Asia — Violation Management Project Documentation</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --navy: #1F3864;
-    --blue: #378ADD;
-    --blue-light: #E6F1FB;
-    --orange: #BA7517;
-    --orange-light: #FAEEDA;
-    --green: #3B6D11;
-    --green-light: #EAF3DE;
-    --red: #B91C1C;
-    --red-light: #FEE2E2;
-    --gray: #5F5E5A;
-    --gray-light: #F5F4F0;
-    --border: #D3D1C7;
-    --text: #1a1a1a;
+    /* IA Design System v3.4 tokens */
+    --midnight:      #0F1C2E;
+    --midnight-mid:  #1A2E47;
+    --ember:         #F05826;
+    --ember-dark:    #C43E18;
+    --warm-50:       #FAFAF8;
+    --warm-100:      #F4F4F0;
+    --warm-200:      #E8E8E2;
+    --warm-400:      #706F6B;
+    --warm-600:      #4B4B46;
+    --warm-900:      #111110;
+    --success:       #10B981;
+    --success-light: #D1FAE5;
+    --warning:       #F59E0B;
+    --warning-light: #FEF3C7;
+    --error:         #EF4444;
+    --error-light:   #FEE2E2;
+    --info:          #3B82F6;
+    --info-light:    #DBEAFE;
+    --shadow-sm: 0 1px 3px rgba(15,28,46,.06);
+    --shadow-md: 0 4px 12px rgba(15,28,46,.08);
+
+    /* Legacy aliases — kept so existing class references still resolve */
+    --navy:        var(--midnight);
+    --blue:        var(--ember);  /* Maps to brand ember — not a blue color */
+    --blue-light:  var(--warm-100);
+    --orange:      var(--warning);
+    --orange-light:var(--warning-light);
+    --green:       var(--success);
+    --green-light: var(--success-light);
+    --red:         var(--error);
+    --red-light:   var(--error-light);
+    --gray:        var(--warm-400);
+    --gray-light:  var(--warm-100);
+    --border:      var(--warm-200);
+    --text:        var(--warm-900);
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: 'Segoe UI', Arial, sans-serif; font-size: 14px; color: var(--text); background: #f0eeea; }
+  body { font-family: 'Inter', sans-serif; font-size: 14px; color: var(--warm-900); background: var(--warm-50); }
 
   /* NAV */
-  nav { position: fixed; top: 0; left: 0; width: 220px; height: 100vh; background: var(--navy); overflow-y: auto; z-index: 100; padding: 0 0 24px 0; }
-  nav .logo { padding: 20px 16px 16px; border-bottom: 1px solid rgba(255,255,255,0.1); margin-bottom: 8px; }
-  nav .logo div:first-child { font-size: 11px; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.5px; }
-  nav .logo div:last-child { font-size: 13px; font-weight: 700; color: #fff; margin-top: 4px; }
-  nav a { display: block; padding: 8px 16px; color: rgba(255,255,255,0.7); text-decoration: none; font-size: 12px; transition: all 0.15s; border-left: 3px solid transparent; }
-  nav a:hover, nav a.active { color: #fff; background: rgba(255,255,255,0.08); border-left-color: var(--blue); }
-  nav .nav-section { padding: 12px 16px 4px; font-size: 10px; color: rgba(255,255,255,0.35); text-transform: uppercase; letter-spacing: 0.8px; font-weight: 600; }
+  nav { position: fixed; top: 0; left: 0; width: 220px; height: 100vh; background: var(--midnight); overflow-y: auto; z-index: 100; padding: 0 0 24px 0; }
+  nav .logo { padding: 20px 16px 16px; border-bottom: 1px solid rgba(255,255,255,0.08); margin-bottom: 8px; }
+  nav .logo div:first-child { font-size: 11px; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 0.8px; }
+  nav .logo div:last-child { font-size: 13px; font-weight: 700; color: #fff; margin-top: 4px; font-family: 'Inter', sans-serif; }
+  nav a { display: block; padding: 8px 16px; color: rgba(255,255,255,0.6); text-decoration: none; font-size: 12px; transition: all 0.15s; border-left: 3px solid transparent; border-radius: 0 6px 6px 0; margin: 1px 8px 1px 0; }
+  nav a:hover, nav a.active { color: #fff; background: rgba(240,88,38,0.1); border-left-color: var(--ember); }
+  nav .nav-section { padding: 12px 16px 4px; font-size: 10px; color: rgba(255,255,255,0.3); text-transform: uppercase; letter-spacing: 0.8px; font-weight: 600; }
 
   /* MAIN */
-  main { margin-left: 220px; padding: 32px 40px; min-height: 100vh; }
+  main { margin-left: 220px; padding: 32px 40px; min-height: 100vh; background: var(--warm-50); }
   section { margin-bottom: 48px; scroll-margin-top: 24px; }
 
   /* COVER */
-  .cover { background: var(--navy); border-radius: 12px; padding: 40px 48px; color: #fff; margin-bottom: 40px; position: relative; overflow: hidden; }
-  .cover::after { content: ''; position: absolute; right: -40px; top: -40px; width: 300px; height: 300px; border-radius: 50%; background: rgba(55,138,221,0.12); }
-  .cover .tag { display: inline-block; background: rgba(55,138,221,0.3); color: #B5D4F4; font-size: 11px; padding: 3px 10px; border-radius: 20px; margin-bottom: 12px; }
-  .cover h1 { font-size: 26px; font-weight: 700; margin-bottom: 8px; }
-  .cover p { color: rgba(255,255,255,0.65); font-size: 13px; max-width: 600px; line-height: 1.6; }
+  .cover { background: var(--midnight); border-radius: 12px; padding: 40px 48px; color: #fff; margin-bottom: 40px; position: relative; overflow: hidden; border-left: 5px solid var(--ember); }
+  .cover::after { content: ''; position: absolute; right: -40px; top: -40px; width: 300px; height: 300px; border-radius: 50%; background: rgba(240,88,38,0.08); }
+  .cover .tag { display: inline-block; background: rgba(240,88,38,0.2); color: #FFA07A; font-size: 11px; padding: 3px 10px; border-radius: 20px; margin-bottom: 12px; font-weight: 600; letter-spacing: 0.3px; }
+  .cover h1 { font-size: 26px; font-weight: 800; margin-bottom: 8px; font-family: 'Plus Jakarta Sans', sans-serif; }
+  .cover p { color: rgba(255,255,255,0.6); font-size: 13px; max-width: 600px; line-height: 1.6; }
   .cover-meta { display: flex; gap: 32px; margin-top: 24px; flex-wrap: wrap; }
   .cover-meta div { font-size: 12px; }
-  .cover-meta span { display: block; color: rgba(255,255,255,0.45); font-size: 10px; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 2px; }
+  .cover-meta span { display: block; color: rgba(255,255,255,0.4); font-size: 10px; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 2px; }
 
   /* HEADINGS */
-  h2 { font-size: 19px; font-weight: 700; color: var(--navy); margin-bottom: 6px; }
-  h3 { font-size: 15px; font-weight: 700; color: var(--navy); margin-bottom: 8px; margin-top: 20px; }
-  .section-intro { color: var(--gray); font-size: 13px; line-height: 1.7; margin-bottom: 20px; max-width: 780px; }
-  .section-divider { height: 1px; background: var(--border); margin-bottom: 24px; }
+  h2 { font-size: 20px; font-weight: 800; color: var(--midnight); margin-bottom: 6px; font-family: 'Plus Jakarta Sans', sans-serif; }
+  h3 { font-size: 15px; font-weight: 700; color: var(--midnight); margin-bottom: 8px; margin-top: 20px; font-family: 'Inter', sans-serif; }
+  .section-intro { color: var(--warm-400); font-size: 13px; line-height: 1.7; margin-bottom: 20px; max-width: 780px; }
+  .section-divider { height: 2px; background: var(--warm-200); margin-bottom: 24px; }
 
   /* STAT CARDS */
   .stat-row { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 14px; margin-bottom: 24px; }
-  .stat-card { background: #fff; border-radius: 8px; padding: 16px; border: 1px solid var(--border); }
-  .stat-card .num { font-size: 28px; font-weight: 700; color: var(--navy); line-height: 1; }
-  .stat-card .label { font-size: 11px; color: var(--gray); margin-top: 4px; }
-  .stat-card.blue .num { color: var(--blue); }
-  .stat-card.green .num { color: var(--green); }
-  .stat-card.orange .num { color: var(--orange); }
-  .stat-card.red .num { color: var(--red); }
+  .stat-card { background: #fff; border-radius: 12px; padding: 16px; border: 1px solid var(--warm-200); box-shadow: var(--shadow-sm); }
+  .stat-card .num { font-size: 28px; font-weight: 800; color: var(--midnight); line-height: 1; font-family: 'Plus Jakarta Sans', sans-serif; }
+  .stat-card .label { font-size: 11px; color: var(--warm-400); margin-top: 4px; }
+  .stat-card.blue .num  { color: var(--ember); }
+  .stat-card.green .num { color: var(--success); }
+  .stat-card.orange .num{ color: var(--warning); }
+  .stat-card.red .num   { color: var(--error); }
 
   /* CALLOUT BOXES */
   .callout { border-radius: 8px; padding: 14px 18px; margin: 14px 0; font-size: 13px; line-height: 1.6; }
-  .callout.blue { background: var(--blue-light); border-left: 4px solid var(--blue); }
-  .callout.green { background: var(--green-light); border-left: 4px solid var(--green); }
-  .callout.orange { background: var(--orange-light); border-left: 4px solid var(--orange); }
-  .callout.red { background: var(--red-light); border-left: 4px solid var(--red); }
+  .callout.brand, .callout.blue   { background: var(--warm-100); border-left: 4px solid var(--ember); }  /* .blue is a legacy alias — renders as brand/ember */
+  .callout.green  { background: var(--success-light); border-left: 4px solid var(--success); }
+  .callout.orange { background: var(--warning-light); border-left: 4px solid var(--warning); }
+  .callout.red    { background: var(--error-light); border-left: 4px solid var(--error); }
   .callout strong { display: block; margin-bottom: 4px; font-size: 12px; text-transform: uppercase; letter-spacing: 0.3px; }
-  .callout.blue strong { color: var(--blue); }
-  .callout.green strong { color: var(--green); }
-  .callout.orange strong { color: var(--orange); }
-  .callout.red strong { color: var(--red); }
+  .callout.brand strong, .callout.blue strong   { color: var(--ember-dark); }
+  .callout.green strong  { color: var(--success); }
+  .callout.orange strong { color: var(--warning); }
+  .callout.red strong    { color: var(--error); }
 
   /* TABLES */
-  .table-wrap { overflow-x: auto; margin: 14px 0; border-radius: 8px; border: 1px solid var(--border); }
+  .table-wrap { overflow-x: auto; margin: 14px 0; border-radius: 10px; border: 1px solid var(--warm-200); box-shadow: var(--shadow-sm); }
   table { width: 100%; border-collapse: collapse; background: #fff; font-size: 13px; }
-  thead { background: var(--navy); color: #fff; }
-  th { padding: 10px 14px; text-align: left; font-size: 11px; font-weight: 600; letter-spacing: 0.3px; }
-  td { padding: 9px 14px; border-bottom: 1px solid var(--border); vertical-align: top; line-height: 1.5; }
+  thead { background: var(--midnight); color: #fff; }
+  th { padding: 10px 14px; text-align: left; font-size: 11px; font-weight: 600; letter-spacing: 0.4px; text-transform: uppercase; }
+  td { padding: 9px 14px; border-bottom: 1px solid var(--warm-200); vertical-align: top; line-height: 1.5; }
   tr:last-child td { border-bottom: none; }
-  tr:hover td { background: var(--gray-light); }
-  .badge { display: inline-block; padding: 2px 8px; border-radius: 12px; font-size: 11px; font-weight: 600; }
-  .badge.caught { background: var(--green-light); color: var(--green); }
-  .badge.missed { background: var(--red-light); color: var(--red); }
-  .badge.na { background: #f1f1f1; color: #888; }
-  .badge.pop { background: var(--blue-light); color: var(--navy); }
-  .badge.oem { background: #f3e8ff; color: #6b21a8; }
-  .badge.clean { background: #DCFCE7; color: #166534; }
-  .badge.low { background: #FEF9C3; color: #854D0E; }
-  .badge.med { background: #FFEDD5; color: #9A3412; }
-  .badge.high { background: var(--red-light); color: var(--red); }
-  .badge.crit { background: #1F3864; color: #fff; }
+  tr:nth-child(even) td { background: var(--warm-50); }
+  tr:hover td { background: var(--warm-100); }
+  .badge { display: inline-block; padding: 2px 8px; border-radius: 9999px; font-size: 11px; font-weight: 600; }
+  .badge.caught  { background: var(--success-light); color: var(--success); }
+  .badge.missed  { background: var(--error-light); color: var(--error); }
+  .badge.na      { background: var(--warm-100); color: var(--warm-400); }
+  .badge.pop     { background: var(--warm-100); color: var(--midnight); }
+  .badge.oem     { background: #f3e8ff; color: #6b21a8; }
+  .badge.clean   { background: var(--success-light); color: var(--success); }
+  .badge.low     { background: var(--warning-light); color: var(--warning); }
+  .badge.med     { background: #FFEDD5; color: #9A3412; }
+  .badge.high    { background: var(--error-light); color: var(--error); }
+  .badge.crit    { background: var(--midnight); color: #fff; }
 
   /* FRAUD CATEGORY CARDS */
   .fraud-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; margin: 16px 0; }
-  .fraud-card { background: #fff; border-radius: 8px; border: 1px solid var(--border); overflow: hidden; }
-  .fraud-card-header { background: var(--navy); color: #fff; padding: 12px 16px; }
+  .fraud-card { background: #fff; border-radius: 12px; border: 1px solid var(--warm-200); overflow: hidden; box-shadow: var(--shadow-sm); }
+  .fraud-card-header { background: var(--midnight); color: #fff; padding: 12px 16px; border-left: 4px solid var(--ember); }
   .fraud-card-header .cat-num { font-size: 10px; color: rgba(255,255,255,0.5); }
   .fraud-card-header .cat-name { font-size: 13px; font-weight: 700; }
-  .fraud-card-header.wip { background: #7a5c00; }
-  .wip-badge { display: inline-block; background: #FDE68A; color: #7a5c00; font-size: 10px; font-weight: 700; padding: 1px 7px; border-radius: 10px; margin-left: 8px; vertical-align: middle; letter-spacing: 0.3px; }
-  .fraud-card.wip { border: 1.5px solid #D97706; }
+  .fraud-card-header.wip { background: var(--midnight-mid); border-left-color: var(--warning); }
+  .wip-badge { display: inline-block; background: var(--warning-light); color: var(--warning); font-size: 10px; font-weight: 700; padding: 1px 7px; border-radius: 9999px; margin-left: 8px; vertical-align: middle; letter-spacing: 0.3px; }
+  .fraud-card.wip { border: 1.5px solid var(--warning); }
   .fraud-card-body { padding: 14px 16px; }
-  .fraud-card-body p { font-size: 12px; color: var(--gray); line-height: 1.6; margin-bottom: 10px; }
-  .detection-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.4px; color: var(--blue); margin-bottom: 6px; }
-  .detection-rule { font-size: 12px; background: var(--blue-light); border-radius: 5px; padding: 8px 10px; line-height: 1.5; color: var(--text); }
+  .fraud-card-body p { font-size: 12px; color: var(--warm-400); line-height: 1.6; margin-bottom: 10px; }
+  .detection-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.4px; color: var(--ember-dark); margin-bottom: 6px; }
+  .detection-rule { font-size: 12px; background: var(--warm-100); border-radius: 6px; padding: 8px 10px; line-height: 1.5; color: var(--warm-900); border-left: 3px solid var(--warm-200); }
   .detection-rule li { margin-left: 14px; margin-bottom: 3px; }
 
   /* FLOW STEPS */
@@ -114,41 +139,65 @@
   .flow-step { display: flex; gap: 14px; }
   .flow-line { display: flex; flex-direction: column; align-items: center; }
   .flow-dot { width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; color: #fff; flex-shrink: 0; }
-  .flow-dot.blue { background: var(--blue); }
-  .flow-dot.green { background: var(--green); }
-  .flow-dot.orange { background: var(--orange); }
-  .flow-connector { width: 2px; flex: 1; background: var(--border); min-height: 16px; }
+  .flow-dot.blue   { background: var(--ember); }
+  .flow-dot.green  { background: var(--success); }
+  .flow-dot.orange { background: var(--warning); }
+  .flow-connector { width: 2px; flex: 1; background: var(--warm-200); min-height: 16px; }
   .flow-content { padding-bottom: 18px; flex: 1; }
-  .flow-content .title { font-size: 13px; font-weight: 700; color: var(--navy); margin-bottom: 2px; margin-top: 4px; }
-  .flow-content .role { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.3px; color: var(--gray); margin-bottom: 4px; }
-  .flow-content .desc { font-size: 12px; color: var(--gray); line-height: 1.5; }
+  .flow-content .title { font-size: 13px; font-weight: 700; color: var(--midnight); margin-bottom: 2px; margin-top: 4px; }
+  .flow-content .role { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.3px; color: var(--warm-400); margin-bottom: 4px; }
+  .flow-content .desc { font-size: 12px; color: var(--warm-400); line-height: 1.5; }
 
   /* VALIDATION TABLE */
-  .breakdown-box { background: #fff; border: 1px solid var(--border); border-radius: 8px; padding: 20px; margin: 16px 0; }
+  .breakdown-box { background: #fff; border: 1px solid var(--warm-200); border-radius: 12px; padding: 20px; margin: 16px 0; box-shadow: var(--shadow-sm); }
   .tree-row { display: flex; align-items: flex-start; gap: 10px; margin: 6px 0; font-size: 13px; }
-  .tree-row.l1 { font-weight: 700; color: var(--navy); }
-  .tree-row.l2 { margin-left: 20px; color: var(--gray); }
-  .tree-row.l3 { margin-left: 40px; color: var(--gray); }
+  .tree-row.l1 { font-weight: 700; color: var(--midnight); }
+  .tree-row.l2 { margin-left: 20px; color: var(--warm-400); }
+  .tree-row.l3 { margin-left: 40px; color: var(--warm-400); }
   .tree-num { font-weight: 700; min-width: 30px; }
-  .tree-num.green { color: var(--green); }
-  .tree-num.red { color: var(--red); }
-  .tree-num.orange { color: var(--orange); }
+  .tree-num.green  { color: var(--success); }
+  .tree-num.red    { color: var(--error); }
+  .tree-num.orange { color: var(--warning); }
 
   /* RECOMMENDATION */
-  .rec-card { background: #fff; border: 1px solid var(--border); border-radius: 8px; padding: 18px; margin-bottom: 14px; display: flex; gap: 16px; }
-  .rec-num { width: 32px; height: 32px; border-radius: 50%; background: var(--navy); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px; flex-shrink: 0; }
-  .rec-body h4 { font-size: 13px; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
-  .rec-body p { font-size: 12px; color: var(--gray); line-height: 1.6; }
-  .rec-body .priority { font-size: 10px; font-weight: 700; text-transform: uppercase; padding: 2px 7px; border-radius: 10px; display: inline-block; margin-top: 6px; }
-  .priority.high { background: var(--red-light); color: var(--red); }
-  .priority.medium { background: var(--orange-light); color: var(--orange); }
-  .priority.low { background: var(--green-light); color: var(--green); }
+  .rec-card { background: #fff; border: 1px solid var(--warm-200); border-radius: 12px; padding: 18px; margin-bottom: 14px; display: flex; gap: 16px; box-shadow: var(--shadow-sm); }
+  .rec-num { width: 32px; height: 32px; border-radius: 50%; background: var(--midnight); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px; flex-shrink: 0; }
+  .rec-body h4 { font-size: 13px; font-weight: 700; color: var(--midnight); margin-bottom: 4px; }
+  .rec-body p { font-size: 12px; color: var(--warm-400); line-height: 1.6; }
+  .rec-body .priority { font-size: 10px; font-weight: 700; text-transform: uppercase; padding: 2px 7px; border-radius: 9999px; display: inline-block; margin-top: 6px; }
+  .priority.high   { background: var(--error-light); color: var(--error); }
+  .priority.medium { background: var(--warning-light); color: var(--warning); }
+  .priority.low    { background: var(--success-light); color: var(--success); }
 
   /* FOOTER */
-  footer { margin-left: 220px; background: var(--navy); color: rgba(255,255,255,0.5); font-size: 11px; padding: 16px 40px; }
+  footer { margin-left: 220px; background: var(--midnight); color: rgba(255,255,255,0.4); font-size: 11px; padding: 16px 40px; }
 
   /* PRINT */
   @media print { nav { display: none; } main, footer { margin-left: 0; } }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    nav { position: relative; width: 100%; height: auto; overflow-y: visible; padding: 0; }
+    nav .logo { padding: 14px 16px; }
+    nav .nav-section { padding: 10px 16px 4px; }
+    nav a { border-left: none; border-radius: 0; margin: 0; padding: 10px 16px; }
+    main { margin-left: 0; padding: 20px 16px; }
+    footer { margin-left: 0; padding: 16px; }
+    .cover { padding: 24px 20px; }
+    .cover-meta { gap: 16px; }
+    .stat-row { flex-wrap: wrap; }
+    .stat-card { min-width: calc(50% - 8px); flex: 1 1 calc(50% - 8px); }
+    .fraud-grid { grid-template-columns: 1fr; }
+    .tree-row { flex-direction: column; }
+    .rec-card { flex-direction: column; }
+    .table-wrap { overflow-x: auto; }
+    .table-wrap table { min-width: 500px; }
+  }
+  @media (max-width: 480px) {
+    .stat-card { min-width: 100%; flex: 1 1 100%; }
+    .cover h1 { font-size: 20px; }
+    h2 { font-size: 17px; }
+  }
 </style>
 </head>
 <body>
@@ -166,14 +215,9 @@
   <a href="#fraud-process">Handling Process Flow</a>
   <a href="#categories">Fraud Categories</a>
   <a href="#detection">Detection Logic</a>
-  <div class="nav-section">Validation Study</div>
-  <a href="#popads">Pop Ads Study</a>
-  <a href="#findings">Key Findings</a>
   <div class="nav-section">SOPs</div>
-  <a href="#sop-porn">Porn & Gambling SOP</a>
+  <a href="#sop-porn">Porn / Gambling SOP</a>
   <a href="#sop-other">Other Category SOPs</a>
-  <div class="nav-section">Category 07</div>
-  <a href="#clickspam-detail">Click Spam Deep-Dive</a>
   <div class="nav-section">Mini Tools</div>
   <a href="minitools_summary.html" target="_blank">Mini Tools Summary</a>
   <div class="nav-section">Next Steps</div>
@@ -187,11 +231,11 @@
   <div class="cover" id="cover">
     <div class="tag">Internal Use Only · May 2026</div>
     <h1>Violation Management Project</h1>
-    <p>Full project documentation covering fraud detection framework, validation study results, standard operating procedures, and recommended improvements for the Involve Asia affiliate network.</p>
+    <p>Full project documentation covering fraud detection framework, standard operating procedures, and recommended improvements for the Involve Asia affiliate network.</p>
     <div class="cover-meta">
       <div><span>Prepared by</span>Compliance & Fraud Prevention Team</div>
       <div><span>Version</span>1.0 — May 2026</div>
-      <div><span>Scope</span>All 6 Fraud Categories</div>
+      <div><span>Scope</span>All 7 Fraud Categories</div>
       <div><span>Status</span>Active — In Review</div>
     </div>
   </div>
@@ -200,15 +244,15 @@
   <section id="overview">
     <h2>Project Overview</h2>
     <div class="section-divider"></div>
-    <p class="section-intro">The Violation Management Project is an internal initiative to systematically detect, validate, and action fraudulent activity within Involve Asia's affiliate network. The project categorises fraud into six defined types, each with specific detection logic, and aims to build a repeatable process for both advertiser-reported and internally detected violations.</p>
+    <p class="section-intro">The Violation Management Project is an internal initiative to systematically detect, validate, and action fraudulent activity within Involve Asia's affiliate network. The project categorises fraud into seven defined types, each with specific detection logic, and aims to build a repeatable process for both advertiser-reported and internally detected violations.</p>
 
     <div class="stat-row">
-      <div class="stat-card blue"><div class="num">6</div><div class="label">Fraud categories defined</div></div>
+      <div class="stat-card blue"><div class="num">7</div><div class="label">Fraud categories defined</div></div>
       <div class="stat-card"><div class="num">121</div><div class="label">Test cases analysed</div></div>
       <div class="stat-card green"><div class="num">14</div><div class="label">True positives (correctly caught)</div></div>
       <div class="stat-card red"><div class="num">8</div><div class="label">False negatives (missed)</div></div>
       <div class="stat-card orange"><div class="num">6</div><div class="label">Offer combinations outside criteria</div></div>
-      <div class="stat-card"><div class="num">2</div><div class="label">Detection gaps identified</div></div>
+      <div class="stat-card"><div class="num">3</div><div class="label">Detection gaps identified</div></div>
     </div>
 
     <div class="callout blue">
@@ -222,7 +266,7 @@
         <thead><tr><th>Source</th><th>Code</th><th>How it works</th><th>Current status</th></tr></thead>
         <tbody>
           <tr><td><strong>Advertiser Reported</strong></td><td><span class="badge pop">S1</span></td><td>Advertiser manually reports suspected domain or publisher to the commercial team, who raise a ticket to tech.</td><td>Active — manual process</td></tr>
-          <tr><td><strong>Internal Detection (Current)</strong></td><td><span class="badge oem">S2</span></td><td>Weekly system run checks referrer URLs against a known domain list. Top 20 flagged domains are reviewed and added to block list weekly.</td><td>Active — weekly cycle</td></tr>
+          <tr><td><strong>Internal Detection (Current)</strong></td><td><span class="badge oem">S2</span></td><td>Weekly system run checks referrer URLs against a known domain list. Top 20 flagged domains are reviewed and added to the block list weekly.</td><td>Active — weekly cycle</td></tr>
           <tr><td><strong>Internal Detection (Enhanced)</strong></td><td><span class="badge oem">S2+</span></td><td>Auto-crawl & classify — domains are registered as whitelist; unregistered domains are automatically flagged, crawled, and classified. Block list updates in real-time.</td><td>Planned — not yet enabled</td></tr>
         </tbody>
       </table>
@@ -233,15 +277,15 @@
   <section id="fraud-process">
     <h2>Fraud Handling Process Flow</h2>
     <div class="section-divider"></div>
-    <p class="section-intro">End-to-end process covering how a fraud case is submitted, triaged by offer profile, investigated through proof submission, and enforced with the appropriate controls. The process applies to both S1 (advertiser-reported) and S2 (internally detected) cases.</p>
+    <p class="section-intro">End-to-end process covering how a fraud case is submitted, categorised by offer profile at ticket creation, and enforced with the appropriate controls. S1 cases are automatically set to Protection-Focused. For S2 cases, the profile from Mahadir determines the enforcement path. Growth-Focused cases skip the proof cycle entirely. Protection-Focused cases follow a full proof submission window before enforcement. Balanced cases: the Commercial team decides whether to request proof — it is not mandatory.</p>
 
     <div class="callout blue">
       <strong>Two Delivery Phases</strong>
-      Phase 1 is the current process using Mini Tools for case submission and handling — stakeholders receive cards to execute manually. Phase 2 is the automated state where Mini Tools applies all controls automatically and notifies stakeholders — no manual card creation needed.
+      Phase 1 is the current process — Mini Tools assigns tasks to the responsible teams (Compliance, Operations, Finance, Validation) who execute and verify completion within the system. Phase 2 is the automated state where Mini Tools applies all controls automatically and notifies stakeholders — no manual task assignment needed.
     </div>
 
     <div style="background:#fff; border:1px solid var(--border); border-radius:8px; padding:16px; margin:16px 0;">
-      <svg viewBox="0 0 920 820" xmlns="http://www.w3.org/2000/svg" role="img" width="100%">
+      <svg viewBox="0 0 920 920" xmlns="http://www.w3.org/2000/svg" role="img" width="100%">
         <title>Fraud Submission and Enforcement Process Flow</title>
         <defs>
           <marker id="fpf-b" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#185FA5"/></marker>
@@ -279,100 +323,98 @@
         <path class="fpf-cb" d="M384,114 L180,114 L180,148" marker-end="url(#fpf-b)"/>
         <path class="fpf-cb" d="M536,114 L740,114 L740,148" marker-end="url(#fpf-b)"/>
 
-        <!-- S1 BOX (updated: proof applies to S1 too) -->
-        <rect x="70" y="148" width="220" height="52" rx="5" fill="#E6F1FB" stroke="#185FA5" stroke-width="1"/>
-        <text x="180" y="165" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="700" fill="#0C447C">S1 — Advertiser Report</text>
-        <text x="180" y="179" text-anchor="middle" class="fpf-td">Proof required. On failure,</text>
-        <text x="180" y="191" text-anchor="middle" class="fpf-td">auto-set to Protection-Focused.</text>
+        <!-- S1 BOX — auto Protection-Focused -->
+        <rect x="70" y="148" width="220" height="52" rx="5" fill="#FEE2E2" stroke="#991B1B" stroke-width="1.5"/>
+        <text x="180" y="165" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="700" fill="#991B1B">S1 — Advertiser Report</text>
+        <text x="180" y="179" text-anchor="middle" class="fpf-td">Auto-set to Protection-Focused.</text>
+        <text x="180" y="191" text-anchor="middle" class="fpf-td">Bypasses profile check. Full enforcement.</text>
+        <!-- S1 arrow down to converge point -->
+        <path class="fpf-cr" d="M180,200 L180,268 L316,268" marker-end="url(#fpf-cr)"/>
 
-        <!-- S2 BOX (updated: proof applies to S2 too, profile checked after) -->
+        <!-- S2 BOX — profile from Mahadir -->
         <rect x="630" y="148" width="220" height="52" rx="5" fill="#FAEEDA" stroke="#BA7517" stroke-width="1"/>
         <text x="740" y="165" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="700" fill="#633806">S2 — Internal Detection</text>
-        <text x="740" y="179" text-anchor="middle" class="fpf-td">Proof required. On failure,</text>
-        <text x="740" y="191" text-anchor="middle" class="fpf-td">controls applied by Offer Profile.</text>
+        <text x="740" y="179" text-anchor="middle" class="fpf-td">Offer Profile from Mahadir.</text>
+        <text x="740" y="191" text-anchor="middle" class="fpf-td">Controls applied by profile.</text>
+        <!-- S2 arrow down to Offer Profile diamond -->
+        <path class="fpf-cb" d="M740,200 L740,220" marker-end="url(#fpf-b)"/>
 
-        <!-- Converge to form -->
-        <path class="fpf-cb" d="M180,200 L180,218 L316,218" marker-end="url(#fpf-b)"/>
-        <path class="fpf-cb" d="M740,200 L740,218 L604,218" marker-end="url(#fpf-b)"/>
+        <!-- ═══ OFFER PROFILE DIAMOND — S2 only, at ticket creation ═══ -->
+        <polygon points="740,220 816,244 740,268 664,244" fill="#1F3864" stroke="#0C447C" stroke-width="1.5"/>
+        <text x="740" y="240" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="600" fill="#fff">Offer Profile?</text>
+        <text x="650" y="239" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#5B21B6" font-weight="600">Growth</text>
+        <text x="830" y="239" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#0C447C" font-weight="600">Balanced /</text>
+        <text x="830" y="251" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#0C447C" font-weight="600">Protection-Focused</text>
+        <!-- S2 Growth branch left to converge -->
+        <path class="fpf-cp" d="M664,244 L460,244 L460,268" marker-end="url(#fpf-p)"/>
+        <!-- S2 Balanced/PF branch right and down to converge -->
+        <path class="fpf-cn" d="M816,244 L870,244 L870,268 L604,268" marker-end="url(#fpf-n)"/>
 
-        <!-- FORM SUBMISSION -->
-        <rect x="245" y="218" width="430" height="52" rx="5" fill="#1F3864" stroke="#0C447C" stroke-width="1"/>
-        <text x="460" y="236" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="700" fill="#fff">Submit Violation Form</text>
-        <text x="460" y="250" text-anchor="middle" font-family="sans-serif" font-size="9" fill="rgba(255,255,255,0.75)">Phase 1: Mini Tools (card to stakeholder)  ·  Phase 2: Auto-apply controls, notify stakeholder</text>
-        <text x="460" y="263" text-anchor="middle" font-family="sans-serif" font-size="9" fill="rgba(255,255,255,0.55)">Fields: Offer ID / Name  ·  Affiliate ID / Name  ·  Fraud Category  ·  Offer Profile (recorded)</text>
-        <path class="fpf-cn" d="M460,270 L460,286" marker-end="url(#fpf-n)"/>
+        <!-- ═══ ALL PATHS CONVERGE → SUBMIT FORM ═══ -->
+        <rect x="245" y="268" width="430" height="52" rx="5" fill="#1F3864" stroke="#0C447C" stroke-width="1"/>
+        <text x="460" y="286" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="700" fill="#fff">Submit Violation Form</text>
+        <text x="460" y="300" text-anchor="middle" font-family="sans-serif" font-size="9" fill="rgba(255,255,255,0.75)">Phase 1: Mini Tools (card to stakeholder)  ·  Phase 2: Auto-apply controls, notify stakeholder</text>
+        <text x="460" y="313" text-anchor="middle" font-family="sans-serif" font-size="9" fill="rgba(255,255,255,0.55)">Fields: Offer ID / Name  ·  Affiliate ID / Name  ·  Fraud Category  ·  Offer Profile (recorded at creation)</text>
+        <path class="fpf-cn" d="M460,320 L460,336" marker-end="url(#fpf-n)"/>
 
         <!-- TAG CONVERSIONS -->
-        <rect x="255" y="286" width="410" height="36" rx="5" fill="#FAEEDA" stroke="#BA7517" stroke-width="1.5"/>
-        <text x="460" y="301" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="700" fill="#633806">Tag All Pending Conversions</text>
-        <text x="460" y="315" text-anchor="middle" class="fpf-td">All pending conversions placed under review upon report submission.</text>
-        <path class="fpf-cn" d="M460,322 L460,338" marker-end="url(#fpf-n)"/>
+        <rect x="255" y="336" width="410" height="36" rx="5" fill="#FAEEDA" stroke="#BA7517" stroke-width="1.5"/>
+        <text x="460" y="351" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="700" fill="#633806">Tag All Pending Conversions</text>
+        <text x="460" y="365" text-anchor="middle" class="fpf-td">All pending conversions placed under review upon report submission.</text>
+        <path class="fpf-cn" d="M460,372 L460,388" marker-end="url(#fpf-n)"/>
 
-        <!-- NOTIFY PUBLISHER — ALL CASES (no profile gate here anymore) -->
-        <rect x="265" y="338" width="390" height="48" rx="5" fill="#E6F1FB" stroke="#185FA5" stroke-width="1"/>
-        <text x="460" y="355" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="700" fill="#0C447C">Notify Publisher Manager — All Cases</text>
-        <text x="460" y="369" text-anchor="middle" class="fpf-td">Publisher has 5 working days to submit valid proof.</text>
-        <text x="460" y="381" text-anchor="middle" class="fpf-td">Operations team verifies submitted proof.</text>
-        <path class="fpf-cb" d="M460,386 L460,402" marker-end="url(#fpf-b)"/>
+        <!-- NOTIFY PUBLISHER — ALL CASES -->
+        <rect x="265" y="388" width="390" height="48" rx="5" fill="#E6F1FB" stroke="#185FA5" stroke-width="1"/>
+        <text x="460" y="405" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="700" fill="#0C447C">Notify Publisher Manager — All Cases</text>
+        <text x="460" y="419" text-anchor="middle" class="fpf-td">Protection-Focused: 5 working days to submit valid proof.</text>
+        <text x="460" y="431" text-anchor="middle" class="fpf-td">Balanced: Commercial decides whether to request proof. Growth: no proof cycle.</text>
+        <!-- Growth bypass arrow from Notify box left edge to Growth column -->
+        <path style="stroke:#5B21B6;stroke-width:1.5;fill:none;stroke-dasharray:6,3;" d="M265,412 L128,412 L128,556" marker-end="url(#fpf-p)"/>
+        <text x="196" y="406" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#5B21B6" font-weight="600">Growth bypass</text>
+        <text x="196" y="418" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#5B21B6">no proof cycle</text>
+        <!-- Balanced/Protection-Focused continue to Proof diamond -->
+        <path class="fpf-cb" d="M460,436 L460,452" marker-end="url(#fpf-b)"/>
 
-        <!-- PROOF DIAMOND -->
-        <polygon points="460,402 534,422 460,442 386,422" fill="#E6F1FB" stroke="#378ADD" stroke-width="1.5"/>
-        <text x="460" y="418" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="600" fill="#0C447C">Proof</text>
-        <text x="460" y="432" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="600" fill="#0C447C">valid?</text>
-        <text x="538" y="419" font-family="sans-serif" font-size="9" fill="#3B6D11" font-weight="600">Yes</text>
-        <text x="406" y="456" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#991B1B">No / Timeout</text>
+        <!-- ═══ PROOF DIAMOND — Balanced / Protection-Focused only ═══ -->
+        <polygon points="460,452 534,472 460,492 386,472" fill="#E6F1FB" stroke="#378ADD" stroke-width="1.5"/>
+        <text x="460" y="468" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="600" fill="#0C447C">Proof</text>
+        <text x="460" y="482" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="600" fill="#0C447C">valid?</text>
+        <text x="460" y="448" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#185FA5">Balanced / Protection-Focused</text>
+        <text x="538" y="469" font-family="sans-serif" font-size="9" fill="#3B6D11" font-weight="600">Yes</text>
+        <text x="406" y="506" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#991B1B">No / Timeout</text>
 
         <!-- VALID PATH → right (Proof Accepted + Case Closed) -->
-        <path class="fpf-cg" d="M534,422 L648,422" marker-end="url(#fpf-g)"/>
-        <rect x="650" y="402" width="240" height="42" rx="5" fill="#EAF3DE" stroke="#3B6D11" stroke-width="1.5"/>
-        <text x="770" y="418" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="700" fill="#27500A">Proof Accepted</text>
-        <text x="770" y="431" text-anchor="middle" class="fpf-td">Untag publisher &amp; conversions from fraud</text>
-        <path class="fpf-cg" d="M770,444 L770,460" marker-end="url(#fpf-g)"/>
-        <rect x="650" y="460" width="240" height="34" rx="5" fill="#3B6D11"/>
-        <text x="770" y="477" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="700" fill="#fff">✓  Case Closed — No Violation</text>
-        <text x="770" y="489" text-anchor="middle" font-family="sans-serif" font-size="9" fill="rgba(255,255,255,0.75)">Untag from fraud activity · Archive case</text>
+        <path class="fpf-cg" d="M534,472 L648,472" marker-end="url(#fpf-g)"/>
+        <rect x="650" y="452" width="240" height="42" rx="5" fill="#EAF3DE" stroke="#3B6D11" stroke-width="1.5"/>
+        <text x="770" y="468" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="700" fill="#27500A">Proof Accepted</text>
+        <text x="770" y="481" text-anchor="middle" class="fpf-td">Untag publisher &amp; conversions from fraud</text>
+        <path class="fpf-cg" d="M770,494 L770,510" marker-end="url(#fpf-g)"/>
+        <rect x="650" y="510" width="240" height="34" rx="5" fill="#3B6D11"/>
+        <text x="770" y="527" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="700" fill="#fff">✓  Case Closed — No Violation</text>
+        <text x="770" y="539" text-anchor="middle" font-family="sans-serif" font-size="9" fill="rgba(255,255,255,0.75)">Untag from fraud activity · Archive case</text>
 
-        <!-- INVALID PATH → down to Offer Profile diamond -->
-        <path class="fpf-cr" d="M460,442 L460,460" marker-end="url(#fpf-r)"/>
-
-        <!-- ═══ OFFER PROFILE DIAMOND — now AFTER proof failure ═══ -->
-        <!-- S1 BYPASS NOTE (right side — below Case Closed green box) -->
-        <rect x="660" y="504" width="250" height="36" rx="5" fill="#FEE2E2" stroke="#991B1B" stroke-width="1.5" stroke-dasharray="4,2"/>
-        <text x="785" y="519" text-anchor="middle" font-family="sans-serif" font-size="9" font-weight="700" fill="#991B1B">⚡ S1 on proof failure → auto Protection-Focused</text>
-        <text x="785" y="532" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#991B1B">Offer Profile check not needed for S1 cases</text>
-        <path style="stroke:#991B1B;stroke-width:1.2;fill:none;stroke-dasharray:4,3;" d="M660,522 L554,482" marker-end="url(#fpf-d)"/>
-
-        <!-- OFFER PROFILE DIAMOND -->
-        <polygon points="460,460 550,480 460,500 370,480" fill="#1F3864" stroke="#0C447C" stroke-width="1.5"/>
-        <text x="460" y="473" text-anchor="middle" font-family="sans-serif" font-size="9" font-weight="600" fill="#B5D4F4">S2 only</text>
-        <text x="460" y="486" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="600" fill="#fff">Offer Profile?</text>
-        <!-- Labels -->
-        <text x="310" y="477" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#5F5E5A">Growth</text>
-        <text x="460" y="515" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#5F5E5A">Balanced / Protection-Focused</text>
-        <!-- Growth branch left -->
-        <path class="fpf-cp" d="M370,480 L128,480 L128,506" marker-end="url(#fpf-p)"/>
-        <!-- B+P continues down -->
-        <path class="fpf-cn" d="M460,500 L460,522" marker-end="url(#fpf-n)"/>
+        <!-- INVALID PATH → down to enforcement controls -->
+        <path class="fpf-cr" d="M460,492 L460,522" marker-end="url(#fpf-r)"/>
 
         <!-- ═══ GROWTH COLUMN (center x=128) ═══ -->
-        <rect x="18" y="506" width="220" height="16" rx="3" fill="#5B21B6"/>
-        <text x="128" y="518" text-anchor="middle" font-family="sans-serif" font-size="9" font-weight="700" fill="#fff">Growth-Focused</text>
-        <rect x="18" y="528" width="220" height="84" rx="5" fill="#F3E8FF" stroke="#5B21B6" stroke-width="1"/>
-        <text x="128" y="545" text-anchor="middle" font-family="sans-serif" font-size="9" font-weight="600" fill="#4C1D95">Light treatment applied:</text>
-        <text x="128" y="559" text-anchor="middle" class="fpf-td">✓  Traffic: Allow as normal</text>
-        <text x="128" y="572" text-anchor="middle" class="fpf-td">✓  Payout: All methods allowed</text>
-        <text x="128" y="585" text-anchor="middle" class="fpf-td">✓  Validation: Normal flow</text>
-        <text x="128" y="598" text-anchor="middle" class="fpf-td">✓  Enforcement: No publisher block</text>
-        <path class="fpf-cp" d="M128,612 L128,626" marker-end="url(#fpf-p)"/>
-        <rect x="18" y="626" width="220" height="36" rx="5" fill="#EAF3DE" stroke="#3B6D11" stroke-width="1.5"/>
-        <text x="128" y="641" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="700" fill="#27500A">Log &amp; Notify Commercial Team</text>
-        <text x="128" y="655" text-anchor="middle" class="fpf-td">Case recorded. Account Manager notified.</text>
+        <rect x="18" y="556" width="220" height="16" rx="3" fill="#5B21B6"/>
+        <text x="128" y="568" text-anchor="middle" font-family="sans-serif" font-size="9" font-weight="700" fill="#fff">Growth-Focused</text>
+        <rect x="18" y="578" width="220" height="84" rx="5" fill="#F3E8FF" stroke="#5B21B6" stroke-width="1"/>
+        <text x="128" y="595" text-anchor="middle" font-family="sans-serif" font-size="9" font-weight="600" fill="#4C1D95">Record &amp; Monitor only — no enforcement:</text>
+        <text x="128" y="609" text-anchor="middle" class="fpf-td">✓  No traffic block</text>
+        <text x="128" y="622" text-anchor="middle" class="fpf-td">✓  No payout restrictions</text>
+        <text x="128" y="635" text-anchor="middle" class="fpf-td">✓  No conversion rejection</text>
+        <text x="128" y="648" text-anchor="middle" class="fpf-td">✓  No publisher ban · Proof cycle skipped</text>
+        <path class="fpf-cp" d="M128,662 L128,676" marker-end="url(#fpf-p)"/>
+        <rect x="18" y="676" width="220" height="36" rx="5" fill="#EAF3DE" stroke="#3B6D11" stroke-width="1.5"/>
+        <text x="128" y="691" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="700" fill="#27500A">Log &amp; Notify Commercial Team</text>
+        <text x="128" y="705" text-anchor="middle" class="fpf-td">Case recorded. Account Manager notified.</text>
         <!-- Growth path down to Monitoring -->
-        <path class="fpf-cp" d="M128,662 L128,742 L255,742" marker-end="url(#fpf-p)"/>
+        <path class="fpf-cp" d="M128,712 L128,792 L255,792" marker-end="url(#fpf-p)"/>
 
         <!-- ═══ B+P FLOW ═══ -->
         <rect x="280" y="522" width="360" height="16" rx="3" fill="#0C447C"/>
-        <text x="460" y="534" text-anchor="middle" font-family="sans-serif" font-size="9" font-weight="700" fill="#fff">Balanced or Protection-Focused</text>
+        <text x="460" y="534" text-anchor="middle" font-family="sans-serif" font-size="9" font-weight="700" fill="#fff">Balanced or Protection-Focused — Proof Failed</text>
 
         <!-- CONTROLS HEADER -->
         <rect x="255" y="538" width="410" height="16" rx="3" fill="#991B1B"/>
@@ -394,53 +436,83 @@
         <line x1="255" y1="691" x2="665" y2="691" stroke="#E5E7EB" stroke-width="1"/>
         <!-- Row 1: Traffic -->
         <text x="260" y="587" font-family="sans-serif" font-size="9" font-weight="600" fill="#374151">🚦 Traffic</text>
-        <text x="378" y="586" font-family="sans-serif" font-size="9" fill="#5F5E5A">Block after failure to</text>
-        <text x="378" y="599" font-family="sans-serif" font-size="9" fill="#5F5E5A">provide valid proof</text>
-        <text x="524" y="586" font-family="sans-serif" font-size="9" fill="#5F5E5A">Suspend traffic until</text>
-        <text x="524" y="599" font-family="sans-serif" font-size="9" fill="#5F5E5A">proof is approved</text>
+        <text x="378" y="586" font-family="sans-serif" font-size="9" fill="#5F5E5A">No traffic block</text>
+        <text x="378" y="599" font-family="sans-serif" font-size="9" fill="#5F5E5A">(Commercial monitors)</text>
+        <text x="524" y="586" font-family="sans-serif" font-size="9" fill="#5F5E5A">Traffic suspended</text>
+        <text x="524" y="599" font-family="sans-serif" font-size="9" fill="#5F5E5A">immediately (Ops)</text>
         <!-- Row 2: Payout -->
         <text x="260" y="626" font-family="sans-serif" font-size="9" font-weight="600" fill="#374151">💳 Payout</text>
         <text x="378" y="625" font-family="sans-serif" font-size="9" fill="#5F5E5A">Block express &amp;</text>
         <text x="378" y="638" font-family="sans-serif" font-size="9" fill="#5F5E5A">early withdrawal</text>
-        <text x="524" y="625" font-family="sans-serif" font-size="9" fill="#5F5E5A">Block express, early</text>
-        <text x="524" y="638" font-family="sans-serif" font-size="9" fill="#5F5E5A">&amp; standard withdrawal</text>
+        <text x="524" y="625" font-family="sans-serif" font-size="9" fill="#5F5E5A">All payouts blocked</text>
+        <text x="524" y="638" font-family="sans-serif" font-size="9" fill="#5F5E5A">(express, early &amp; standard)</text>
         <!-- Row 3: Validation -->
         <text x="260" y="665" font-family="sans-serif" font-size="9" font-weight="600" fill="#374151">✅ Validation</text>
-        <text x="378" y="664" font-family="sans-serif" font-size="9" fill="#5F5E5A">Reject conversions after</text>
-        <text x="378" y="677" font-family="sans-serif" font-size="9" fill="#5F5E5A">proof failure or timeout</text>
-        <text x="524" y="664" font-family="sans-serif" font-size="9" fill="#5F5E5A">Reject conversions immediately</text>
-        <text x="524" y="677" font-family="sans-serif" font-size="9" fill="#5F5E5A">(suspended pending proof)</text>
+        <text x="378" y="664" font-family="sans-serif" font-size="9" fill="#5F5E5A">No conversion rejection</text>
+        <text x="378" y="677" font-family="sans-serif" font-size="9" fill="#5F5E5A">(not applicable)</text>
+        <text x="524" y="664" font-family="sans-serif" font-size="9" fill="#5F5E5A">Reject conversions</text>
+        <text x="524" y="677" font-family="sans-serif" font-size="9" fill="#5F5E5A">immediately (Validation)</text>
         <!-- Row 4: Enforcement -->
         <text x="260" y="704" font-family="sans-serif" font-size="9" font-weight="600" fill="#374151">⚖ Enforce</text>
-        <text x="378" y="703" font-family="sans-serif" font-size="9" fill="#5F5E5A">Temporary block</text>
-        <text x="378" y="716" font-family="sans-serif" font-size="9" fill="#5F5E5A">— 30 days</text>
-        <text x="524" y="703" font-family="sans-serif" font-size="9" fill="#5F5E5A">Permanent ban</text>
+        <text x="378" y="703" font-family="sans-serif" font-size="9" fill="#5F5E5A">No publisher ban</text>
+        <text x="378" y="716" font-family="sans-serif" font-size="9" fill="#5F5E5A">(may retag profile)</text>
+        <text x="524" y="703" font-family="sans-serif" font-size="9" fill="#5F5E5A">Permanent ban (Ops)</text>
 
         <!-- Arrow after controls -->
         <path class="fpf-cr" d="M460,710 L460,726" marker-end="url(#fpf-r)"/>
 
         <!-- MONITORING -->
-        <rect x="255" y="726" width="410" height="36" rx="5" fill="#E6F1FB" stroke="#185FA5" stroke-width="1.5"/>
-        <text x="460" y="741" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="700" fill="#0C447C">Monitoring Dashboard &amp; History</text>
-        <text x="460" y="755" text-anchor="middle" class="fpf-td">Track violation frequency per publisher · Flag repeat offenders · Auto-allow or auto-ban accordingly</text>
-        <path class="fpf-cg" d="M460,762 L460,778" marker-end="url(#fpf-g)"/>
+        <rect x="255" y="776" width="410" height="36" rx="5" fill="#E6F1FB" stroke="#185FA5" stroke-width="1.5"/>
+        <text x="460" y="791" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="700" fill="#0C447C">Monitoring Dashboard &amp; History</text>
+        <text x="460" y="805" text-anchor="middle" class="fpf-td">Track violation frequency per publisher · Flag repeat offenders · Auto-allow or auto-ban accordingly</text>
+        <path class="fpf-cg" d="M460,812 L460,828" marker-end="url(#fpf-g)"/>
 
         <!-- CASE CLOSURE -->
-        <rect x="255" y="778" width="410" height="36" rx="5" fill="#3B6D11"/>
-        <text x="460" y="794" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="700" fill="#fff">✓  Case Closure — Violation Enforced</text>
-        <text x="460" y="808" text-anchor="middle" font-family="sans-serif" font-size="9" fill="rgba(255,255,255,0.75)">Notify all parties · Archive record · Update dashboard</text>
+        <rect x="255" y="828" width="410" height="36" rx="5" fill="#3B6D11"/>
+        <text x="460" y="844" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="700" fill="#fff">✓  Case Closure — Violation Enforced</text>
+        <text x="460" y="858" text-anchor="middle" font-family="sans-serif" font-size="9" fill="rgba(255,255,255,0.75)">Notify all parties · Archive record · Update dashboard</text>
+
+        <!-- ═══ S1 AUTO-PF NOTE ═══ -->
+        <rect x="18" y="148" width="220" height="0" rx="5" fill="none"/>
+        <!-- S1 bypass annotation — connects S1 box to Submit Form directly, skipping Offer Profile -->
+        <rect x="30" y="210" width="300" height="32" rx="5" fill="#FEE2E2" stroke="#991B1B" stroke-width="1" stroke-dasharray="4,2"/>
+        <text x="180" y="226" text-anchor="middle" font-family="sans-serif" font-size="9" font-weight="700" fill="#991B1B">⚡ S1 bypasses Offer Profile check → auto Protection-Focused</text>
+        <text x="180" y="238" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#991B1B">Profile recorded at ticket creation. Full enforcement on proof failure.</text>
+
+        <!-- ═══ LEGEND ═══ -->
+        <rect x="18" y="878" width="884" height="28" rx="4" fill="#F8FAFC" stroke="#E5E7EB" stroke-width="1"/>
+        <text x="40" y="896" font-family="sans-serif" font-size="9" fill="#64748B">Flow:</text>
+        <line x1="70" y1="892" x2="100" y2="892" stroke="#185FA5" stroke-width="1.5"/>
+        <text x="108" y="896" font-family="sans-serif" font-size="9" fill="#64748B">Standard</text>
+        <line x1="155" y1="892" x2="185" y2="892" stroke="#3B6D11" stroke-width="1.5"/>
+        <text x="193" y="896" font-family="sans-serif" font-size="9" fill="#64748B">Success</text>
+        <line x1="240" y1="892" x2="270" y2="892" stroke="#991B1B" stroke-width="1.5"/>
+        <text x="278" y="896" font-family="sans-serif" font-size="9" fill="#64748B">Failure</text>
+        <line x1="325" y1="892" x2="355" y2="892" stroke="#5B21B6" stroke-width="1.5"/>
+        <text x="363" y="896" font-family="sans-serif" font-size="9" fill="#64748B">Growth</text>
+        <line x1="415" y1="892" x2="445" y2="892" stroke="#1F3864" stroke-width="1.5"/>
+        <text x="453" y="896" font-family="sans-serif" font-size="9" fill="#64748B">Process</text>
+        <rect x="510" y="885" width="12" height="12" rx="2" fill="#FEE2E2" stroke="#991B1B" stroke-width="1" stroke-dasharray="4,2"/>
+        <text x="530" y="896" font-family="sans-serif" font-size="9" fill="#64748B">S1 Auto-PF</text>
+        <rect x="610" y="885" width="12" height="12" rx="2" fill="#E6F1FB" stroke="#378ADD" stroke-width="1"/>
+        <text x="630" y="896" font-family="sans-serif" font-size="9" fill="#64748B">Decision</text>
+        <rect x="700" y="885" width="12" height="12" rx="2" fill="#1F3864"/>
+        <text x="720" y="896" font-family="sans-serif" font-size="9" fill="#64748B">Action</text>
+        <rect x="775" y="885" width="12" height="12" rx="2" fill="#3B6D11"/>
+        <text x="795" y="896" font-family="sans-serif" font-size="9" fill="#64748B">Closed</text>
       </svg>
     </div>
 
     <div class="callout red">
       <strong>How Offer Profile Fits Into the Flow</strong>
-      <strong>All cases — both S1 (advertiser-reported) and S2 (internally detected) — follow the same proof submission step.</strong> The publisher is given a 5-working-day window to submit evidence of legitimate traffic. The Offer Profile (Growth-Focused, Balanced, or Protection-Focused) is recorded at ticket creation but is <em>only consulted after proof fails or times out</em>. It has no effect on the proof requirement itself.
+      <strong>The Offer Profile is assigned at ticket creation, before any proof cycle begins.</strong> S1 cases are automatically set to Protection-Focused regardless of the offer's assigned profile — they bypass the profile check entirely. For S2 cases, the profile from Mahadir determines the enforcement path. Protection-Focused cases follow a full proof submission cycle with a 5-working-day window. <strong>Balanced cases: the Commercial team decides whether to request proof</strong> — it is not mandatory. <strong>Growth-Focused cases skip the proof submission and accept/reject stages entirely</strong> — since no enforcement is applied, there is no proof cycle. The ticket moves directly to monitoring and closed as a record.
       <br><br>
-      On proof failure, enforcement is determined as follows:
+      The three profiles define <strong>who owns the enforcement decision and which teams are responsible</strong>:
       <ul style="margin:0.5em 0 0 1.2em; padding:0; line-height:1.8">
-        <li><strong>Growth-Focused:</strong> Light treatment — publisher notified, case logged, traffic placed under monitoring. No immediate suspension.</li>
-        <li><strong>Balanced / Protection-Focused:</strong> Full enforcement controls applied per the controls table — traffic suspension, payout blocking, conversion rejection, and where warranted, publisher ban.</li>
-        <li><strong>S1 cases (any Offer Profile):</strong> On proof failure, the enforcement tier is automatically escalated to <strong>Protection-Focused</strong> — the strictest controls apply regardless of what profile the offer was assigned. The Offer Profile diamond is bypassed for S1 failures.</li>
+        <li><strong>Growth-Focused:</strong> Report and monitor only — no enforcement or punishment is applied. IA detects and records the violation; the case remains under monitoring. If the pattern poses damage to IA, the Commercial/Advertiser team is responsible for reassessing and retagging the offer to a higher enforcement profile (Balanced or Protection-Focused).</li>
+        <li><strong>Balanced:</strong> Balances advertiser and IA interest, weighted slightly towards IA. The Commercial team decides enforcement boundaries and whether to request proof. Operations assists on financial controls — specifically, express and early payouts are blocked. No traffic block, no conversion rejection, no publisher ban. The Commercial team monitors all other aspects.</li>
+        <li><strong>Protection-Focused:</strong> Serves the interest of the advertiser, potentially at the expense of IA performance. Full enforcement is owned by the Operations team. Finance team is required for payout controls, and the Validation team is required for conversion actions. All three teams — Ops, Finance, and Validation — are active participants.</li>
+        <li><strong>S1 cases (any Offer Profile):</strong> Automatically set to <strong>Protection-Focused</strong> at ticket creation — the strictest controls apply regardless of what profile the offer was assigned. The Offer Profile check is bypassed for S1 cases.</li>
       </ul>
     </div>
 
@@ -449,11 +521,11 @@
       <table>
         <thead><tr><th>Phase</th><th>Step</th><th>Owner</th><th>Phase 1 (Now)</th><th>Phase 2 (Automated)</th></tr></thead>
         <tbody>
-          <tr><td><strong>Submission</strong></td><td>Submit violation form</td><td>Commercial / Ops</td><td>Mini Tools (card to stakeholder)</td><td>Mini Tools (auto-apply, notify stakeholder)</td></tr>
-          <tr><td><strong>Tagging</strong></td><td>Tag pending conversions</td><td>System</td><td>Manual flag</td><td>Auto-tag on submission</td></tr>
+          <tr><td><strong>Submission</strong></td><td>Submit violation form</td><td>Commercial / Ops</td><td>Mini Tools assigns task to responsible team; team executes and verifies within system</td><td>Mini Tools auto-applies controls and notifies stakeholders</td></tr>
+          <tr><td><strong>Tagging</strong></td><td>Tag pending conversions as flagged</td><td>System</td><td>Mini Tools flags conversions on ticket creation</td><td>Auto-tag on submission</td></tr>
           <tr><td><strong>Profiling</strong></td><td>Identify offer profile</td><td>System</td><td>Manual lookup</td><td>Auto-lookup from offer settings</td></tr>
-          <tr><td><strong>Investigation</strong></td><td>Notify publisher, await proof (5 days)</td><td>Publisher Manager</td><td>Manual email / notification</td><td>Automated notification sent</td></tr>
-          <tr><td><strong>Controls</strong></td><td>Apply traffic, payout, validation, enforcement</td><td>Tech / Finance / Ops</td><td>Card created for stakeholder to execute</td><td>Auto-applied by profile — stakeholder notified only (S1 always = Protection-Focused)</td></tr>
+          <tr><td><strong>Investigation</strong></td><td>Notify publisher, await proof — Protection-Focused only (5 working days). Balanced: Commercial decides whether to request proof. Growth-Focused skips proof cycle.</td><td>Publisher Manager</td><td>Manual email / notification</td><td>Automated notification sent</td></tr>
+          <tr><td><strong>Controls</strong></td><td>Apply traffic, payout, validation, enforcement</td><td>Growth: none · Balanced: Commercial (Finance assists on payouts) · Protection: Ops (Finance + Validation required)</td><td>Card created for responsible team to execute</td><td>Auto-applied by profile — stakeholder notified only (S1 always = Protection-Focused)</td></tr>
           <tr><td><strong>Monitoring</strong></td><td>Track publisher history, flag repeats</td><td>Compliance</td><td>Manual dashboard check</td><td>Auto-flag &amp; score publishers</td></tr>
           <tr><td><strong>Closure</strong></td><td>Notify, archive, update dashboard</td><td>Commercial / Compliance</td><td>Manual communication</td><td>Auto-close with audit trail</td></tr>
         </tbody>
@@ -465,7 +537,7 @@
   <section id="categories">
     <h2>Fraud Category Framework</h2>
     <div class="section-divider"></div>
-    <p class="section-intro">Six fraud categories have been defined for the Involve Asia affiliate network. Each category has a clear definition and a set of detection metrics used to identify violations.</p>
+    <p class="section-intro">Seven fraud categories have been defined for the Involve Asia affiliate network. Each category has a clear definition and a set of detection metrics used to identify violations.</p>
 
     <div class="fraud-grid">
 
@@ -479,7 +551,7 @@
           <div class="detection-label">Detection Logic</div>
           <div class="detection-rule">
             Referrer domain classification:<br/>
-            <ul><li>Check referrer URL against a porn/gambling domain blocklist</li><li>Flag if referrer domain matches known adult/gambling category</li></ul>
+            <ul><li>Check referrer URL against a porn/gambling domain block list</li><li>Flag if referrer domain matches known adult/gambling category</li></ul>
           </div>
         </div>
       </div>
@@ -508,14 +580,14 @@
       <div class="fraud-card">
         <div class="fraud-card-header">
           <div class="cat-num">Category 03</div>
-          <div class="cat-name">Pop-Under / Pop-Up Traffic</div>
+          <div class="cat-name">Pop-Under / Pop-Up</div>
         </div>
         <div class="fraud-card-body">
           <p>Traffic generated by forced pop-up or pop-under windows on low-quality or pirated-content sites. Most programs explicitly prohibit pop traffic.</p>
           <div class="detection-label">Detection Logic</div>
           <div class="detection-rule">
             Both conditions must be met:<br/>
-            <ul><li>Conversion Rate (CR) &lt; 0.5%</li><li>Total clicks &gt; 100,000 per month</li><li>Offer's promotional method filter: <strong>Pop up, Popunder &amp; Tabunder</strong> only</li></ul>
+            <ul><li>Conversion Rate (CR) &lt; 0.5%</li><li>Total clicks &gt; 100,000 per month</li><li>Offer's promotional method filter: <strong>Pop-Up, Pop-Under &amp; Tab-Under</strong> only</li></ul>
           </div>
         </div>
       </div>
@@ -529,7 +601,7 @@
           <p>Affiliate funnels traffic straight to the advertiser's tracking URL, bypassing legitimate promotional placements.</p>
           <div class="detection-label">Detection Logic</div>
           <div class="detection-rule">
-            <ul><li>Identify click_ids with abnormally high conversion volume</li><li>Remove duplicate orders using item-level tracking (adv_sub1)</li><li>Threshold: &gt; 20 unique Order IDs (adv_sub1) per single click_id</li></ul>
+            <ul><li>Identify click_ids with abnormally high conversion volume</li><li>Remove duplicate orders using item-level tracking (adv_sub1)</li><li>Threshold: &gt; 20 unique adv_sub1 (Order IDs) per single click_id</li></ul>
           </div>
         </div>
       </div>
@@ -569,36 +641,9 @@
         </div>
         <div class="fraud-card-body">
           <p>A publisher sends a massive volume of low-quality or bot-generated clicks to an affiliate link, artificially inflating click counts and attempting to steal last-click attribution from legitimate publishers.</p>
-          <div class="detection-label">Signal 1 — Click Volume Spike</div>
+          <div class="detection-label">T1 — Absolute Volume Trigger (Deterministic)</div>
           <div class="detection-rule">
-            <ul><li>Baseline: rolling 7-day hourly average clicks per publisher per offer</li><li>&gt; 3× baseline (same hour) → Suspicious</li><li>&gt; 5× baseline (same hour) → High Risk</li><li>Absolute cap: &gt; 800 clicks/min triggers regardless of baseline</li></ul>
-          </div>
-          <div class="detection-label" style="margin-top:10px;">Signal 2 — Conversion Rate Collapse</div>
-          <div class="detection-rule">
-            <ul><li>Minimum sample: 200+ clicks in the measurement window before CVR signal activates</li><li>CVR drop &gt; 30% vs 7-day average → Suspicious</li><li>CVR drop &gt; 50% vs 7-day average → High Risk</li></ul>
-          </div>
-          <div class="detection-label" style="margin-top:10px;">Signal 3 — IP Concentration</div>
-          <div class="detection-rule">
-            <ul><li>Measurement window: 24-hour rolling</li><li>Top 5 IPs &gt; 35% of total publisher clicks → Suspicious</li><li>Top 5 IPs &gt; 50% of total publisher clicks → Likely Bot</li></ul>
-          </div>
-          <div class="detection-label" style="margin-top:10px;">Signal 4 — Repeat Clicks</div>
-          <div class="detection-rule">
-            <ul><li>Same user/IP generates &gt; 10 clicks within 3 minutes → flagged</li><li>Constant interval pattern (clicks evenly spaced ± 100ms) → bot signal</li></ul>
-          </div>
-          <div class="detection-label" style="margin-top:10px;">Signal 5 — Traffic Quality</div>
-          <div class="detection-rule">
-            <ul><li>Single user-agent string &gt; 40% of total clicks → automation indicator</li><li>Data-centre or VPN IP detected → quality flag</li><li>Referrer header missing or invalid → low-quality traffic signal</li></ul>
-          </div>
-          <div class="detection-label" style="margin-top:10px;">Signal 6 — Click-to-Conversion Time (CTIT)</div>
-          <div class="detection-rule">
-            <ul><li>CTIT &lt; 10 seconds → click injection indicator (outside scope but flagged)</li><li>CTIT distribution abnormally uniform across &gt; 50 clicks → automation signal</li></ul>
-          </div>
-          <div class="detection-label" style="margin-top:10px;">Signal 7 — Geographic / Device Mismatch</div>
-          <div class="detection-rule">
-            <ul><li>Click country ≠ conversion country for &gt; 60% of sessions → suspicious</li><li>Mobile user-agent with desktop fingerprint → spoofing indicator</li></ul>
-          </div>
-          <div style="margin-top:12px; font-size:11px; background:#EFF6FF; border-left:3px solid #378ADD; border-radius:4px; padding:8px 10px; color:#1e3a5f;">
-            <strong>Fraud Scoring Engine:</strong> Signals are not binary triggers — each contributes to a cumulative risk score. Action is taken based on score bracket, not individual signal breach. See the <a href="#clickspam-detail" style="color:#378ADD;">Category 07 deep-dive section</a> for full scoring table and response tiers.
+            <ul><li>800 clicks/min in any 1-minute window</li><li>Constant interval pattern (±100ms across ≥20 clicks)</li></ul>
           </div>
         </div>
       </div>
@@ -646,7 +691,7 @@
             <td><strong>Pop-Under / Pop-Up</strong></td>
             <td>CR + Click volume</td>
             <td>CR &lt; 0.5% AND Clicks &gt; 100k/month</td>
-            <td>Offer promo method is <strong>Pop up, Popunder or Tabunder</strong></td>
+            <td>Offer promo method is <strong>Pop-Up, Pop-Under, or Tab-Under</strong></td>
             <td><span class="badge caught">Partial</span></td>
           </tr>
           <tr style="background:#FFFBEB;">
@@ -654,7 +699,7 @@
             <td><strong>Illegal Direct Link</strong> <span class="wip-badge">⚠ WIP</span></td>
             <td>Orders per click_id</td>
             <td>&gt; 20 unique adv_sub1 per click_id</td>
-            <td>De-duplicate by order ID first</td>
+            <td>De-duplicate by adv_sub1 first</td>
             <td><span class="badge na">TBC</span></td>
           </tr>
           <tr style="background:#FFFBEB;">
@@ -676,9 +721,9 @@
           <tr>
             <td>07</td>
             <td><strong>Click Spam — Click Flooding</strong></td>
-            <td>7-signal scoring engine (volume, CVR, IP, repeat clicks, UA, CTIT, geo)</td>
-            <td>Risk score 0–100+; action by bracket (Watchlist / Review / Throttle / Block)</td>
-            <td>Min. 200 clicks before CVR signal activates; baseline = rolling 7-day hourly avg</td>
+            <td>T1 — Absolute Volume Trigger (Deterministic)</td>
+            <td>&gt;800 clicks/min in any 1-min window; OR constant interval pattern (±100ms across ≥20 clicks)</td>
+            <td>—</td>
             <td><span class="badge caught">Partial</span></td>
           </tr>
         </tbody>
@@ -691,118 +736,9 @@
     </div>
   </section>
 
-  <!-- POP ADS VALIDATION STUDY -->
-  <section id="popads">
-    <h2>Pop Ads Validation Study</h2>
-    <div class="section-divider"></div>
-    <p class="section-intro">A validation study was conducted to assess whether the current Pop-Under/Pop-Up detection logic is able to catch known fraudulent publishers. Internal publisher data from Jan–Mar 2026 was used as the test dataset.</p>
-
-    <h3>Study Scope & Methodology</h3>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>Parameter</th><th>Detail</th></tr></thead>
-        <tbody>
-          <tr><td><strong>Period covered</strong></td><td>January 2026 – March 2026 (3 months)</td></tr>
-          <tr><td><strong>Total test cases</strong></td><td>121 publisher–offer combinations</td></tr>
-          <tr><td><strong>Publisher types included</strong></td><td>POP publishers (confirmed pop traffic) and OEM publishers (device-level, non-pop)</td></tr>
-          <tr><td><strong>Validation method</strong></td><td>Compare expected detection (based on known fraud) against actual detection output from the current system</td></tr>
-          <tr><td><strong>Detection criteria tested</strong></td><td>CR &lt; 0.5% AND Clicks &gt; 100,000/month AND Offer promo method check</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <h3>Publisher Breakdown</h3>
-    <div class="stat-row">
-      <div class="stat-card blue"><div class="num">97</div><div class="label">POP publisher test cases</div></div>
-      <div class="stat-card"><div class="num">24</div><div class="label">OEM publisher test cases</div></div>
-      <div class="stat-card"><div class="num">121</div><div class="label">Total test cases</div></div>
-    </div>
-
-    <div class="callout blue">
-      <strong>Note on OEM publishers</strong>
-      OEM publishers (iads vivo, iads Mi, iAds Trans, iAds Eva) are device-level publishers and are not expected to be caught by Pop detection rules. They were included in the dataset for completeness. The validation focuses on the 97 POP publisher cases.
-    </div>
-
-    <h3>POP Publisher Case Breakdown</h3>
-    <div class="breakdown-box">
-      <div class="tree-row l1"><span class="tree-num blue">97</span> POP Publisher Test Cases</div>
-
-      <div class="tree-row l2"><span class="tree-num orange">22</span> Within detection criteria (CR &lt; 0.5% AND Clicks &gt; 100k)</div>
-      <div class="tree-row l3"><span class="tree-num green">14</span> ✅ Correctly caught by system <em>(True Positives)</em></div>
-      <div class="tree-row l3"><span class="tree-num red">8</span> ❌ Missed — offer promo method includes Pop as one of multiple methods <em>(False Negatives)</em></div>
-
-      <div class="tree-row l2" style="margin-top:10px;"><span class="tree-num orange">75</span> Outside detection criteria — not expected to be caught</div>
-      <div class="tree-row l3"><span class="tree-num red">6</span> ⚠️ CR &gt; 0.5% despite &gt;100k clicks — bypasses detection threshold</div>
-      <div class="tree-row l3"><span class="tree-num gray" style="color:var(--gray);">69</span> Clicks &lt; 100k — below volume threshold, detection not triggered</div>
-    </div>
-  </section>
-
-  <!-- KEY FINDINGS -->
-  <section id="findings">
-    <h2>Key Findings</h2>
-    <div class="section-divider"></div>
-
-    <h3>Finding 1 — Mixed Promo Method Causes 8 Missed Cases</h3>
-    <div class="callout red">
-      <strong>Root Cause — Detection Gap</strong>
-      When an offer is configured with multiple promotional methods (e.g., "Social + Pop"), the current system does not flag it as a Pop violation. The system only triggers if Pop is the sole allowed method. This caused 8 cases to be missed entirely despite the publisher being a confirmed POP traffic source.
-    </div>
-    <p style="font-size:13px; color:var(--gray); margin-bottom:12px; line-height:1.7;">The 8 missed cases span the following publisher–offer combinations where the offer's promo method includes Pop alongside other methods:</p>
-
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>Publisher</th><th>Offer</th><th>Clicks</th><th>CR</th><th>Issue</th></tr></thead>
-        <tbody>
-          <tr><td>iAds Stars (1076746)</td><td>Trip.com - CPS (4216)</td><td>259,443</td><td>0.03%</td><td>Offer allows "Pop" as one of multiple methods</td></tr>
-          <tr><td>iAds Solutions (806451)</td><td>Klook Travel - CPS (803) — Mar</td><td>297,530</td><td>0.02%</td><td>Offer allows "Pop" as one of multiple methods</td></tr>
-          <tr><td>iAds Solutions (806451)</td><td>Klook Travel - CPS (803) — Feb</td><td>591,400</td><td>0.01%</td><td>Offer allows "Pop" as one of multiple methods</td></tr>
-          <tr><td>iAds Solutions (806451)</td><td>Shopee TH - CPS (5031) — Mar</td><td>375,117</td><td>0.49%</td><td>Offer allows "Pop" as one of multiple methods</td></tr>
-          <tr><td>iAds Solutions (806451)</td><td>Shopee VN - CPS (5051) — Mar</td><td>320,998</td><td>0.20%</td><td>Offer allows "Pop" as one of multiple methods</td></tr>
-          <tr><td>iAds Solutions (806451)</td><td>Shopee VN - CPS (5051) — Feb</td><td>606,976</td><td>0.12%</td><td>Offer allows "Pop" as one of multiple methods</td></tr>
-          <tr><td>iAds Solutions (806451)</td><td>TikTok Shop MY Deeplinkable (4809) — Jan</td><td>1,723,373</td><td>0.23%</td><td>Offer allows "Pop" as one of multiple methods</td></tr>
-          <tr><td>iAds Eva (1079264)</td><td>Trip.com - CPS (4216)</td><td>449,972</td><td>0.00%</td><td>Offer allows "Pop" as one of multiple methods</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <h3>Finding 2 — CR Threshold Too Strict: 6 Offer Combinations Bypass Detection</h3>
-    <div class="callout orange">
-      <strong>Root Cause — Logic Gap</strong>
-      The current rule requires CR &lt; 0.5%. However, some Pop publisher campaigns have higher CRs (above 0.5%) while still running extremely high click volumes. These are missed entirely because one condition fails — even though the publisher is confirmed to be running Pop traffic.
-    </div>
-
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>Publisher</th><th>Offer</th><th>Clicks</th><th>CR</th><th>Why missed</th></tr></thead>
-        <tbody>
-          <tr><td>iAds Solutions (806451)</td><td>Shopee TH - CPS (5031) — Feb</td><td>387,707</td><td>0.62%</td><td>CR &gt; 0.5%, fails threshold</td></tr>
-          <tr><td>iAds Solutions (806451)</td><td>Shopee TH - CPS (5031) — Jan</td><td>194,221</td><td>0.68%</td><td>CR &gt; 0.5%, fails threshold</td></tr>
-          <tr><td>iAds Solutions (806451)</td><td>TikTok Shop TH Deeplinkable (4880) — Mar</td><td>2,562,033</td><td>1.55%</td><td>CR &gt; 0.5%, fails threshold</td></tr>
-          <tr><td>iAds Solutions (806451)</td><td>TikTok Shop TH Deeplinkable (4880) — Feb</td><td>1,079,839</td><td>1.30%</td><td>CR &gt; 0.5%, fails threshold</td></tr>
-          <tr><td>iAds Solutions (806451)</td><td>TikTok Shop TH Deeplinkable (4880) — Jan</td><td>513,683</td><td>1.70%</td><td>CR &gt; 0.5%, fails threshold</td></tr>
-          <tr><td>iAds Solutions (806451)</td><td>TikTok Shop VN (5077) — Mar</td><td>1,117,803</td><td>0.71%</td><td>CR &gt; 0.5%, fails threshold</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <h3>Overall Detection Performance Summary</h3>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>Metric</th><th>Count</th><th>% of POP cases</th><th>Notes</th></tr></thead>
-        <tbody>
-          <tr><td><strong>True Positives</strong> — Correctly caught</td><td>14</td><td>14.4%</td><td>System flagged correctly</td></tr>
-          <tr><td><strong>False Negatives</strong> — Within criteria, missed</td><td>8</td><td>8.2%</td><td>Mixed promo method gap</td></tr>
-          <tr><td><strong>Outside criteria — CR too high</strong></td><td>6</td><td>6.2%</td><td>Need logic improvement</td></tr>
-          <tr><td><strong>Outside criteria — Clicks below threshold</strong></td><td>69</td><td>71.1%</td><td>Detection not expected</td></tr>
-          <tr><td><strong>OEM cases (not in scope)</strong></td><td>24</td><td>—</td><td>Excluded from Pop detection</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
-
   <!-- SOP PORN & GAMBLING -->
   <section id="sop-porn">
-    <h2>SOP — Porn &amp; Gambling Domain Blocking</h2>
+    <h2>SOP — Porn / Gambling Domain Blocking</h2>
     <div class="section-divider"></div>
     <p class="section-intro">Standard Operating Procedure for detecting and actioning affiliates that drive traffic from adult, porn, or gambling/betting sites that violate advertiser Terms of Service.</p>
 
@@ -820,7 +756,7 @@
     <p style="font-size:12px;color:var(--gray);margin-bottom:14px;">End-to-end process flow covering both S1 (Advertiser Reported) and S2 (Internal Detection — current and enhanced) paths.</p>
     <div style="background:#fff; border:1px solid var(--border); border-radius:8px; padding:16px; margin-bottom:28px;">
       <svg viewBox="0 0 1020 960" xmlns="http://www.w3.org/2000/svg" role="img" width="100%">
-        <title>Porn &amp; Gambling Domain Blocking SOP — Process Flow</title>
+        <title>Porn / Gambling Domain Blocking SOP — Process Flow</title>
         <defs>
           <marker id="sop-a" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#B4B2A9"/></marker>
           <marker id="sop-ab" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#185FA5"/></marker>
@@ -838,7 +774,7 @@
           .sop-ca{stroke:#854F0B;stroke-width:1.5;fill:none}
         </style>
         <rect x="0" y="0" width="960" height="36" fill="#1F3864"/>
-        <text x="480" y="23" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="600" fill="#fff">Porn &amp; Gambling Domain Blocking — SOP Process Flow</text>
+        <text x="480" y="23" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="600" fill="#fff">Porn / Gambling Domain Blocking — SOP Process Flow</text>
         <rect x="320" y="50" width="320" height="42" rx="6" fill="#378ADD" stroke="#185FA5" stroke-width="1.5"/>
         <text x="480" y="68" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="600" fill="#fff">Violation / Suspected Traffic Triggered</text>
         <text x="480" y="84" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#B5D4F4">Porn or gambling referrer URL detected</text>
@@ -899,7 +835,7 @@
         <rect x="485" y="404" width="190" height="46" rx="5" fill="#FAEEDA" stroke="#BA7517" stroke-width="1"/>
         <text x="580" y="420" text-anchor="middle" class="sop-tba">3. Weekly rotation review</text>
         <text x="580" y="433" text-anchor="middle" class="sop-td">Remove bottom performers, flag</text>
-        <text x="580" y="444" text-anchor="middle" class="sop-td">top 100 candidates to add.</text>
+        <text x="580" y="444" text-anchor="middle" class="sop-td">top 20 candidates to add.</text>
         <path class="sop-ca" d="M580,450 L580,464" marker-end="url(#sop-aa)"/>
         <rect x="485" y="464" width="190" height="46" rx="5" fill="#FAEEDA" stroke="#BA7517" stroke-width="1"/>
         <text x="580" y="480" text-anchor="middle" class="sop-tba">4. Submit via Mini Tools</text>
@@ -987,7 +923,7 @@
         <div class="flow-content">
           <div class="role">Compliance Team</div>
           <div class="title">Create Case Ticket in Mini Tools</div>
-          <div class="desc">Compliance opens a case ticket in Mini Tools (Module B — Case Ticketing) with the domain name, advertiser details, and supporting evidence. S1 cases are auto-classified as Protection-Focused.</div>
+          <div class="desc">Compliance opens a case ticket in Mini Tools (Module B — Case Ticketing) with the domain name, advertiser details, and supporting evidence. S1 cases are automatically set to Protection-Focused at ticket creation.</div>
         </div>
       </div>
       <div class="flow-step">
@@ -1033,7 +969,7 @@
         <div class="flow-content">
           <div class="role">Mini Tools — Smart Assist</div>
           <div class="title">Pull New Domain Candidates from Mahadir</div>
-          <div class="desc">Mini Tools automatically pulls the top new domain candidates from Mahadir — those with the highest blocked click activity not yet on the blocklist. Domains that already appear on the Trip.com advertiser-protected list are excluded from the candidate list.</div>
+          <div class="desc">Mini Tools automatically pulls the top new domain candidates from Mahadir — those with the highest blocked click activity not yet on the block list. Domains that already appear on the Trip.com advertiser-protected list are excluded from the candidate list.</div>
         </div>
       </div>
       <div class="flow-step">
@@ -1107,7 +1043,7 @@
 
     <div class="callout green">
       <strong>Benefit — Enhanced State</strong>
-      Real-time detection. Any new domain appearing in the network is automatically assessed within hours, not days. Coverage is not limited to the top 100.
+      Real-time detection. Any new domain appearing in the network is automatically assessed within hours, not days. Coverage is not limited to a weekly top-20 review cycle.
     </div>
   </section>
 
@@ -1115,7 +1051,7 @@
   <section id="sop-other">
     <h2>SOP Overview — Other Fraud Categories</h2>
     <div class="section-divider"></div>
-    <p class="section-intro">High-level SOP overview for the remaining five fraud categories. Detailed SOPs for each category to be developed in subsequent phases.</p>
+    <p class="section-intro">High-level SOP overview for fraud categories 02–06. Categories 04–06 are still in development (WIP). Detailed SOPs for each category to be developed in subsequent phases.</p>
 
     <div class="table-wrap">
       <table>
@@ -1139,7 +1075,7 @@
           </tr>
           <tr style="background:#FFFBEB;">
             <td><strong>Illegal Direct Link</strong> <span class="wip-badge">⚠ WIP</span></td>
-            <td>&gt; 20 unique orders per click_id</td>
+            <td>&gt; 20 unique adv_sub1 per click_id</td>
             <td>System (automated)</td>
             <td>Reject conversions above threshold, investigate publisher, terminate if confirmed</td>
             <td><span class="badge na">Draft needed</span></td>
@@ -1205,7 +1141,7 @@
       <div class="rec-num">4</div>
       <div class="rec-body">
         <h4>Enable Enhanced S2 Detection (Auto-Crawl)</h4>
-        <p>The enhanced internal detection state (auto-crawl and real-time block list) is planned but not yet enabled. This would remove the weekly delay and extend coverage beyond the top-20 list. Prioritise infrastructure setup and testing for the Porn &amp; Gambling category first.</p>
+        <p>The enhanced internal detection state (auto-crawl and real-time block list) is planned but not yet enabled. This would remove the weekly delay and extend coverage beyond the weekly top 20 block list. Prioritise infrastructure setup and testing for the Porn / Gambling category first.</p>
         <span class="priority medium">Medium Priority</span>
       </div>
     </div>
@@ -1214,7 +1150,7 @@
       <div class="rec-num">5</div>
       <div class="rec-body">
         <h4>Write SOPs for Remaining 4 Categories</h4>
-        <p>Cookie Stuffing, Pop-Under/Pop-Up, Illegal Direct Link, and Brand Bidding each need formal SOPs with defined roles (commercial vs tech), escalation paths, and enforcement actions. Use the Porn &amp; Gambling SOP as the template.</p>
+        <p>Cookie Stuffing, Pop-Under/Pop-Up, Illegal Direct Link, and Brand Bidding each need formal SOPs with defined roles (commercial vs tech), escalation paths, and enforcement actions. Use the Porn / Gambling SOP as the template.</p>
         <span class="priority medium">Medium Priority</span>
       </div>
     </div>
@@ -1244,179 +1180,6 @@
     </div>
   </section>
 
-  <!-- CATEGORY 07 DEEP-DIVE -->
-  <section id="clickspam-detail">
-    <h2>Category 07 — Click Spam (Click Flooding) Deep-Dive</h2>
-    <div class="section-divider"></div>
-    <p class="section-intro">Click Flooding is a form of click spam where a publisher sends a massive volume of low-quality or automated clicks to an affiliate link, artificially inflating their click count and attempting to claim last-click attribution from legitimate publishers. This section covers the full detection framework, fraud scoring engine, and enforcement tiers.</p>
-
-    <h3>What is Click Flooding?</h3>
-    <p style="font-size:13px; color:var(--gray); line-height:1.7; margin-bottom:16px;">
-      In an affiliate network, commission is typically awarded to the publisher whose tracking link was clicked last before a conversion occurs. Click flooding exploits this model — a fraudulent publisher fires thousands of clicks per day against multiple offers, betting that some legitimate users will happen to convert after one of their clicks gets recorded, even though the publisher played no real role in driving that conversion. The result: legitimate publishers are robbed of their commission, advertiser budgets are wasted, and network data quality degrades.
-    </p>
-    <p style="font-size:13px; color:var(--gray); line-height:1.7; margin-bottom:16px;">
-      Click Flooding is distinct from Click Injection (an Android-specific exploit where clicks are fired at install time). This framework covers Click Flooding only — high-volume indiscriminate click spam across web-based affiliate offers.
-    </p>
-
-    <div class="callout orange" style="margin-bottom:24px;">
-      <strong>Key principle — Scoring, not binary blocking:</strong> No single signal is sufficient to confirm click spam. A legitimate publisher running a viral campaign or a flash-sale promotion can temporarily spike 3–5× their baseline. The scoring engine accumulates evidence across multiple independent signals before escalating to action.
-    </div>
-
-    <h3>Detection Signals</h3>
-
-    <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:24px;">
-
-      <div style="background:#F8FAFC; border:1px solid var(--border); border-radius:8px; padding:14px 16px;">
-        <div style="font-size:11px; font-weight:700; color:var(--navy); text-transform:uppercase; letter-spacing:0.5px; margin-bottom:8px;">S1 — Click Volume Spike</div>
-        <p style="font-size:12px; color:var(--gray); margin:0 0 6px;">Baseline = rolling 7-day hourly average for the same publisher × offer combination. Measured at the same hour-of-day to account for natural traffic rhythms (e.g. peak hours).</p>
-        <ul style="font-size:12px; color:var(--gray); margin:0; padding-left:16px; line-height:1.7;">
-          <li>Current hour &gt; 3× 7-day hourly average → <strong>+20 pts</strong></li>
-          <li>Current hour &gt; 5× 7-day hourly average → <strong>+30 pts</strong> (replaces +20)</li>
-          <li>Absolute: &gt; 800 clicks/min in any 1-minute window → <strong>+30 pts</strong></li>
-        </ul>
-      </div>
-
-      <div style="background:#F8FAFC; border:1px solid var(--border); border-radius:8px; padding:14px 16px;">
-        <div style="font-size:11px; font-weight:700; color:var(--navy); text-transform:uppercase; letter-spacing:0.5px; margin-bottom:8px;">S2 — Conversion Rate Collapse</div>
-        <p style="font-size:12px; color:var(--gray); margin:0 0 6px;">CVR = conversions ÷ clicks over a 24-hour rolling window. Minimum 200 clicks required in the window before this signal activates — low-volume publishers are excluded to avoid false positives from statistical noise.</p>
-        <ul style="font-size:12px; color:var(--gray); margin:0; padding-left:16px; line-height:1.7;">
-          <li>CVR drop &gt; 30% vs 7-day average → <strong>+20 pts</strong></li>
-          <li>CVR drop &gt; 50% vs 7-day average → <strong>+30 pts</strong> (replaces +20)</li>
-        </ul>
-      </div>
-
-      <div style="background:#F8FAFC; border:1px solid var(--border); border-radius:8px; padding:14px 16px;">
-        <div style="font-size:11px; font-weight:700; color:var(--navy); text-transform:uppercase; letter-spacing:0.5px; margin-bottom:8px;">S3 — IP Concentration</div>
-        <p style="font-size:12px; color:var(--gray); margin:0 0 6px;">Measures what share of total publisher clicks originate from a small number of IP addresses over a 24-hour rolling window.</p>
-        <ul style="font-size:12px; color:var(--gray); margin:0; padding-left:16px; line-height:1.7;">
-          <li>Top 5 IPs account for &gt; 35% of clicks → <strong>+20 pts</strong></li>
-          <li>Top 5 IPs account for &gt; 50% of clicks → <strong>+30 pts</strong> (replaces +20)</li>
-        </ul>
-      </div>
-
-      <div style="background:#F8FAFC; border:1px solid var(--border); border-radius:8px; padding:14px 16px;">
-        <div style="font-size:11px; font-weight:700; color:var(--navy); text-transform:uppercase; letter-spacing:0.5px; margin-bottom:8px;">S4 — Repeat Clicks & Interval Pattern</div>
-        <p style="font-size:12px; color:var(--gray); margin:0 0 6px;">Detects rapid-fire clicking from a single source and bot-like timing regularity.</p>
-        <ul style="font-size:12px; color:var(--gray); margin:0; padding-left:16px; line-height:1.7;">
-          <li>Same user/IP: &gt; 10 clicks within any 3-minute window → <strong>+20 pts</strong></li>
-          <li>Constant interval pattern: clicks evenly spaced ±100ms across ≥ 20 consecutive clicks → <strong>+30 pts</strong></li>
-        </ul>
-      </div>
-
-      <div style="background:#F8FAFC; border:1px solid var(--border); border-radius:8px; padding:14px 16px;">
-        <div style="font-size:11px; font-weight:700; color:var(--navy); text-transform:uppercase; letter-spacing:0.5px; margin-bottom:8px;">S5 — Traffic Quality Signals</div>
-        <p style="font-size:12px; color:var(--gray); margin:0 0 6px;">Low-quality traffic indicators measured over a 24-hour rolling window.</p>
-        <ul style="font-size:12px; color:var(--gray); margin:0; padding-left:16px; line-height:1.7;">
-          <li>Single user-agent &gt; 40% of publisher clicks → <strong>+15 pts</strong></li>
-          <li>Data-centre or VPN IP detected → <strong>+25 pts</strong></li>
-          <li>Referrer header missing or invalid → <strong>+10 pts</strong></li>
-        </ul>
-      </div>
-
-    </div>
-
-    <h3>Fraud Scoring Engine</h3>
-    <p style="font-size:13px; color:var(--gray); line-height:1.7; margin-bottom:12px;">All active signals are summed into a single cumulative risk score. Scores stack — a publisher triggering multiple signals will accumulate points from each. There is no maximum cap; scores above 90 all fall into the Critical tier.</p>
-
-    <div class="table-wrap" style="margin-bottom:8px;">
-      <table>
-        <thead>
-          <tr>
-            <th>Signal</th>
-            <th>Condition</th>
-            <th style="text-align:center;">Score</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td>S1 — Click spike</td><td>Current hour &gt; 3× rolling 7-day hourly baseline</td><td style="text-align:center;"><strong>+20</strong></td></tr>
-          <tr><td>S1 — Click spike (severe)</td><td>Current hour &gt; 5× rolling 7-day hourly baseline</td><td style="text-align:center;"><strong>+30</strong></td></tr>
-          <tr><td>S1 — Absolute volume</td><td>&gt; 800 clicks/min in any 1-minute window</td><td style="text-align:center;"><strong>+30</strong></td></tr>
-          <tr><td>S2 — CVR drop</td><td>CVR drop &gt; 30% vs 7-day avg (min 200 clicks)</td><td style="text-align:center;"><strong>+20</strong></td></tr>
-          <tr><td>S2 — CVR drop (severe)</td><td>CVR drop &gt; 50% vs 7-day avg (min 200 clicks)</td><td style="text-align:center;"><strong>+30</strong></td></tr>
-          <tr><td>S3 — IP concentration</td><td>Top 5 IPs &gt; 35% of 24h clicks</td><td style="text-align:center;"><strong>+20</strong></td></tr>
-          <tr><td>S3 — IP concentration (severe)</td><td>Top 5 IPs &gt; 50% of 24h clicks</td><td style="text-align:center;"><strong>+30</strong></td></tr>
-          <tr><td>S4 — Repeat clicks</td><td>Same user/IP &gt; 10 clicks in 3 minutes</td><td style="text-align:center;"><strong>+20</strong></td></tr>
-          <tr><td>S4 — Interval pattern</td><td>Clicks evenly spaced ±100ms across ≥ 20 consecutive clicks</td><td style="text-align:center;"><strong>+30</strong></td></tr>
-          <tr><td>S5 — Single user-agent</td><td>One UA string &gt; 40% of 24h publisher clicks</td><td style="text-align:center;"><strong>+15</strong></td></tr>
-          <tr><td>S5 — Data-centre / VPN IP</td><td>IP resolves to data-centre or known VPN provider</td><td style="text-align:center;"><strong>+25</strong></td></tr>
-          <tr><td>S5 — Invalid referrer</td><td>Referrer header missing or malformed</td><td style="text-align:center;"><strong>+10</strong></td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <h3>Risk Tiers & Enforcement Actions</h3>
-
-    <div class="table-wrap" style="margin-bottom:24px;">
-      <table>
-        <thead>
-          <tr>
-            <th>Score</th>
-            <th>Risk Level</th>
-            <th>Status</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><strong>0 – 29</strong></td>
-            <td><span class="badge clean">Normal</span></td>
-            <td>Clean</td>
-            <td>No action. Continue monitoring.</td>
-          </tr>
-          <tr>
-            <td><strong>30 – 49</strong></td>
-            <td><span class="badge low">Watchlist</span></td>
-            <td>Monitor</td>
-            <td>Internal alert raised. No publisher-facing action. Flag for weekly review.</td>
-          </tr>
-          <tr>
-            <td><strong>50 – 69</strong></td>
-            <td><span class="badge med">Suspicious</span></td>
-            <td>Manual Review</td>
-            <td>Compliance analyst reviews publisher data. AM notified. Publisher may be contacted for explanation.</td>
-          </tr>
-          <tr>
-            <td><strong>70 – 89</strong></td>
-            <td><span class="badge high">High Risk</span></td>
-            <td>Throttle</td>
-            <td>Click attribution rate capped or publisher excluded from attribution on affected offers. Conversions held pending review.</td>
-          </tr>
-          <tr>
-            <td><strong>90+</strong></td>
-            <td><span class="badge crit">Critical</span></td>
-            <td>Block</td>
-            <td>Temporary promotion block. All pending conversions suspended. Formal investigation opened. AM informed via Mini Tools Module B ticket.</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <h3>Operational Notes</h3>
-
-    <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:20px;">
-      <div style="background:#F0F9FF; border-left:3px solid #378ADD; border-radius:4px; padding:12px 14px;">
-        <div style="font-size:11px; font-weight:700; color:#1e3a5f; margin-bottom:6px;">Baseline Stability Rule</div>
-        <p style="font-size:12px; color:var(--gray); margin:0; line-height:1.6;">The 7-day rolling hourly baseline only updates during periods when the publisher's score is below 30. This prevents a fraudulent traffic ramp from inflating the baseline and masking future spikes.</p>
-      </div>
-      <div style="background:#F0F9FF; border-left:3px solid #378ADD; border-radius:4px; padding:12px 14px;">
-        <div style="font-size:11px; font-weight:700; color:#1e3a5f; margin-bottom:6px;">Score Reset</div>
-        <p style="font-size:12px; color:var(--gray); margin:0; line-height:1.6;">Risk score is recalculated every 24 hours. A publisher's score can decrease if signals drop below thresholds. Moving from Critical back to High Risk requires a compliance analyst to manually confirm before throttle enforcement is lifted.</p>
-      </div>
-      <div style="background:#FFF7ED; border-left:3px solid #BA7517; border-radius:4px; padding:12px 14px;">
-        <div style="font-size:11px; font-weight:700; color:#7a3a00; margin-bottom:6px;">Severe Signal Override</div>
-        <p style="font-size:12px; color:var(--gray); margin:0; line-height:1.6;">If S4 (constant interval pattern) or S1 (absolute &gt; 800 clicks/min) triggers, the publisher is immediately escalated to Suspicious (50+) regardless of total score. These signals have a very low false-positive rate and warrant immediate attention.</p>
-      </div>
-      <div style="background:#FFF7ED; border-left:3px solid #BA7517; border-radius:4px; padding:12px 14px;">
-        <div style="font-size:11px; font-weight:700; color:#7a3a00; margin-bottom:6px;">Minimum Volume Gates</div>
-        <p style="font-size:12px; color:var(--gray); margin:0; line-height:1.6;">S2 (CVR) requires ≥ 200 clicks in window. Signals that don't meet their minimum gate contribute 0 points until the gate is reached.</p>
-      </div>
-    </div>
-
-    <div class="callout orange">
-      <strong>Out of Scope — Click Injection:</strong> Click Injection is an Android-specific exploit where malicious apps listen for app-install broadcast events and fire a click immediately before the install completes, stealing attribution credit. While related, it requires a separate detection framework using CTIT distribution analysis on a per-app basis. Click Injection is not covered under Category 07 and is earmarked for a future category (Category 08 TBC).
-    </div>
-
-  </section>
 
 </main>
 
