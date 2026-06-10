@@ -537,7 +537,7 @@
   <section id="categories">
     <h2>Fraud Category Framework</h2>
     <div class="section-divider"></div>
-    <p class="section-intro">Seven fraud categories have been defined for the Involve Asia affiliate network. Each category has a clear definition and a set of detection metrics used to identify violations.</p>
+    <p class="section-intro">Seven fraud categories have been defined for the Involve Asia affiliate network. Only Category 01 (Porn / Gambling) is currently active. Categories 02–07 are in development (WIP). Each category has a clear definition and a set of detection metrics used to identify violations.</p>
 
     <div class="fraud-grid">
 
@@ -556,9 +556,9 @@
         </div>
       </div>
 
-      <div class="fraud-card">
-        <div class="fraud-card-header">
-          <div class="cat-num">Category 02</div>
+      <div class="fraud-card wip">
+        <div class="fraud-card-header wip">
+          <div class="cat-num">Category 02 <span class="wip-badge">⚠ Work in Progress</span></div>
           <div class="cat-name">Cookie Stuffing / Cookie Dropping</div>
         </div>
         <div class="fraud-card-body">
@@ -577,9 +577,9 @@
         </div>
       </div>
 
-      <div class="fraud-card">
-        <div class="fraud-card-header">
-          <div class="cat-num">Category 03</div>
+      <div class="fraud-card wip">
+        <div class="fraud-card-header wip">
+          <div class="cat-num">Category 03 <span class="wip-badge">⚠ Work in Progress</span></div>
           <div class="cat-name">Pop-Under / Pop-Up</div>
         </div>
         <div class="fraud-card-body">
@@ -634,9 +634,9 @@
         </div>
       </div>
 
-      <div class="fraud-card">
-        <div class="fraud-card-header">
-          <div class="cat-num">Category 07</div>
+      <div class="fraud-card wip">
+        <div class="fraud-card-header wip">
+          <div class="cat-num">Category 07 <span class="wip-badge">⚠ Work in Progress</span></div>
           <div class="cat-name">Click Spam — Click Flooding</div>
         </div>
         <div class="fraud-card-body">
@@ -655,7 +655,7 @@
   <section id="detection">
     <h2>Detection Metrics Summary</h2>
     <div class="section-divider"></div>
-    <p class="section-intro">A consolidated view of all seven fraud categories, their detection signals, thresholds, and current automation status.</p>
+    <p class="section-intro">A consolidated view of all seven fraud categories, their detection signals, thresholds, and current automation status. Only Category 01 is active; Categories 02–07 are WIP.</p>
 
     <div class="table-wrap">
       <table>
@@ -678,21 +678,21 @@
             <td>—</td>
             <td><span class="badge caught">Partial</span></td>
           </tr>
-          <tr>
+          <tr style="background:#FFFBEB;">
             <td>02</td>
-            <td><strong>Cookie Stuffing</strong></td>
+            <td><strong>Cookie Stuffing</strong> <span class="wip-badge">⚠ WIP</span></td>
             <td>Multi-offer click pattern <em>+</em> click source type (IMG/iFrame)</td>
             <td>M1: ≥2 offers clicked within 10s window per user<br/>M2: Click sourced from IMG tag or iFrame</td>
             <td>Both metrics should be combined to confirm</td>
-            <td><span class="badge caught">Partial</span></td>
+            <td><span class="badge na">TBC</span></td>
           </tr>
-          <tr>
+          <tr style="background:#FFFBEB;">
             <td>03</td>
-            <td><strong>Pop-Under / Pop-Up</strong></td>
+            <td><strong>Pop-Under / Pop-Up</strong> <span class="wip-badge">⚠ WIP</span></td>
             <td>CR + Click volume</td>
             <td>CR &lt; 0.5% AND Clicks &gt; 100k/month</td>
             <td>Offer promo method is <strong>Pop-Up, Pop-Under, or Tab-Under</strong></td>
-            <td><span class="badge caught">Partial</span></td>
+            <td><span class="badge na">TBC</span></td>
           </tr>
           <tr style="background:#FFFBEB;">
             <td>04</td>
@@ -718,13 +718,13 @@
             <td>—</td>
             <td><span class="badge missed">No rule</span></td>
           </tr>
-          <tr>
+          <tr style="background:#FFFBEB;">
             <td>07</td>
-            <td><strong>Click Spam — Click Flooding</strong></td>
+            <td><strong>Click Spam — Click Flooding</strong> <span class="wip-badge">⚠ WIP</span></td>
             <td>T1 — Absolute Volume Trigger (Deterministic)</td>
             <td>&gt;800 clicks/min in any 1-min window; OR constant interval pattern (±100ms across ≥20 clicks)</td>
             <td>—</td>
-            <td><span class="badge caught">Partial</span></td>
+            <td><span class="badge na">TBC</span></td>
           </tr>
         </tbody>
       </table>
@@ -1051,7 +1051,7 @@
   <section id="sop-other">
     <h2>SOP Overview — Other Fraud Categories</h2>
     <div class="section-divider"></div>
-    <p class="section-intro">High-level SOP overview for fraud categories 02–06. Categories 04–06 are still in development (WIP). Detailed SOPs for each category to be developed in subsequent phases.</p>
+    <p class="section-intro">High-level SOP overview for fraud categories 02–07. All categories except 01 are still in development (WIP). Detailed SOPs for each category to be developed in subsequent phases.</p>
 
     <div class="table-wrap">
       <table>
@@ -1059,15 +1059,15 @@
           <tr><th>Category</th><th>Trigger</th><th>Who Detects</th><th>Action</th><th>SOP Status</th></tr>
         </thead>
         <tbody>
-          <tr>
-            <td><strong>Cookie Stuffing</strong></td>
+          <tr style="background:#FFFBEB;">
+            <td><strong>Cookie Stuffing</strong> <span class="wip-badge">⚠ WIP</span></td>
             <td>M1: Multi-offer clicks within 10s window per user<br/>M2: Click sourced from IMG tag or iFrame<br/><em style="font-size:11px;color:#BA7517;">Both metrics combined to confirm</em></td>
             <td>System (automated)</td>
             <td>Flag publisher, review conversion validity, reject fraudulent conversions, warn or terminate publisher</td>
             <td><span class="badge na">Draft needed</span></td>
           </tr>
-          <tr>
-            <td><strong>Pop-Under / Pop-Up</strong></td>
+          <tr style="background:#FFFBEB;">
+            <td><strong>Pop-Under / Pop-Up</strong> <span class="wip-badge">⚠ WIP</span></td>
             <td>CR &lt; 0.5% AND Clicks &gt; 100k/month</td>
             <td>System (weekly run)</td>
             <td>Review offer promo method, contact publisher, update block list if confirmed</td>
@@ -1093,6 +1093,13 @@
             <td>Manual review only</td>
             <td>Investigate traffic source, request publisher explanation, suspend if unexplained</td>
             <td><span class="badge missed">No rule — urgent</span></td>
+          </tr>
+          <tr style="background:#FFFBEB;">
+            <td><strong>Click Spam — Click Flooding</strong> <span class="wip-badge">⚠ WIP</span></td>
+            <td>&gt;800 clicks/min or constant interval pattern (±100ms)</td>
+            <td>System (automated scoring)</td>
+            <td>Score-based escalation: Watchlist → Review → Throttle → Block based on cumulative risk score</td>
+            <td><span class="badge na">Draft needed</span></td>
           </tr>
         </tbody>
       </table>
