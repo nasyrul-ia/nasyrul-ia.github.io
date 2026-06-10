@@ -293,7 +293,6 @@
           <marker id="fpf-n" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#1F3864"/></marker>
           <marker id="fpf-r" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#991B1B"/></marker>
           <marker id="fpf-p" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#5B21B6"/></marker>
-          <marker id="fpf-d" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#B91C1C"/></marker>
         </defs>
         <style>
           .fpf-td { font-family:sans-serif; font-size:9px; fill:#5F5E5A; }
@@ -310,14 +309,14 @@
 
         <!-- TRIGGER -->
         <rect x="290" y="42" width="340" height="38" rx="6" fill="#378ADD" stroke="#185FA5" stroke-width="1.5"/>
-        <text x="460" y="58" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="600" fill="#fff">⚠  Violation / Fraud Triggered</text>
+        <text x="460" y="58" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="600" fill="#fff">Violation / Fraud Triggered</text>
         <text x="460" y="73" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#B5D4F4">Detection source: S1 (Advertiser) or S2 (Internal)</text>
         <path class="fpf-cb" d="M460,80 L460,96" marker-end="url(#fpf-b)"/>
 
         <!-- SOURCE DIAMOND -->
         <polygon points="460,96 536,114 460,132 384,114" fill="#E6F1FB" stroke="#378ADD" stroke-width="1.5"/>
-        <text x="460" y="110" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="600" fill="#0C447C">Detection</text>
-        <text x="460" y="124" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="600" fill="#0C447C">Source?</text>
+        <text x="460" y="108" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="600" fill="#0C447C">Detection</text>
+        <text x="460" y="121" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="600" fill="#0C447C">Source?</text>
         <text x="342" y="111" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#5F5E5A">S1</text>
         <text x="578" y="111" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#5F5E5A">S2</text>
         <path class="fpf-cb" d="M384,114 L180,114 L180,148" marker-end="url(#fpf-b)"/>
@@ -329,10 +328,10 @@
         <text x="180" y="179" text-anchor="middle" class="fpf-td">Auto-set to Protection-Focused.</text>
         <text x="180" y="191" text-anchor="middle" class="fpf-td">Bypasses profile check. Full enforcement.</text>
         <!-- S1 arrow down to converge point -->
-        <path class="fpf-cr" d="M180,200 L180,268 L316,268" marker-end="url(#fpf-cr)"/>
+        <path class="fpf-cr" d="M180,200 L180,294 L245,294" marker-end="url(#fpf-cr)"/>
 
         <!-- S2 BOX — profile from Mahadir -->
-        <rect x="630" y="148" width="220" height="52" rx="5" fill="#FAEEDA" stroke="#BA7517" stroke-width="1"/>
+        <rect x="630" y="148" width="220" height="52" rx="5" fill="#FAEEDA" stroke="#BA7517" stroke-width="1.5"/>
         <text x="740" y="165" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="700" fill="#633806">S2 — Internal Detection</text>
         <text x="740" y="179" text-anchor="middle" class="fpf-td">Offer Profile from Mahadir.</text>
         <text x="740" y="191" text-anchor="middle" class="fpf-td">Controls applied by profile.</text>
@@ -343,15 +342,15 @@
         <polygon points="740,220 816,244 740,268 664,244" fill="#1F3864" stroke="#0C447C" stroke-width="1.5"/>
         <text x="740" y="240" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="600" fill="#fff">Offer Profile?</text>
         <text x="650" y="239" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#5B21B6" font-weight="600">Growth</text>
-        <text x="830" y="239" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#0C447C" font-weight="600">Balanced /</text>
-        <text x="830" y="251" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#0C447C" font-weight="600">Protection-Focused</text>
+        <text x="850" y="232" font-family="sans-serif" font-size="9" fill="#0C447C" font-weight="600">Balanced /</text>
+        <text x="850" y="244" font-family="sans-serif" font-size="9" fill="#0C447C" font-weight="600">Protection-Focused</text>
         <!-- S2 Growth branch left to converge -->
         <path class="fpf-cp" d="M664,244 L460,244 L460,268" marker-end="url(#fpf-p)"/>
         <!-- S2 Balanced/PF branch right and down to converge -->
-        <path class="fpf-cn" d="M816,244 L870,244 L870,268 L604,268" marker-end="url(#fpf-n)"/>
+        <path class="fpf-cn" d="M816,244 L870,244 L870,294 L675,294" marker-end="url(#fpf-n)"/>
 
         <!-- ═══ ALL PATHS CONVERGE → SUBMIT FORM ═══ -->
-        <rect x="245" y="268" width="430" height="52" rx="5" fill="#1F3864" stroke="#0C447C" stroke-width="1"/>
+        <rect x="245" y="268" width="430" height="52" rx="5" fill="#1F3864" stroke="#0C447C" stroke-width="1.5"/>
         <text x="460" y="286" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="700" fill="#fff">Submit Violation Form</text>
         <text x="460" y="300" text-anchor="middle" font-family="sans-serif" font-size="9" fill="rgba(255,255,255,0.75)">Phase 1: Mini Tools (card to stakeholder)  ·  Phase 2: Auto-apply controls, notify stakeholder</text>
         <text x="460" y="313" text-anchor="middle" font-family="sans-serif" font-size="9" fill="rgba(255,255,255,0.55)">Fields: Offer ID / Name  ·  Affiliate ID / Name  ·  Fraud Category  ·  Offer Profile (recorded at creation)</text>
@@ -364,7 +363,7 @@
         <path class="fpf-cn" d="M460,372 L460,388" marker-end="url(#fpf-n)"/>
 
         <!-- NOTIFY PUBLISHER — ALL CASES -->
-        <rect x="265" y="388" width="390" height="48" rx="5" fill="#E6F1FB" stroke="#185FA5" stroke-width="1"/>
+        <rect x="265" y="388" width="390" height="48" rx="5" fill="#E6F1FB" stroke="#185FA5" stroke-width="1.5"/>
         <text x="460" y="405" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="700" fill="#0C447C">Notify Publisher Manager — All Cases</text>
         <text x="460" y="419" text-anchor="middle" class="fpf-td">Protection-Focused: 5 working days to submit valid proof.</text>
         <text x="460" y="431" text-anchor="middle" class="fpf-td">Balanced: Commercial decides whether to request proof. Growth: no proof cycle.</text>
@@ -390,7 +389,7 @@
         <text x="770" y="481" text-anchor="middle" class="fpf-td">Untag publisher &amp; conversions from fraud</text>
         <path class="fpf-cg" d="M770,494 L770,510" marker-end="url(#fpf-g)"/>
         <rect x="650" y="510" width="240" height="34" rx="5" fill="#3B6D11"/>
-        <text x="770" y="527" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="700" fill="#fff">✓  Case Closed — No Violation</text>
+        <text x="770" y="527" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="700" fill="#fff">Case Closed — No Violation</text>
         <text x="770" y="539" text-anchor="middle" font-family="sans-serif" font-size="9" fill="rgba(255,255,255,0.75)">Untag from fraud activity · Archive case</text>
 
         <!-- INVALID PATH → down to enforcement controls -->
@@ -401,10 +400,10 @@
         <text x="128" y="568" text-anchor="middle" font-family="sans-serif" font-size="9" font-weight="700" fill="#fff">Growth-Focused</text>
         <rect x="18" y="578" width="220" height="84" rx="5" fill="#F3E8FF" stroke="#5B21B6" stroke-width="1"/>
         <text x="128" y="595" text-anchor="middle" font-family="sans-serif" font-size="9" font-weight="600" fill="#4C1D95">Record &amp; Monitor only — no enforcement:</text>
-        <text x="128" y="609" text-anchor="middle" class="fpf-td">✓  No traffic block</text>
-        <text x="128" y="622" text-anchor="middle" class="fpf-td">✓  No payout restrictions</text>
-        <text x="128" y="635" text-anchor="middle" class="fpf-td">✓  No conversion rejection</text>
-        <text x="128" y="648" text-anchor="middle" class="fpf-td">✓  No publisher ban · Proof cycle skipped</text>
+        <text x="128" y="609" text-anchor="middle" class="fpf-td">No traffic block</text>
+        <text x="128" y="622" text-anchor="middle" class="fpf-td">No payout restrictions</text>
+        <text x="128" y="635" text-anchor="middle" class="fpf-td">No conversion rejection</text>
+        <text x="128" y="648" text-anchor="middle" class="fpf-td">No publisher ban · Proof cycle skipped</text>
         <path class="fpf-cp" d="M128,662 L128,676" marker-end="url(#fpf-p)"/>
         <rect x="18" y="676" width="220" height="36" rx="5" fill="#EAF3DE" stroke="#3B6D11" stroke-width="1.5"/>
         <text x="128" y="691" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="700" fill="#27500A">Log &amp; Notify Commercial Team</text>
@@ -422,12 +421,12 @@
 
         <!-- CONTROLS TABLE -->
         <rect x="255" y="554" width="410" height="156" rx="4" fill="#fff" stroke="#D3D1C7" stroke-width="1"/>
-        <rect x="255" y="554" width="118" height="20" fill="#374151"/>
-        <rect x="373" y="554" width="146" height="20" fill="#1D4ED8"/>
-        <rect x="519" y="554" width="146" height="20" fill="#9F1239"/>
+        <rect x="255" y="554" width="118" height="20" fill="#1F3864"/>
+        <rect x="373" y="554" width="146" height="20" fill="#378ADD"/>
+        <rect x="519" y="554" width="146" height="20" fill="#991B1B"/>
         <text x="314" y="568" text-anchor="middle" font-family="sans-serif" font-size="9" font-weight="700" fill="#fff">Control</text>
         <text x="446" y="568" text-anchor="middle" font-family="sans-serif" font-size="9" font-weight="700" fill="#fff">Balanced</text>
-        <text x="592" y="568" text-anchor="middle" font-family="sans-serif" font-size="9" font-weight="700" fill="#fff">Protection-Focused</text>
+        <text x="592" y="568" text-anchor="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#fff">Protection-Focused</text>
         <line x1="255" y1="574" x2="665" y2="574" stroke="#E5E7EB" stroke-width="1"/>
         <line x1="373" y1="554" x2="373" y2="710" stroke="#E5E7EB" stroke-width="1"/>
         <line x1="519" y1="554" x2="519" y2="710" stroke="#E5E7EB" stroke-width="1"/>
@@ -435,31 +434,31 @@
         <line x1="255" y1="652" x2="665" y2="652" stroke="#E5E7EB" stroke-width="1"/>
         <line x1="255" y1="691" x2="665" y2="691" stroke="#E5E7EB" stroke-width="1"/>
         <!-- Row 1: Traffic -->
-        <text x="260" y="587" font-family="sans-serif" font-size="9" font-weight="600" fill="#374151">🚦 Traffic</text>
+        <text x="260" y="587" font-family="sans-serif" font-size="9" font-weight="600" fill="#1F3864">Traffic</text>
         <text x="378" y="586" font-family="sans-serif" font-size="9" fill="#5F5E5A">No traffic block</text>
         <text x="378" y="599" font-family="sans-serif" font-size="9" fill="#5F5E5A">(Commercial monitors)</text>
         <text x="524" y="586" font-family="sans-serif" font-size="9" fill="#5F5E5A">Traffic suspended</text>
         <text x="524" y="599" font-family="sans-serif" font-size="9" fill="#5F5E5A">immediately (Ops)</text>
         <!-- Row 2: Payout -->
-        <text x="260" y="626" font-family="sans-serif" font-size="9" font-weight="600" fill="#374151">💳 Payout</text>
+        <text x="260" y="626" font-family="sans-serif" font-size="9" font-weight="600" fill="#1F3864">Payout</text>
         <text x="378" y="625" font-family="sans-serif" font-size="9" fill="#5F5E5A">Block express &amp;</text>
         <text x="378" y="638" font-family="sans-serif" font-size="9" fill="#5F5E5A">early withdrawal</text>
         <text x="524" y="625" font-family="sans-serif" font-size="9" fill="#5F5E5A">All payouts blocked</text>
         <text x="524" y="638" font-family="sans-serif" font-size="9" fill="#5F5E5A">(express, early &amp; standard)</text>
         <!-- Row 3: Validation -->
-        <text x="260" y="665" font-family="sans-serif" font-size="9" font-weight="600" fill="#374151">✅ Validation</text>
+        <text x="260" y="665" font-family="sans-serif" font-size="9" font-weight="600" fill="#1F3864">Validation</text>
         <text x="378" y="664" font-family="sans-serif" font-size="9" fill="#5F5E5A">No conversion rejection</text>
         <text x="378" y="677" font-family="sans-serif" font-size="9" fill="#5F5E5A">(not applicable)</text>
         <text x="524" y="664" font-family="sans-serif" font-size="9" fill="#5F5E5A">Reject conversions</text>
         <text x="524" y="677" font-family="sans-serif" font-size="9" fill="#5F5E5A">immediately (Validation)</text>
         <!-- Row 4: Enforcement -->
-        <text x="260" y="704" font-family="sans-serif" font-size="9" font-weight="600" fill="#374151">⚖ Enforce</text>
+        <text x="260" y="704" font-family="sans-serif" font-size="9" font-weight="600" fill="#1F3864">Enforce</text>
         <text x="378" y="703" font-family="sans-serif" font-size="9" fill="#5F5E5A">No publisher ban</text>
         <text x="378" y="716" font-family="sans-serif" font-size="9" fill="#5F5E5A">(may retag profile)</text>
         <text x="524" y="703" font-family="sans-serif" font-size="9" fill="#5F5E5A">Permanent ban (Ops)</text>
 
         <!-- Arrow after controls -->
-        <path class="fpf-cr" d="M460,710 L460,726" marker-end="url(#fpf-r)"/>
+        <path class="fpf-cr" d="M460,710 L460,776" marker-end="url(#fpf-r)"/>
 
         <!-- MONITORING -->
         <rect x="255" y="776" width="410" height="36" rx="5" fill="#E6F1FB" stroke="#185FA5" stroke-width="1.5"/>
@@ -469,14 +468,13 @@
 
         <!-- CASE CLOSURE -->
         <rect x="255" y="828" width="410" height="36" rx="5" fill="#3B6D11"/>
-        <text x="460" y="844" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="700" fill="#fff">✓  Case Closure — Violation Enforced</text>
+        <text x="460" y="844" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="700" fill="#fff">Case Closure — Violation Enforced</text>
         <text x="460" y="858" text-anchor="middle" font-family="sans-serif" font-size="9" fill="rgba(255,255,255,0.75)">Notify all parties · Archive record · Update dashboard</text>
 
         <!-- ═══ S1 AUTO-PF NOTE ═══ -->
-        <rect x="18" y="148" width="220" height="0" rx="5" fill="none"/>
         <!-- S1 bypass annotation — connects S1 box to Submit Form directly, skipping Offer Profile -->
         <rect x="30" y="210" width="300" height="32" rx="5" fill="#FEE2E2" stroke="#991B1B" stroke-width="1" stroke-dasharray="4,2"/>
-        <text x="180" y="226" text-anchor="middle" font-family="sans-serif" font-size="9" font-weight="700" fill="#991B1B">⚡ S1 bypasses Offer Profile check → auto Protection-Focused</text>
+        <text x="180" y="226" text-anchor="middle" font-family="sans-serif" font-size="9" font-weight="700" fill="#991B1B">S1 bypasses Offer Profile check → auto Protection-Focused</text>
         <text x="180" y="238" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#991B1B">Profile recorded at ticket creation. Full enforcement on proof failure.</text>
 
         <!-- ═══ LEGEND ═══ -->
@@ -488,7 +486,7 @@
         <text x="193" y="896" font-family="sans-serif" font-size="9" fill="#64748B">Success</text>
         <line x1="240" y1="892" x2="270" y2="892" stroke="#991B1B" stroke-width="1.5"/>
         <text x="278" y="896" font-family="sans-serif" font-size="9" fill="#64748B">Failure</text>
-        <line x1="325" y1="892" x2="355" y2="892" stroke="#5B21B6" stroke-width="1.5"/>
+        <line x1="325" y1="892" x2="355" y2="892" stroke="#5B21B6" stroke-width="1.5" stroke-dasharray="6,3"/>
         <text x="363" y="896" font-family="sans-serif" font-size="9" fill="#64748B">Growth</text>
         <line x1="415" y1="892" x2="445" y2="892" stroke="#1F3864" stroke-width="1.5"/>
         <text x="453" y="896" font-family="sans-serif" font-size="9" fill="#64748B">Process</text>
